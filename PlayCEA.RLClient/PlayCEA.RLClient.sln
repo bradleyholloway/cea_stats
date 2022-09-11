@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32825.248
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlayCEA.RLClient", "PlayCEA.RLClient\PlayCEA.RLClient.csproj", "{3EF3329E-DF96-45B3-943E-A1B2E05AC04F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RlClientTest", "RlClientTest\RlClientTest.csproj", "{ED772E82-4DEF-4EE1-BB67-7632D341C246}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3EF3329E-DF96-45B3-943E-A1B2E05AC04F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EF3329E-DF96-45B3-943E-A1B2E05AC04F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EF3329E-DF96-45B3-943E-A1B2E05AC04F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EF3329E-DF96-45B3-943E-A1B2E05AC04F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED772E82-4DEF-4EE1-BB67-7632D341C246}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED772E82-4DEF-4EE1-BB67-7632D341C246}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED772E82-4DEF-4EE1-BB67-7632D341C246}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED772E82-4DEF-4EE1-BB67-7632D341C246}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {29DA1598-1126-41F3-AECA-E9E10B9F0BFD}
+	EndGlobalSection
+EndGlobal
