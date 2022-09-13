@@ -40,19 +40,10 @@ namespace PlayCEA.RLClient.Analysis
 
         public static void PopulateCustomRoundRank(BracketRound round)
         {
-            string stage = StageMatcher.Lookup(round.RoundName);
-            foreach (StageGroup group in Enumerable.ToList<StageGroup>((IEnumerable<StageGroup>)(from s in (IEnumerable<StageGroup>)StageGroups select s)))
+            foreach (StageGroup group in StageGroups)
             {
-                Func<Team, bool> func4 = delegate(Team t)
-                {
-                    return t.StageCumulativeRoundStats.ContainsKey(round);
-                };
-                Func<Team, TeamStatistics> func5 = delegate(Team t) {
-                    return t.StageCumulativeRoundStats[round];
-                };
-
                 int startingRank = group.StartingRank;
-                foreach (Team team in Enumerable.ToList<Team>((IEnumerable<Team>)Enumerable.OrderByDescending<Team, TeamStatistics>((IEnumerable<Team>)Enumerable.ToList<Team>(Enumerable.Where<Team>((IEnumerable<Team>)group.Teams, func4)), func5)))
+                foreach (Team team in group.Teams.Where(t => t.StageCumulativeRoundStats.ContainsKey(round)).OrderBy(t => t.StageCumulativeRoundStats[round]))
                 {
                     if (!team.RoundRanking.ContainsKey(round))
                     {
