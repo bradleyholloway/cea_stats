@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <AssemblyName>PlayCEASharp</AssemblyName>
     <PackageId>PlayCEASharp</PackageId>
-    <Version>0.1.0</Version>
+    <Version>0.1.1</Version>
     <Authors>Bradley Holloway</Authors>
     <Company>None</Company>
     <Description>
@@ -14,14 +14,16 @@
         Configurations support scoping to a specific game and season.
     </Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/bradleyholloway/cea_stats</RepositoryUrl>
+    <PackageIcon>icon.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Newtonsoft.Json" />
-    <None Remove="System.Text.Json" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="System.Text.Json" Version="6.0.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+      <None Include="images\icon.png" Pack="true" PackagePath="\"/>
   </ItemGroup>
 </Project>
