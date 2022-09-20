@@ -1,0 +1,96 @@
+{
+    "url": "Request URL: https://1ebv8yx4pa.execute-api.us-east-1.amazonaws.com/prod/tournaments/pGtfrTllZx",
+    "body": {
+        "message": "Fetch tournaments succeeded",
+        "data": {
+            "cts": "2022-09-10T22:16:20.901Z",
+            "ts": [
+                {
+                    "a": true,
+                    "tid": "VbX-4UDC8r"
+                },
+                {
+                    "a": true,
+                    "tid": "qbWVPfNDmS"
+                },
+                {
+                    "a": true,
+                    "tid": "ZtFu2dmF95"
+                },
+                {
+                    "a": true,
+                    "tid": "2lOWs2o8oE"
+                },
+                {
+                    "a": true,
+                    "tid": "wZbj8Cc_0r"
+                },
+                {
+                    "a": true,
+                    "tid": "WqZtahyLyI"
+                },
+                {
+                    "a": true,
+                    "tid": "UetUJQSjrp"
+                },
+                {
+                    "a": true,
+                    "tid": "JUYRACHC7I"
+                },
+                {
+                    "a": true,
+                    "tid": "gdTrm8QmtC"
+                },
+                {
+                    "a": true,
+                    "tid": "S_KzLbm0cq"
+                },
+                {
+                    "a": true,
+                    "tid": "p_Z50YMlI5"
+                },
+                {
+                    "a": true,
+                    "tid": "H7dryTli8C"
+                },
+                {
+                    "a": true,
+                    "tid": "5cSxthOZ0U"
+                },
+                {
+                    "a": true,
+                    "tid": "xXtzVVpQ-y"
+                }
+            ],
+            "msg": "Submit scores with a Goal Diff no greater than ± 4.",
+            "meta": {},
+            "game": {
+                "id": "rl",
+                "name": "Rocket League",
+                "ico": "https://cea-assets.s3.amazonaws.com/static/logos/rocketleague.png",
+                "bg": "https://cea-assets.s3.amazonaws.com/static/bg/rl.jpg",
+                "rb": "https://cea.gg/pages/rocket-league-rulebook"
+            },
+            "live": true,
+            "name": "Rocket League - Legacy",
+            "tmid": "pGtfrTllZx",
+            "uts": "2022-09-11T00:34:39.129Z",
+            "bs": [
+                {
+                    "bid": "0ynqMRAz_p",
+                    "name": "Regular Season"
+                }
+            ],
+            "sbkt": {
+                "reg": "0ynqMRAz_p",
+                "po": ""
+            },
+            "sn": {
+                "l": "CORPORATE",
+                "y": "2022",
+                "s": "FALL"
+            },
+            "current": true
+        }
+    }
+}
