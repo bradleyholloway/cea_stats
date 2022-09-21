@@ -189,6 +189,8 @@ namespace PlayCEASharp.RequestManagement
             Player player1 = ResourceCache.GetPlayer((string)playerToken["uid"]);
             player1.DisplayName = (string)playerToken["dn"];
             player1.DiscordId = (string)playerToken["ddn"];
+            player1.DiscordUID = (string)playerToken["uid"];
+            player1.PictureURL = (string)playerToken["ico"];
             player1.Captain = (bool)playerToken["captain"];
             return player1;
         }

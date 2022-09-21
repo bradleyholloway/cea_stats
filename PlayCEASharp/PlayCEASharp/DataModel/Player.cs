@@ -19,6 +19,10 @@ namespace PlayCEASharp.DataModel
 
         public string DiscordId { get; internal set; }
 
+        public string PictureURL { get; internal set; }
+
+        public string DiscordUID { get; internal set; }
+
         public bool Captain { get; internal set; }
     }
 }
