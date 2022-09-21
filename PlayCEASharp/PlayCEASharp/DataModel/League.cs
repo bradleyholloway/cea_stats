@@ -7,16 +7,27 @@ using System.Threading.Tasks;
 
 namespace PlayCEASharp.DataModel
 {
+    /// <summary>
+    /// Represents a collection of bracket sets comprising a "League".
+    /// A league is generally identified by a unique tuple of:
+    /// Game, League type (CORPORATE, COLLEGATE), YEAR, SEASON
+    /// </summary>
     public class League
     {
+        /// <summary>
+        /// The collection of bracket sets in the League.
+        /// </summary>
         private List<BracketSet> bracketSets;
 
+        /// <summary>
+        /// Creates a League based on the given bracket sets.
+        /// </summary>
+        /// <param name="bracketSets">Collection of bracket sets for this league.</param>
         internal League(List<BracketSet> bracketSets)
         {
             if (bracketSets.Count > 0)
             {
                 this.bracketSets = bracketSets;
-                this.Bracket = bracketSets.Last();
                 this.PlayerDiscordLookup = new Dictionary<string, Team>();
                 foreach (Team team in this.Bracket.Teams)
                 {
@@ -38,14 +49,25 @@ namespace PlayCEASharp.DataModel
             }
         }
 
+        /// <summary>
+        /// Provides a precomputed dictionary from discriminated discord name to which team they are on.
+        /// </summary>
         public Dictionary<string, Team> PlayerDiscordLookup { get; }
 
+        /// <summary>
+        /// Provides a precomputed dictionary from each team to their next match.
+        /// </summary>
         public Dictionary<Team, MatchResult> NextMatchLookup { get; }
 
-        public BracketSet Bracket { get; }
+        /// <summary>
+        /// Gets the most recent bracket set for the league.
+        /// </summary>
+        public BracketSet Bracket { get { return bracketSets.Last(); } }
 
-        public List<BracketSet> Brackets =>
-            this.bracketSets;
+        /// <summary>
+        /// Gets the collection of all bracket sets for the league.
+        /// </summary>
+        public List<BracketSet> Brackets => this.bracketSets;
 
     }
 }

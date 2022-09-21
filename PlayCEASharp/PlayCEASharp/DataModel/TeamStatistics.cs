@@ -7,13 +7,20 @@ using PlayCEASharp.Utilities;
 
 namespace PlayCEASharp.DataModel
 {
+    /// <summary>
+    /// The collection of statistics for a team.
+    /// </summary>
     public class TeamStatistics : IComparable
     {
+        /// <summary>
+        /// Creates a new statistics object.
+        /// </summary>
         public TeamStatistics()
         {
             this.Reset();
         }
 
+        /// <inheritdoc/>
         public int CompareTo(object obj)
         {
             int num4;
@@ -43,6 +50,12 @@ namespace PlayCEASharp.DataModel
             return num4;
         }
 
+        /// <summary>
+        /// Adds two statistics objects together to create a new statistics object represeting the sum of both.
+        /// </summary>
+        /// <param name="a">First stats object to add.</param>
+        /// <param name="b">Second stats object to add.</param>
+        /// <returns>A new TeamStatistics object with the sum of all properties.</returns>
         public static TeamStatistics operator +(TeamStatistics a, TeamStatistics b)
         {
             TeamStatistics statistics1 = new TeamStatistics();
@@ -55,6 +68,12 @@ namespace PlayCEASharp.DataModel
             return statistics1;
         }
 
+        /// <summary>
+        /// Subtracts two statistics objects, and returns a new statistics object representing the difference.
+        /// </summary>
+        /// <param name="a">The first statistics object.</param>
+        /// <param name="b">The second statistics object.</param>
+        /// <returns>The difference between A and B.</returns>
         public static TeamStatistics operator -(TeamStatistics a, TeamStatistics b)
         {
             TeamStatistics statistics1 = new TeamStatistics();
@@ -67,6 +86,9 @@ namespace PlayCEASharp.DataModel
             return statistics1;
         }
 
+        /// <summary>
+        /// Clears all stats for this object.
+        /// </summary>
         public void Reset()
         {
             this.MatchWins = 0;
@@ -77,32 +99,65 @@ namespace PlayCEASharp.DataModel
             this.TotalGoalsAgainst = 0;
         }
 
+        /// <inheritdoc/>
         public override string ToString() =>
             this.ToString(false);
 
+        /// <summary>
+        /// Provides a string representation of the object.
+        /// </summary>
+        /// <param name="detailed">If more detailed statistics should be included.</param>
+        /// <returns>A string representation of the object.</returns>
         public string ToString(bool detailed)
         {
             return this.CustomToString(detailed);
         }
 
+        /// <summary>
+        /// The number of matches won.
+        /// </summary>
         public int MatchWins { get; internal set; }
 
+        /// <summary>
+        /// The number of matches lost.
+        /// </summary>
         public int MatchLosses { get; internal set; }
 
+        /// <summary>
+        /// The number of games won.
+        /// </summary>
         public int GameWins { get; internal set; }
 
+        /// <summary>
+        /// The number of games lost.
+        /// </summary>
         public int GameLosses { get; internal set; }
 
+        /// <summary>
+        /// The difference in games won - games lost.
+        /// </summary>
         public int GameDifferential =>
             this.GameWins - this.GameLosses;
 
+        /// <summary>
+        /// Total goals scored.
+        /// </summary>
         public int TotalGoals { get; internal set; }
 
+        /// <summary>
+        /// Total goals against.
+        /// </summary>
         public int TotalGoalsAgainst { get; internal set; }
 
+        /// <summary>
+        /// The total number of games this object represents.
+        /// </summary>
         public int TotalGames =>
             this.GameWins + this.GameLosses;
 
+        /// <summary>
+        /// The goal differential of total goals - total goals against.
+        /// </summary>
         public int TotalGoalDifferential =>
             this.TotalGoals - this.TotalGoalsAgainst;
     }

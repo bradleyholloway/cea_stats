@@ -7,9 +7,16 @@ using System.Threading.Tasks;
 
 namespace PlayCEASharp.Analysis
 {
-    public static class AnalysisManager
+    /// <summary>
+    /// Helper class overseeing the analysis for precomputed properties.
+    /// </summary>
+    internal static class AnalysisManager
     {
-        public static void Analyze(IEnumerable<BracketSet> brackets)
+        /// <summary>
+        /// Analyzes all of the bracket sets, to compute the stats and rankings.
+        /// </summary>
+        /// <param name="brackets">Ordered collection of brackets to analze.</param>
+        internal static void Analyze(IEnumerable<BracketSet> brackets)
         {
             foreach (BracketSet set in brackets)
             {
@@ -23,6 +30,10 @@ namespace PlayCEASharp.Analysis
             }
         }
 
+        /// <summary>
+        /// Resets the stats of all teams in a given bracket.
+        /// </summary>
+        /// <param name="bracket">Bracket to reset stats for.</param>
         private static void ResetStats(Bracket bracket)
         {
             foreach (Team team in bracket.Teams)
@@ -68,6 +79,10 @@ namespace PlayCEASharp.Analysis
             }
         }
 
+        /// <summary>
+        /// Resets stats for all brackets in a bracket set.
+        /// </summary>
+        /// <param name="bracketSet">The set of brackets to reset stats for.</param>
         private static void ResetStats(BracketSet bracketSet)
         {
             foreach (Bracket bracket in bracketSet.Brackets)
@@ -76,6 +91,10 @@ namespace PlayCEASharp.Analysis
             }
         }
 
+        /// <summary>
+        /// Sets the WeekNumber property on rounds in a given bracket.
+        /// </summary>
+        /// <param name="bracket">The bracket to process.</param>
         private static void UpdateRoundWeekNumbers(BracketSet bracket)
         {
             foreach (List<BracketRound> list in bracket.Rounds)

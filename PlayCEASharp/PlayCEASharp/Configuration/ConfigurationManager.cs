@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PlayCEASharp.Configuration
 {
-    public class ConfigurationManager
+    internal class ConfigurationManager
     {
         private const string configurationPath = "Resources/configuration.json";
         private static object fileLock = new object();
@@ -17,7 +17,7 @@ namespace PlayCEASharp.Configuration
             ReadConfiguration();
         }
 
-        public static void ReadConfiguration()
+        internal static void ReadConfiguration()
         {
             object fileLock = ConfigurationManager.fileLock;
             lock (fileLock)
@@ -29,15 +29,15 @@ namespace PlayCEASharp.Configuration
             }
         }
 
-        public static void UpdateInMemoryConfiguration(BracketConfiguration config)
+        internal static void UpdateInMemoryConfiguration(BracketConfiguration config)
         {
             Configuration = config;
         }
 
-        public static BracketConfiguration Configuration { get; private set; }
+        internal static BracketConfiguration Configuration { get; private set; }
 
-        public static MatchingConfiguration MatchingConfiguration { get; private set; }
+        internal static MatchingConfiguration MatchingConfiguration { get; private set; }
 
-        public static NamingConfiguration NamingConfiguration { get; private set; }
+        internal static NamingConfiguration NamingConfiguration { get; private set; }
     }
 }

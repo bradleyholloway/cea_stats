@@ -7,8 +7,15 @@ using System.Threading.Tasks;
 
 namespace PlayCEASharp.Analysis
 {
+    /// <summary>
+    /// Helper class to compute basic statistics for brackets.
+    /// </summary>
     internal class BasicStats
     {
+        /// <summary>
+        /// Calculates the statistics for a bracket.
+        /// </summary>
+        /// <param name="bracket">The bracket to calculate for.</param>
         private static void CalculateBasicStats(Bracket bracket)
         {
             BracketRound round = null;
@@ -78,6 +85,10 @@ namespace PlayCEASharp.Analysis
             }
         }
 
+        /// <summary>
+        /// Calculates the basic statistics for all brackets in a bracket set.
+        /// </summary>
+        /// <param name="bracketSet">The bracket set to calculate for.</param>
         internal static void CalculateBasicStats(BracketSet bracketSet)
         {
             foreach (Bracket bracket in bracketSet.Brackets)

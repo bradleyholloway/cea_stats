@@ -9,17 +9,38 @@ using System.Threading.Tasks;
 
 namespace PlayCEASharp.RequestManagement
 {
+    /// <summary>
+    /// The public entry point to getting the League.
+    /// </summary>
     public class LeagueManager
     {
+        /// <summary>
+        /// Backing reference for the current league.
+        /// </summary>
         private static League league = null;
+
+        /// <summary>
+        /// Locks around refreshing to prevent duplicate work.
+        /// </summary>
         private static object refreshLock = new object();
+
+        /// <summary>
+        /// The request manager for issuing requests to PlayCEA endpoints.
+        /// </summary>
         private static RequestManager rm = new RequestManager();
 
+        /// <summary>
+        /// Starts a background refresh thread to update the league periodically.
+        /// </summary>
         static LeagueManager()
         {
             Task.Run(new Action(LeagueManager.RefreshThread));
         }
 
+        /// <summary>
+        /// Ensures that the league is initialized and popualted.
+        /// This is blocking and may take a while.
+        /// </summary>
         public static void Bootstrap()
         {
             lock (refreshLock)
@@ -31,11 +52,27 @@ namespace PlayCEASharp.RequestManagement
             }
         }
 
+        /// <summary>
+        /// Starts the bootstrapping process asyncronously.
+        /// </summary>
+        /// <returns>Task for bootstrap.</returns>
+        public static async Task BootstrapAsync()
+        {
+            Task bootstrapTask = new Task(Bootstrap);
+            await bootstrapTask;
+        }
+
+        /// <summary>
+        /// Forces a refresh from PlayCEA.
+        /// </summary>
         public static void ForceUpdate()
         {
             Refresh();
         }
 
+        /// <summary>
+        /// Internally refreshes the league.
+        /// </summary>
         private static void Refresh()
         {
             lock (refreshLock)
@@ -66,6 +103,9 @@ namespace PlayCEASharp.RequestManagement
             }
         }
 
+        /// <summary>
+        /// Background thread to update the league every 5 minutes.
+        /// </summary>
         private static void RefreshThread()
         {
             while (true)
@@ -75,6 +115,9 @@ namespace PlayCEASharp.RequestManagement
             }
         }
 
+        /// <summary>
+        /// The current league.
+        /// </summary>
         public static League League
         {
             get

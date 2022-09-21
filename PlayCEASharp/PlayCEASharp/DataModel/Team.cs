@@ -7,8 +7,15 @@ using PlayCEASharp.Utilities;
 
 namespace PlayCEASharp.DataModel
 {
+    /// <summary>
+    /// A team consists of players. It also has fields for many precomputed stats.
+    /// </summary>
     public class Team
     {
+        /// <summary>
+        /// Creates a new team object with the given team id.
+        /// </summary>
+        /// <param name="teamId">The team id in playCea.</param>
         public Team(string teamId)
         {
             this.TeamId = teamId;
@@ -21,6 +28,9 @@ namespace PlayCEASharp.DataModel
             this.RoundRanking = new Dictionary<BracketRound, int>();
         }
 
+        /// <summary>
+        /// Resets all of the stats associated with this team.
+        /// </summary>
         internal void ResetStats()
         {
             this.Stats.Reset();
@@ -42,30 +52,67 @@ namespace PlayCEASharp.DataModel
             }
         }
 
+        /// <inheritdoc/>
         public override string ToString() => this.CustomToString();
 
+        /// <summary>
+        /// The team id in playCea.
+        /// </summary>
         public string TeamId { get; }
 
+        /// <summary>
+        /// The display name of the team.
+        /// </summary>
         public string Name { get; internal set; }
 
+        /// <summary>
+        /// The organization the team is associated with.
+        /// </summary>
         public string Org { get; internal set; }
 
+        /// <summary>
+        /// The url to the avatar for the team.
+        /// </summary>
         public string ImageURL { get; internal set; }
 
+        /// <summary>
+        /// The last known rank of this team.
+        /// </summary>
         public int Rank { get; internal set; }
 
+        /// <summary>
+        /// The players on the team.
+        /// </summary>
         public List<Player> Players { get; }
 
+        /// <summary>
+        /// The total cumulative statistics for this team.
+        /// </summary>
         public TeamStatistics Stats { get; internal set; }
 
+        /// <summary>
+        /// Statistics for each specific round.
+        /// </summary>
         public Dictionary<BracketRound, TeamStatistics> RoundStats { get; }
 
+        /// <summary>
+        /// Statistics that are cumulative up to a specific round.
+        /// </summary>
         public Dictionary<BracketRound, TeamStatistics> CumulativeRoundStats { get; }
 
+        /// <summary>
+        /// Statistics that are cumulative up to the round, within a given stage.
+        /// </summary>
         public Dictionary<BracketRound, TeamStatistics> StageCumulativeRoundStats { get; }
 
+        /// <summary>
+        /// The rankings calculated for the team at each round.
+        /// </summary>
         public Dictionary<BracketRound, int> RoundRanking { get; }
 
+        /// <summary>
+        /// The cumulative statistics for each stage.
+        /// </summary>
         public Dictionary<string, TeamStatistics> StageStats { get; }
     }
 }

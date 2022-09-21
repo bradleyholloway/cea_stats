@@ -8,8 +8,16 @@ using System.Threading.Tasks;
 
 namespace PlayCEASharp.RequestManagement
 {
+    /// <summary>
+    /// Class for marshalling responses from PlayCEA into PlayCEASharp objects.
+    /// </summary>
     internal static class Marshaller
     {
+        /// <summary>
+        /// Transforms a json tournament into a Tournament.
+        /// </summary>
+        /// <param name="tournamentToken">the json for the tournament.</param>
+        /// <returns>A hydrated Tournament</returns>
         internal static Tournament Tournament(JToken tournamentToken) {
             Tournament tournament = ResourceCache.GetTournament((string)tournamentToken["tmid"]);
             tournament.TournamentName = (string)tournamentToken["name"];
@@ -61,6 +69,11 @@ namespace PlayCEASharp.RequestManagement
             return tournament;
         }
 
+        /// <summary>
+        /// Transforms the json bracket into a Bracket.
+        /// </summary>
+        /// <param name="bracketToken">The json returned from PlayCEA.</param>
+        /// <returns>A hydrated Bracket.</returns>
         internal static Bracket Bracket(JToken bracketToken)
         {
             Bracket bracket1 = ResourceCache.GetBracket((string)bracketToken["bid"]);
@@ -100,6 +113,11 @@ namespace PlayCEASharp.RequestManagement
             return bracket;
         }
 
+        /// <summary>
+        /// Gets a list of teams from a bucket in metadata.
+        /// </summary>
+        /// <param name="bucketToken">The meatdata bucket token.</param>
+        /// <returns>List of teams.</returns>
         private static List<Team> ExtractTeamsFromBucket(JToken bucketToken)
         {
             List<Team> teams = new List<Team>();
@@ -113,6 +131,11 @@ namespace PlayCEASharp.RequestManagement
             return teams;
         }
 
+        /// <summary>
+        /// Transforms a json bracket round into a BracketRound.
+        /// </summary>
+        /// <param name="roundToken">the json of a bracketround from PlayCEA.</param>
+        /// <returns>A hydrated BracketRound.</returns>
         internal static BracketRound BracketRound(JToken roundToken)
         {
             BracketRound bracketRound = ResourceCache.GetBracketRound((string)roundToken["rid"]);
@@ -128,6 +151,11 @@ namespace PlayCEASharp.RequestManagement
             return bracketRound;
         }
 
+        /// <summary>
+        /// Transforms the json game token into a Game.
+        /// </summary>
+        /// <param name="gameToken">json representation of a game.</param>
+        /// <returns>A hydrated Game.</returns>
         internal static Game Game(JToken gameToken)
         {
             Game game1 = new Game((string)gameToken["gid"]);
@@ -138,6 +166,12 @@ namespace PlayCEASharp.RequestManagement
             return game1;
         }
 
+        /// <summary>
+        /// Transforms the json representation of a match into a MatchResult.
+        /// </summary>
+        /// <param name="matchToken">the json representation from PlayCEA.</param>
+        /// <param name="optionalBracketRound">The BracketRound to provide a backlink for round rankings.</param>
+        /// <returns>A MatchResult for the given match.</returns>
         internal static MatchResult Match(JToken matchToken, BracketRound optionalBracketRound = null)
         {
             MatchResult result2;
@@ -184,6 +218,11 @@ namespace PlayCEASharp.RequestManagement
             return result2;
         }
 
+        /// <summary>
+        /// Transforms the json of a player into a Player.
+        /// </summary>
+        /// <param name="playerToken">the json representation of the player.</param>
+        /// <returns>A hydrated Player.</returns>
         internal static Player Player(JToken playerToken)
         {
             Player player1 = ResourceCache.GetPlayer((string)playerToken["uid"]);
@@ -195,6 +234,11 @@ namespace PlayCEASharp.RequestManagement
             return player1;
         }
 
+        /// <summary>
+        /// Transforms the json representation of a team into a Team.
+        /// </summary>
+        /// <param name="teamToken">the json representation of the team.</param>
+        /// <returns>A hydrated Team.</returns>
         internal static Team Team(JToken teamToken)
         {
             Team team = ResourceCache.GetTeam((string)teamToken["tid"]);

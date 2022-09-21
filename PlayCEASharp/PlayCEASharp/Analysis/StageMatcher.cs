@@ -7,12 +7,20 @@ using System.Threading.Tasks;
 
 namespace PlayCEASharp.Analysis
 {
+    /// <summary>
+    /// Helper class to match round names to the stage they belong to.
+    /// </summary>
     public static class StageMatcher
     {
-        public static string Lookup(string stageName)
+        /// <summary>
+        /// Lookup the stage for a given round.
+        /// </summary>
+        /// <param name="roundName">The round to look for.</param>
+        /// <returns></returns>
+        public static string Lookup(string roundName)
         {
             string str;
-            return (ConfigurationManager.Configuration.stageConfiguration.TryGetValue(stageName, out str) ? str : "default_stage");
+            return (ConfigurationManager.Configuration.stageConfiguration.TryGetValue(roundName, out str) ? str : "default_stage");
         }
     }
 }

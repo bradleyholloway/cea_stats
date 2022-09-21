@@ -8,8 +8,15 @@ using System.Threading.Tasks;
 
 namespace PlayCEASharp.Analysis
 {
+    /// <summary>
+    /// Helper class to compute ranks for teams throughout a bracketset.
+    /// </summary>
     internal class TeamRankAssignmentHelper
     {
+        /// <summary>
+        /// Populates all round rankings for a given bracket.
+        /// </summary>
+        /// <param name="bracket">The bracket to process.</param>
         internal static void PopulateAllRoundRanks(Bracket bracket)
         {
             foreach (BracketRound round in bracket.Rounds)
@@ -18,6 +25,11 @@ namespace PlayCEASharp.Analysis
             }
         }
 
+        /// <summary>
+        /// Populates all round rankings for a given bracket set.
+        /// This requires basic statistics to have already been populated.
+        /// </summary>
+        /// <param name="bracketSet">The bracket set to process.</param>
         internal static void PopulateAllRoundRanks(BracketSet bracketSet)
         {
             foreach (Bracket bracket in bracketSet.Brackets)
@@ -26,6 +38,11 @@ namespace PlayCEASharp.Analysis
             }
         }
 
+        /// <summary>
+        /// Populates the round rankings for a bracket round.
+        /// This requires basic stats to have been populated.
+        /// </summary>
+        /// <param name="round">The round to process.</param>
         internal static void PopulateCustomRoundRank(BracketRound round)
         {
             string stage = StageMatcher.Lookup(round.RoundName);
