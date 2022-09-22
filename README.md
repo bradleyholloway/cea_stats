@@ -5,6 +5,8 @@ Configurations support scoping to a specific game and season.
 
 This repository contains the source for the library (/PlayCEASharp) in addition to a command line application for local testing.
 
+## Documentation: https://bradleyholloway.github.io/cea_stats/api/index.html
+
 ## Usage
 
 After consuming the package, clients need to have a Resources/configuration.json in their output directory for the library to read.
