@@ -1,0 +1,440 @@
+{
+  "homepages": [],
+  "source_base_path": "/github/workspace/PlayCEASharp/docfx_project",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlayCEASharp.Analysis.StageMatcher.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlayCEASharp.Analysis.StageMatcher.html",
+          "hash": "93gGZmfaOkjvL1DdiPKKnQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlayCEASharp.Analysis.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlayCEASharp.Analysis.html",
+          "hash": "+FfMz41SeHaV5DrI4wR/zg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlayCEASharp.Configuration.MatchingConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlayCEASharp.Configuration.MatchingConfiguration.html",
+          "hash": "avQTsAz5ztfQqVfx+61sYA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlayCEASharp.Configuration.NamingConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlayCEASharp.Configuration.NamingConfiguration.html",
+          "hash": "R0R48/pifvDfymZjFCq1Dw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlayCEASharp.Configuration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlayCEASharp.Configuration.html",
+          "hash": "BG7g8LxM/nAOHm8GJyTj+Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlayCEASharp.DataModel.Bracket.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlayCEASharp.DataModel.Bracket.html",
+          "hash": "dccPx2is6tO2dzok9ULr1A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlayCEASharp.DataModel.BracketRound.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlayCEASharp.DataModel.BracketRound.html",
+          "hash": "6iuiecCTxzeL++xXWVt9nQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlayCEASharp.DataModel.BracketSet.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlayCEASharp.DataModel.BracketSet.html",
+          "hash": "OeF2qXrOCtd71I0rr2W+tQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlayCEASharp.DataModel.Game.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlayCEASharp.DataModel.Game.html",
+          "hash": "Xas+AVWTvS18SfHP7w6dwg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlayCEASharp.DataModel.League.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlayCEASharp.DataModel.League.html",
+          "hash": "j+iUEYcRu1hl/i+K0mIMDw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlayCEASharp.DataModel.MatchResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlayCEASharp.DataModel.MatchResult.html",
+          "hash": "73ZWbb/wCoFTJZU+cYCmqQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlayCEASharp.DataModel.Player.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlayCEASharp.DataModel.Player.html",
+          "hash": "pB6h8veboj9PsNTRjwKB+Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlayCEASharp.DataModel.StageGroup.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlayCEASharp.DataModel.StageGroup.html",
+          "hash": "oIWcNg0XQcQphzMeYrlfJg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlayCEASharp.DataModel.Team.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlayCEASharp.DataModel.Team.html",
+          "hash": "fvRauU57QX4EGP3bnkCWIA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlayCEASharp.DataModel.TeamStatistics.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlayCEASharp.DataModel.TeamStatistics.html",
+          "hash": "hvMSFU67vMI5SkioZ36GzA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlayCEASharp.DataModel.Tournament.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlayCEASharp.DataModel.Tournament.html",
+          "hash": "ob0Y3tCMi7vcAnKxHOMHUg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlayCEASharp.DataModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlayCEASharp.DataModel.html",
+          "hash": "N9wXNDnhq6OmmzoRdtRdMw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlayCEASharp.RequestManagement.LeagueManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlayCEASharp.RequestManagement.LeagueManager.html",
+          "hash": "4yRxYivnL2K72tL4xzrPUg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlayCEASharp.RequestManagement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlayCEASharp.RequestManagement.html",
+          "hash": "lK/NrWI6AxmXwxMSH9U45g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlayCEASharp.Utilities.GameExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlayCEASharp.Utilities.GameExtensions.html",
+          "hash": "LpObX3kwLTIi8U8kROfomw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlayCEASharp.Utilities.MatchResultExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlayCEASharp.Utilities.MatchResultExtensions.html",
+          "hash": "NetGGrdNmjpo7esjzKguaw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlayCEASharp.Utilities.PlayerExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlayCEASharp.Utilities.PlayerExtensions.html",
+          "hash": "9u/ovhxGEXHZwV2HgL04gg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlayCEASharp.Utilities.StringExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlayCEASharp.Utilities.StringExtensions.html",
+          "hash": "2AbL7zJET/gLsyKPckYVoA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlayCEASharp.Utilities.TeamExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlayCEASharp.Utilities.TeamExtensions.html",
+          "hash": "znYgcDJfQ9qsevGOxSJDOg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlayCEASharp.Utilities.TeamStatisticsExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlayCEASharp.Utilities.TeamStatisticsExtensions.html",
+          "hash": "kJG7rOoaG2cOJD8uwgCyhA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlayCEASharp.Utilities.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlayCEASharp.Utilities.html",
+          "hash": "gvHcAVXLibYLGZAyEqvXGg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html",
+          "hash": "gW0O9PH2a7Vy5sFwHKvg1Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "sYYQ4KPZAGOnvG7sD4lAPA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/intro.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/intro.html",
+          "hash": "k2cYe7j/+ljvynNn2i3A0g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "articles/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "articles/toc.html",
+          "hash": "gB8AESyvNru97tzIZofEEg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "v0RZb5Lu+I+kgcLk1kzGMg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "+rHUkRZHZRi5gd1aTU6lJA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot build incrementally because last build info is missing.",
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0,
+        "full_build_reason_code": "NoAvailableBuildCache"
+      },
+      "processors": {
+        "ConceptualDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 3,
+          "skipped_file_count": 0
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 26,
+          "skipped_file_count": 0
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: last post processor info is null.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}
