@@ -93,7 +93,7 @@ namespace PlayCEASharp.RequestManagement
                     bracketSets.Add(new BracketSet(brackets.Select(b => bracketLookup[b]).ToList()));
                 }
                 // Analyze bracket sets.
-                AnalysisManager.Analyze((IEnumerable<BracketSet>)bracketSets, config);
+                AnalysisManager.Analyze(bracketSets, config);
                 // Update league reference.
                 this.league = new League(bracketSets, config);
                 this.prevMatchingConfig = matchingConfig;
