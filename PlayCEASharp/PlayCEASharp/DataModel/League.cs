@@ -4,6 +4,7 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using PlayCEASharp.Configuration;
 
 namespace PlayCEASharp.DataModel
 {
@@ -14,6 +15,8 @@ namespace PlayCEASharp.DataModel
     /// </summary>
     public class League
     {
+        private BracketConfiguration configuration;
+
         /// <summary>
         /// The collection of bracket sets in the League.
         /// </summary>
@@ -23,8 +26,9 @@ namespace PlayCEASharp.DataModel
         /// Creates a League based on the given bracket sets.
         /// </summary>
         /// <param name="bracketSets">Collection of bracket sets for this league.</param>
-        internal League(List<BracketSet> bracketSets)
+        internal League(List<BracketSet> bracketSets, BracketConfiguration config)
         {
+            this.configuration = config;
             if (bracketSets.Count > 0)
             {
                 this.bracketSets = bracketSets;
@@ -68,6 +72,16 @@ namespace PlayCEASharp.DataModel
         /// Gets the collection of all bracket sets for the league.
         /// </summary>
         public List<BracketSet> Brackets => this.bracketSets;
+
+        /// <summary>
+        /// Lookup the stage for a given round.
+        /// </summary>
+        /// <param name="roundName">The round to look for.</param>
+        /// <returns>The stage name for the given round if present.</returns>
+        public string StageLookup(string roundName)
+        {
+            return this.configuration.StageLookup(roundName);
+        }
 
     }
 }

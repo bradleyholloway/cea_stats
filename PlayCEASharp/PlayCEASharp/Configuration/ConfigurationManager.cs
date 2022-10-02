@@ -25,16 +25,8 @@ namespace PlayCEASharp.Configuration
                 string configString = File.ReadAllText("Resources/configuration.json");
                 NamingConfiguration = JsonSerializer.Deserialize<NamingConfiguration>(configString);
                 MatchingConfiguration = JsonSerializer.Deserialize<MatchingConfiguration>(configString);
-                Configuration = JsonSerializer.Deserialize<BracketConfiguration>(configString);
             }
         }
-
-        internal static void UpdateInMemoryConfiguration(BracketConfiguration config)
-        {
-            Configuration = config;
-        }
-
-        internal static BracketConfiguration Configuration { get; private set; }
 
         internal static MatchingConfiguration MatchingConfiguration { get; private set; }
 

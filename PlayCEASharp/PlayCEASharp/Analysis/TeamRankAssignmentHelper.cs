@@ -17,11 +17,11 @@ namespace PlayCEASharp.Analysis
         /// Populates all round rankings for a given bracket.
         /// </summary>
         /// <param name="bracket">The bracket to process.</param>
-        internal static void PopulateAllRoundRanks(Bracket bracket)
+        internal static void PopulateAllRoundRanks(Bracket bracket, BracketConfiguration configuration)
         {
             foreach (BracketRound round in bracket.Rounds)
             {
-                PopulateCustomRoundRank(round);
+                PopulateCustomRoundRank(round, configuration);
             }
         }
 
@@ -30,11 +30,11 @@ namespace PlayCEASharp.Analysis
         /// This requires basic statistics to have already been populated.
         /// </summary>
         /// <param name="bracketSet">The bracket set to process.</param>
-        internal static void PopulateAllRoundRanks(BracketSet bracketSet)
+        internal static void PopulateAllRoundRanks(BracketSet bracketSet, BracketConfiguration configuration)
         {
             foreach (Bracket bracket in bracketSet.Brackets)
             {
-                PopulateAllRoundRanks(bracket);
+                PopulateAllRoundRanks(bracket, configuration);
             }
         }
 
@@ -43,10 +43,10 @@ namespace PlayCEASharp.Analysis
         /// This requires basic stats to have been populated.
         /// </summary>
         /// <param name="round">The round to process.</param>
-        internal static void PopulateCustomRoundRank(BracketRound round)
+        internal static void PopulateCustomRoundRank(BracketRound round, BracketConfiguration configuration)
         {
-            string stage = StageMatcher.Lookup(round.RoundName);
-            foreach (StageGroup group in ConfigurationManager.Configuration.stageGroups.Where(s => s.Stage.Equals(stage)))
+            string stage = configuration.StageLookup(round.RoundName);
+            foreach (StageGroup group in configuration.stageGroups.Where(s => s.Stage.Equals(stage)))
             {
                 Func<Team, bool> func4 = delegate(Team t)
                 {

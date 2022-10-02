@@ -18,13 +18,13 @@ namespace PlayCEASharp.Configuration
         /// </summary>
         /// <param name="allTournaments">All tournaments read from the tournaments endpoint.</param>
         /// <returns></returns>
-        internal static BracketConfiguration GenerateConfiguration(List<Tournament> allTournaments)
+        internal static BracketConfiguration GenerateConfiguration(List<Tournament> allTournaments, MatchingConfiguration config)
         {
-            List<Tournament> tournaments = MatchingTournaments(allTournaments);
+            List<Tournament> tournaments = MatchingTournaments(allTournaments, config);
 
-            Dictionary<string, string> stageConfiguration = BuildStageConfigurations(tournaments);
-            string[][] bracketSets = BuildBracketSets(tournaments);
-            StageGroup[] stageGroups = BuildStageGroups(tournaments, bracketSets, stageConfiguration);
+            Dictionary<string, string> stageConfiguration = BuildStageConfigurations(tournaments, config);
+            string[][] bracketSets = BuildBracketSets(tournaments, config);
+            StageGroup[] stageGroups = BuildStageGroups(tournaments, bracketSets, stageConfiguration, config);
             return new BracketConfiguration()
             {
                 bracketSets = bracketSets,
@@ -38,10 +38,9 @@ namespace PlayCEASharp.Configuration
         /// </summary>
         /// <param name="allTournaments">All tournaments from the tournaments endpoint.</param>
         /// <returns>New list of only tournaments which match the configuration.</returns>
-        internal static List<Tournament> MatchingTournaments(List<Tournament> allTournaments)
+        internal static List<Tournament> MatchingTournaments(List<Tournament> allTournaments, MatchingConfiguration config)
         {
-            MatchingConfiguration c = ConfigurationManager.MatchingConfiguration;
-            return allTournaments.Where(t => t.GameId.Equals(c.gameId) && t.SeasonYear.Equals(c.year) && t.SeasonLeague.Equals(c.league) && t.SeasonSeason.Equals(c.season)).ToList();
+            return allTournaments.Where(t => t.GameId.Equals(config.gameId) && t.SeasonYear.Equals(config.year) && t.SeasonLeague.Equals(config.league) && t.SeasonSeason.Equals(config.season)).ToList();
         }
 
         /// <summary>
@@ -51,7 +50,7 @@ namespace PlayCEASharp.Configuration
         /// <param name="bracketSets">The bracket sets that have been computed.</param>
         /// <param name="stageConfiguration">The mapping of roundNames -> stageNames.</param>
         /// <returns>The collection of stage groups for this league.</returns>
-        private static StageGroup[] BuildStageGroups(List<Tournament> tournaments, string[][] bracketSets, Dictionary<string, string> stageConfiguration)
+        private static StageGroup[] BuildStageGroups(List<Tournament> tournaments, string[][] bracketSets, Dictionary<string, string> stageConfiguration, MatchingConfiguration config)
         {
             List<StageGroup> groups = new List<StageGroup>();
             Dictionary<string, Bracket> bracketLookup = tournaments.SelectMany(t => t.Brackets).ToDictionary(b => b.BracketId);
@@ -59,7 +58,7 @@ namespace PlayCEASharp.Configuration
             int stageIndex = -1;
             foreach (string[] brackets in bracketSets)
             {
-                string stageName = ConfigurationManager.MatchingConfiguration.stageNames[stageIndex];
+                string stageName = config.stageNames[stageIndex];
                 List<StageGroup> roundGroups = new List<StageGroup>();
                 int startingRank = 1;
 
@@ -143,7 +142,7 @@ namespace PlayCEASharp.Configuration
         /// </summary>
         /// <param name="tournaments">The filtered list of tournaments.</param>
         /// <returns>The list of list of bracketIds referenced by the tournaments.</returns>
-        private static string[][] BuildBracketSets(List<Tournament> tournaments)
+        private static string[][] BuildBracketSets(List<Tournament> tournaments, MatchingConfiguration config)
         {
             List<Tuple<Tournament, Bracket>> brackets = new List<Tuple<Tournament, Bracket>>();
             foreach (Tournament t in tournaments)
@@ -154,7 +153,7 @@ namespace PlayCEASharp.Configuration
                 }
             }
 
-            var stageGroups = brackets.OrderBy(t => Ordering(t.Item1, t.Item2)).GroupBy(t => Stage(t.Item1, t.Item2)).OrderBy(g => g.Key);
+            var stageGroups = brackets.OrderBy(t => Ordering(t.Item1, t.Item2, config)).GroupBy(t => Stage(t.Item1, t.Item2, config)).OrderBy(g => g.Key);
             string[][] bracketSets = stageGroups.Select(s => s.Select(t => t.Item2.BracketId).ToArray()).ToArray();
             return bracketSets;
         }
@@ -164,15 +163,15 @@ namespace PlayCEASharp.Configuration
         /// </summary>
         /// <param name="tournaments">The filtered list of tournaments.</param>
         /// <returns>The StageConfiguration.</returns>
-        private static Dictionary<string, string> BuildStageConfigurations(List<Tournament> tournaments)
+        private static Dictionary<string, string> BuildStageConfigurations(List<Tournament> tournaments, MatchingConfiguration config)
         {
             Dictionary<string, string> stageConfiguration = new Dictionary<string, string>();
             foreach (Tournament t in tournaments)
             {
                 foreach (Bracket b in t.Brackets)
                 {
-                    int stageIndex = Stage(t, b);
-                    string stageName = ConfigurationManager.MatchingConfiguration.stageNames[stageIndex];
+                    int stageIndex = Stage(t, b, config);
+                    string stageName = config.stageNames[stageIndex];
                     foreach (BracketRound r in b.Rounds)
                     {
                         if (!stageConfiguration.ContainsKey(r.RoundName))
@@ -192,9 +191,9 @@ namespace PlayCEASharp.Configuration
         /// <param name="t">The tournament for a given bracket.</param>
         /// <param name="b">The bracket.</param>
         /// <returns>The stage for this tournament/bracket pair.</returns>
-        private static int Stage(Tournament t, Bracket b)
+        private static int Stage(Tournament t, Bracket b, MatchingConfiguration config)
         {
-            foreach (KeyValuePair<string, int> kvp in ConfigurationManager.MatchingConfiguration.stageKeywords)
+            foreach (KeyValuePair<string, int> kvp in config.stageKeywords)
             {
                 if (Contains(t, b, kvp.Key))
                 {
@@ -211,9 +210,9 @@ namespace PlayCEASharp.Configuration
         /// <param name="t">The tournament for a given bracket.</param>
         /// <param name="b">The bracket.</param>
         /// <returns>An offset for where this bracket should go in the ordering.</returns>
-        private static int Ordering(Tournament t, Bracket b)
+        private static int Ordering(Tournament t, Bracket b, MatchingConfiguration config)
         {
-            foreach (KeyValuePair<string, int> kvp in ConfigurationManager.MatchingConfiguration.orderKeywords)
+            foreach (KeyValuePair<string, int> kvp in config.orderKeywords)
             {
                 if (Contains(t, b, kvp.Key))
                 {

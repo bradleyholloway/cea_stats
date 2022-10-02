@@ -34,7 +34,7 @@ namespace PlayCEASharp.RequestManagement
         /// </summary>
         static LeagueManager()
         {
-            Task.Run(new Action(LeagueManager.RefreshThread));
+            Task.Run(LeagueManager.RefreshThread);
         }
 
         /// <summary>
@@ -77,29 +77,31 @@ namespace PlayCEASharp.RequestManagement
         {
             lock (refreshLock)
             {
+                // Eventually we should be able to handle multiple configurations within the library.
+                // League manager will need to become instanced, and some reasonable way to select between different leagues.
+                MatchingConfiguration matchingConfig = ConfigurationManager.MatchingConfiguration;
                 // Read all tournaments.
                 List<Tournament> tournaments = rm.GetTournaments().Result;
                 // Filter to matching tournaments.
-                tournaments = ConfigurationGenerator.MatchingTournaments(tournaments);
+                tournaments = ConfigurationGenerator.MatchingTournaments(tournaments, matchingConfig);
                 // Populate brackets + teams for the scoped tournaments.
                 Task bracketLoading = rm.LoadBrackets(tournaments);
                 Task teamLoading = rm.UpdateAllTeams(tournaments.SelectMany(t => t.Teams).Distinct().ToList());
                 Task.WaitAll(bracketLoading, teamLoading);
                 // Build the stage configurations for analysis from the populated tournaments.
-                BracketConfiguration config = ConfigurationGenerator.GenerateConfiguration(tournaments);
-                ConfigurationManager.UpdateInMemoryConfiguration(config);
+                BracketConfiguration config = ConfigurationGenerator.GenerateConfiguration(tournaments, matchingConfig);
                 // Create a local bracket lookup for quick build of bracket sets.
                 Dictionary<string, Bracket> bracketLookup = tournaments.SelectMany(t => t.Brackets).ToDictionary(b => b.BracketId);
                 // Build bracket sets with actual brackets already populated from initial read.
                 List<BracketSet> bracketSets = new List<BracketSet>();
-                foreach (string[] brackets in ConfigurationManager.Configuration.bracketSets)
+                foreach (string[] brackets in config.bracketSets)
                 {
                     bracketSets.Add(new BracketSet(brackets.Select(b => bracketLookup[b]).ToList()));
                 }
                 // Analyze bracket sets.
-                AnalysisManager.Analyze((IEnumerable<BracketSet>)bracketSets);
+                AnalysisManager.Analyze((IEnumerable<BracketSet>)bracketSets, config);
                 // Update league reference.
-                league = new League(bracketSets);
+                league = new League(bracketSets, config);
             }
         }
 
@@ -110,8 +112,15 @@ namespace PlayCEASharp.RequestManagement
         {
             while (true)
             {
-                Thread.Sleep(TimeSpan.FromMinutes(5.0));
-                Refresh();
+                try
+                {
+                    Thread.Sleep(TimeSpan.FromMinutes(5.0));
+                    Refresh();
+                }
+                catch (Exception e)
+                {
+                    Logger.Log($"Exception in refresh thread. {e.ToString()}");
+                }
             }
         }
 

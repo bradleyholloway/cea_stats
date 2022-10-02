@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PlayCEASharp.Configuration;
 
 namespace PlayCEASharp.Analysis
 {
@@ -16,17 +17,17 @@ namespace PlayCEASharp.Analysis
         /// Analyzes all of the bracket sets, to compute the stats and rankings.
         /// </summary>
         /// <param name="brackets">Ordered collection of brackets to analze.</param>
-        internal static void Analyze(IEnumerable<BracketSet> brackets)
+        internal static void Analyze(IEnumerable<BracketSet> brackets, BracketConfiguration configuration)
         {
             foreach (BracketSet set in brackets)
             {
-                ResetStats(set);
+                ResetStats(set, configuration);
                 UpdateRoundWeekNumbers(set);
             }
             foreach (BracketSet set2 in brackets)
             {
-                BasicStats.CalculateBasicStats(set2);
-                TeamRankAssignmentHelper.PopulateAllRoundRanks(set2);
+                BasicStats.CalculateBasicStats(set2, configuration);
+                TeamRankAssignmentHelper.PopulateAllRoundRanks(set2, configuration);
             }
         }
 
@@ -34,7 +35,7 @@ namespace PlayCEASharp.Analysis
         /// Resets the stats of all teams in a given bracket.
         /// </summary>
         /// <param name="bracket">Bracket to reset stats for.</param>
-        private static void ResetStats(Bracket bracket)
+        private static void ResetStats(Bracket bracket, BracketConfiguration configuration)
         {
             foreach (Team team in bracket.Teams)
             {
@@ -66,7 +67,7 @@ namespace PlayCEASharp.Analysis
                     {
                         team.StageCumulativeRoundStats[round].Reset();
                     }
-                    string key = StageMatcher.Lookup(round.RoundName);
+                    string key = configuration.StageLookup(round.RoundName);
                     if (!team.StageStats.ContainsKey(key))
                     {
                         team.StageStats[key] = new TeamStatistics();
@@ -83,11 +84,11 @@ namespace PlayCEASharp.Analysis
         /// Resets stats for all brackets in a bracket set.
         /// </summary>
         /// <param name="bracketSet">The set of brackets to reset stats for.</param>
-        private static void ResetStats(BracketSet bracketSet)
+        private static void ResetStats(BracketSet bracketSet, BracketConfiguration configuration)
         {
             foreach (Bracket bracket in bracketSet.Brackets)
             {
-                ResetStats(bracket);
+                ResetStats(bracket, configuration);
             }
         }
 

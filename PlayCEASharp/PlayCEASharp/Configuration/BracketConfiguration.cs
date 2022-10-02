@@ -27,5 +27,16 @@ namespace PlayCEASharp.Configuration
         /// The collection of stage groups for each stage.
         /// </summary>
         internal StageGroup[] stageGroups { get; set; }
+
+        /// <summary>
+        /// Lookup the stage for a given round.
+        /// </summary>
+        /// <param name="roundName">The stage name if the stage exists.</param>
+        /// <returns></returns>
+        internal string StageLookup(string roundName)
+        {
+            string str;
+            return this.stageConfiguration.TryGetValue(roundName, out str) ? str : "default_stage";
+        }
     }
 }

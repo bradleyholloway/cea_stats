@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PlayCEASharp.Configuration;
 
 namespace PlayCEASharp.Analysis
 {
@@ -16,12 +17,12 @@ namespace PlayCEASharp.Analysis
         /// Calculates the statistics for a bracket.
         /// </summary>
         /// <param name="bracket">The bracket to calculate for.</param>
-        private static void CalculateBasicStats(Bracket bracket)
+        private static void CalculateBasicStats(Bracket bracket, BracketConfiguration config)
         {
             BracketRound round = null;
             foreach (BracketRound round2 in bracket.Rounds)
             {
-                string str = StageMatcher.Lookup(round2.RoundName);
+                string str = config.StageLookup(round2.RoundName);
                 foreach (MatchResult result in round2.NonByeMatches)
                 {
                     TeamStatistics local1 = result.HomeTeam.RoundStats[round2];
@@ -70,7 +71,7 @@ namespace PlayCEASharp.Analysis
                         cumulativeRoundStats = result.AwayTeam.CumulativeRoundStats;
                         round3 = round2;
                         cumulativeRoundStats[round3] = cumulativeRoundStats[round3] + result.AwayTeam.CumulativeRoundStats[round];
-                        if (str.Equals(StageMatcher.Lookup(round2.RoundName)))
+                        if (str.Equals(config.StageLookup(round2.RoundName)))
                         {
                             cumulativeRoundStats = result.HomeTeam.StageCumulativeRoundStats;
                             round3 = round2;
@@ -89,11 +90,11 @@ namespace PlayCEASharp.Analysis
         /// Calculates the basic statistics for all brackets in a bracket set.
         /// </summary>
         /// <param name="bracketSet">The bracket set to calculate for.</param>
-        internal static void CalculateBasicStats(BracketSet bracketSet)
+        internal static void CalculateBasicStats(BracketSet bracketSet, BracketConfiguration configuration)
         {
             foreach (Bracket bracket in bracketSet.Brackets)
             {
-                CalculateBasicStats(bracket);
+                CalculateBasicStats(bracket, configuration);
             }
         }
     }
