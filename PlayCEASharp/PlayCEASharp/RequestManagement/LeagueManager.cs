@@ -4,6 +4,7 @@ using PlayCEASharp.DataModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,17 +18,12 @@ namespace PlayCEASharp.RequestManagement
         /// <summary>
         /// Backing reference for the current league.
         /// </summary>
-        private static League league = null;
+        private static LeagueInstanceManager leagueInstanceManager = null;
 
         /// <summary>
         /// Locks around refreshing to prevent duplicate work.
         /// </summary>
         private static object refreshLock = new object();
-
-        /// <summary>
-        /// The request manager for issuing requests to PlayCEA endpoints.
-        /// </summary>
-        private static RequestManager rm = new RequestManager();
 
         /// <summary>
         /// Starts a background refresh thread to update the league periodically.
@@ -45,8 +41,9 @@ namespace PlayCEASharp.RequestManagement
         {
             lock (refreshLock)
             {
-                if (league == null)
+                if (leagueInstanceManager == null)
                 {
+                    leagueInstanceManager = new LeagueInstanceManager();
                     Refresh();
                 }
             }
@@ -78,30 +75,10 @@ namespace PlayCEASharp.RequestManagement
             lock (refreshLock)
             {
                 // Eventually we should be able to handle multiple configurations within the library.
-                // League manager will need to become instanced, and some reasonable way to select between different leagues.
+                // LeagueManager will need to manage different LeagueInstanceManagers and behave appropriately.
+                // For now only one instance is managed.
                 MatchingConfiguration matchingConfig = ConfigurationManager.MatchingConfiguration;
-                // Read all tournaments.
-                List<Tournament> tournaments = rm.GetTournaments().Result;
-                // Filter to matching tournaments.
-                tournaments = ConfigurationGenerator.MatchingTournaments(tournaments, matchingConfig);
-                // Populate brackets + teams for the scoped tournaments.
-                Task bracketLoading = rm.LoadBrackets(tournaments);
-                Task teamLoading = rm.UpdateAllTeams(tournaments.SelectMany(t => t.Teams).Distinct().ToList());
-                Task.WaitAll(bracketLoading, teamLoading);
-                // Build the stage configurations for analysis from the populated tournaments.
-                BracketConfiguration config = ConfigurationGenerator.GenerateConfiguration(tournaments, matchingConfig);
-                // Create a local bracket lookup for quick build of bracket sets.
-                Dictionary<string, Bracket> bracketLookup = tournaments.SelectMany(t => t.Brackets).ToDictionary(b => b.BracketId);
-                // Build bracket sets with actual brackets already populated from initial read.
-                List<BracketSet> bracketSets = new List<BracketSet>();
-                foreach (string[] brackets in config.bracketSets)
-                {
-                    bracketSets.Add(new BracketSet(brackets.Select(b => bracketLookup[b]).ToList()));
-                }
-                // Analyze bracket sets.
-                AnalysisManager.Analyze((IEnumerable<BracketSet>)bracketSets, config);
-                // Update league reference.
-                league = new League(bracketSets, config);
+                leagueInstanceManager.ForceUpdate(matchingConfig);
             }
         }
 
@@ -131,11 +108,11 @@ namespace PlayCEASharp.RequestManagement
         {
             get
             {
-                if (league == null)
+                if (leagueInstanceManager == null)
                 {
                     Bootstrap();
                 }
-                return league;
+                return leagueInstanceManager.League;
             }
         }
     }
