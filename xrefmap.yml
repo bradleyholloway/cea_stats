@@ -7,6 +7,95 @@ references:
   commentId: N:PlayCEASharp.Configuration
   fullName: PlayCEASharp.Configuration
   nameWithType: PlayCEASharp.Configuration
+- uid: PlayCEASharp.Configuration.BracketConfiguration
+  name: BracketConfiguration
+  href: api/PlayCEASharp.Configuration.BracketConfiguration.html
+  commentId: T:PlayCEASharp.Configuration.BracketConfiguration
+  fullName: PlayCEASharp.Configuration.BracketConfiguration
+  nameWithType: BracketConfiguration
+- uid: PlayCEASharp.Configuration.BracketConfiguration.bracketSets
+  name: bracketSets
+  href: api/PlayCEASharp.Configuration.BracketConfiguration.html#PlayCEASharp_Configuration_BracketConfiguration_bracketSets
+  commentId: P:PlayCEASharp.Configuration.BracketConfiguration.bracketSets
+  fullName: PlayCEASharp.Configuration.BracketConfiguration.bracketSets
+  nameWithType: BracketConfiguration.bracketSets
+- uid: PlayCEASharp.Configuration.BracketConfiguration.bracketSets*
+  name: bracketSets
+  href: api/PlayCEASharp.Configuration.BracketConfiguration.html#PlayCEASharp_Configuration_BracketConfiguration_bracketSets_
+  commentId: Overload:PlayCEASharp.Configuration.BracketConfiguration.bracketSets
+  isSpec: "True"
+  fullName: PlayCEASharp.Configuration.BracketConfiguration.bracketSets
+  nameWithType: BracketConfiguration.bracketSets
+- uid: PlayCEASharp.Configuration.BracketConfiguration.stageConfiguration
+  name: stageConfiguration
+  href: api/PlayCEASharp.Configuration.BracketConfiguration.html#PlayCEASharp_Configuration_BracketConfiguration_stageConfiguration
+  commentId: P:PlayCEASharp.Configuration.BracketConfiguration.stageConfiguration
+  fullName: PlayCEASharp.Configuration.BracketConfiguration.stageConfiguration
+  nameWithType: BracketConfiguration.stageConfiguration
+- uid: PlayCEASharp.Configuration.BracketConfiguration.stageConfiguration*
+  name: stageConfiguration
+  href: api/PlayCEASharp.Configuration.BracketConfiguration.html#PlayCEASharp_Configuration_BracketConfiguration_stageConfiguration_
+  commentId: Overload:PlayCEASharp.Configuration.BracketConfiguration.stageConfiguration
+  isSpec: "True"
+  fullName: PlayCEASharp.Configuration.BracketConfiguration.stageConfiguration
+  nameWithType: BracketConfiguration.stageConfiguration
+- uid: PlayCEASharp.Configuration.BracketConfiguration.stageGroups
+  name: stageGroups
+  href: api/PlayCEASharp.Configuration.BracketConfiguration.html#PlayCEASharp_Configuration_BracketConfiguration_stageGroups
+  commentId: P:PlayCEASharp.Configuration.BracketConfiguration.stageGroups
+  fullName: PlayCEASharp.Configuration.BracketConfiguration.stageGroups
+  nameWithType: BracketConfiguration.stageGroups
+- uid: PlayCEASharp.Configuration.BracketConfiguration.stageGroups*
+  name: stageGroups
+  href: api/PlayCEASharp.Configuration.BracketConfiguration.html#PlayCEASharp_Configuration_BracketConfiguration_stageGroups_
+  commentId: Overload:PlayCEASharp.Configuration.BracketConfiguration.stageGroups
+  isSpec: "True"
+  fullName: PlayCEASharp.Configuration.BracketConfiguration.stageGroups
+  nameWithType: BracketConfiguration.stageGroups
+- uid: PlayCEASharp.Configuration.BracketConfiguration.StageLookup(System.String)
+  name: StageLookup(String)
+  href: api/PlayCEASharp.Configuration.BracketConfiguration.html#PlayCEASharp_Configuration_BracketConfiguration_StageLookup_System_String_
+  commentId: M:PlayCEASharp.Configuration.BracketConfiguration.StageLookup(System.String)
+  fullName: PlayCEASharp.Configuration.BracketConfiguration.StageLookup(System.String)
+  nameWithType: BracketConfiguration.StageLookup(String)
+- uid: PlayCEASharp.Configuration.BracketConfiguration.StageLookup*
+  name: StageLookup
+  href: api/PlayCEASharp.Configuration.BracketConfiguration.html#PlayCEASharp_Configuration_BracketConfiguration_StageLookup_
+  commentId: Overload:PlayCEASharp.Configuration.BracketConfiguration.StageLookup
+  isSpec: "True"
+  fullName: PlayCEASharp.Configuration.BracketConfiguration.StageLookup
+  nameWithType: BracketConfiguration.StageLookup
+- uid: PlayCEASharp.Configuration.CeaSharpLogging
+  name: CeaSharpLogging
+  href: api/PlayCEASharp.Configuration.CeaSharpLogging.html
+  commentId: T:PlayCEASharp.Configuration.CeaSharpLogging
+  fullName: PlayCEASharp.Configuration.CeaSharpLogging
+  nameWithType: CeaSharpLogging
+- uid: PlayCEASharp.Configuration.CeaSharpLogging.logger
+  name: logger
+  href: api/PlayCEASharp.Configuration.CeaSharpLogging.html#PlayCEASharp_Configuration_CeaSharpLogging_logger
+  commentId: F:PlayCEASharp.Configuration.CeaSharpLogging.logger
+  fullName: PlayCEASharp.Configuration.CeaSharpLogging.logger
+  nameWithType: CeaSharpLogging.logger
+- uid: PlayCEASharp.Configuration.ILogger
+  name: ILogger
+  href: api/PlayCEASharp.Configuration.ILogger.html
+  commentId: T:PlayCEASharp.Configuration.ILogger
+  fullName: PlayCEASharp.Configuration.ILogger
+  nameWithType: ILogger
+- uid: PlayCEASharp.Configuration.ILogger.Log(System.String)
+  name: Log(String)
+  href: api/PlayCEASharp.Configuration.ILogger.html#PlayCEASharp_Configuration_ILogger_Log_System_String_
+  commentId: M:PlayCEASharp.Configuration.ILogger.Log(System.String)
+  fullName: PlayCEASharp.Configuration.ILogger.Log(System.String)
+  nameWithType: ILogger.Log(String)
+- uid: PlayCEASharp.Configuration.ILogger.Log*
+  name: Log
+  href: api/PlayCEASharp.Configuration.ILogger.html#PlayCEASharp_Configuration_ILogger_Log_
+  commentId: Overload:PlayCEASharp.Configuration.ILogger.Log
+  isSpec: "True"
+  fullName: PlayCEASharp.Configuration.ILogger.Log
+  nameWithType: ILogger.Log
 - uid: PlayCEASharp.Configuration.MatchingConfiguration
   name: MatchingConfiguration
   href: api/PlayCEASharp.Configuration.MatchingConfiguration.html
@@ -705,6 +794,19 @@ references:
   isSpec: "True"
   fullName: PlayCEASharp.DataModel.League.Brackets
   nameWithType: League.Brackets
+- uid: PlayCEASharp.DataModel.League.Configuration
+  name: Configuration
+  href: api/PlayCEASharp.DataModel.League.html#PlayCEASharp_DataModel_League_Configuration
+  commentId: P:PlayCEASharp.DataModel.League.Configuration
+  fullName: PlayCEASharp.DataModel.League.Configuration
+  nameWithType: League.Configuration
+- uid: PlayCEASharp.DataModel.League.Configuration*
+  name: Configuration
+  href: api/PlayCEASharp.DataModel.League.html#PlayCEASharp_DataModel_League_Configuration_
+  commentId: Overload:PlayCEASharp.DataModel.League.Configuration
+  isSpec: "True"
+  fullName: PlayCEASharp.DataModel.League.Configuration
+  nameWithType: League.Configuration
 - uid: PlayCEASharp.DataModel.League.NextMatchLookup
   name: NextMatchLookup
   href: api/PlayCEASharp.DataModel.League.html#PlayCEASharp_DataModel_League_NextMatchLookup

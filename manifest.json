@@ -5,6 +5,42 @@
   "files": [
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/PlayCEASharp.Configuration.BracketConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlayCEASharp.Configuration.BracketConfiguration.html",
+          "hash": "H7cyue5ufDDCFe/hWR4huA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlayCEASharp.Configuration.CeaSharpLogging.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlayCEASharp.Configuration.CeaSharpLogging.html",
+          "hash": "/AxvnXdCz29mGlQCR3/4Bg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PlayCEASharp.Configuration.ILogger.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlayCEASharp.Configuration.ILogger.html",
+          "hash": "frzGtAbFB3X7OFeFY6fKjw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/PlayCEASharp.Configuration.MatchingConfiguration.yml",
       "output": {
         ".html": {
@@ -33,7 +69,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlayCEASharp.Configuration.html",
-          "hash": "BG7g8LxM/nAOHm8GJyTj+Q=="
+          "hash": "MbIeB9Unny7ADFb3gEBmsw=="
         }
       },
       "is_incremental": false,
@@ -93,7 +129,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlayCEASharp.DataModel.League.html",
-          "hash": "ZoR5/RWjJmwrfPRxlKK6nw=="
+          "hash": "6M/kKoBPHigROMS1eyQFsA=="
         }
       },
       "is_incremental": false,
@@ -321,7 +357,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "XhBGuCZILcYbQt0cqX6ljw=="
+          "hash": "epwYqpEDUT6+S49ZGAEYww=="
         }
       },
       "is_incremental": false,
@@ -396,7 +432,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 25,
+          "total_file_count": 28,
           "skipped_file_count": 0
         },
         "TocDocumentProcessor": {
