@@ -5,6 +5,7 @@ Configurations support scoping to a specific game and season.
 
 This repository contains the source for the library (/PlayCEASharp) in addition to a command line application for local testing.
 
+[![Update Documentation](https://github.com/bradleyholloway/cea_stats/actions/workflows/docs.yml/badge.svg)](https://github.com/bradleyholloway/cea_stats/actions/workflows/docs.yml)
 ## Documentation: https://bradleyholloway.github.io/cea_stats/api/index.html
 
 ## Usage
