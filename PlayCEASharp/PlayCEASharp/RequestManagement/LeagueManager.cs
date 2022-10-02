@@ -96,7 +96,7 @@ namespace PlayCEASharp.RequestManagement
                 }
                 catch (Exception e)
                 {
-                    Logger.Log($"Exception in refresh thread. {e.ToString()}");
+                    CeaSharpLogging.Log($"Exception in refresh thread. {e}");
                 }
             }
         }

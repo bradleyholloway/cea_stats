@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <AssemblyName>PlayCEASharp</AssemblyName>
     <PackageId>PlayCEASharp</PackageId>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
     <Authors>Bradley Holloway</Authors>
     <Company>None</Company>
     <Description>
@@ -31,8 +31,5 @@
   </ItemGroup>
   <ItemGroup>
       <None Include="images\icon.png" Pack="true" PackagePath="\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Logging\" />
   </ItemGroup>
 </Project>

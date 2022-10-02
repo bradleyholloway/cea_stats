@@ -17,6 +17,7 @@ namespace PlayCEASharp.Analysis
         /// Analyzes all of the bracket sets, to compute the stats and rankings.
         /// </summary>
         /// <param name="brackets">Ordered collection of brackets to analze.</param>
+        /// <param name="configuration">The bracket configuration to analyze with.</param>
         internal static void Analyze(IEnumerable<BracketSet> brackets, BracketConfiguration configuration)
         {
             foreach (BracketSet set in brackets)
@@ -35,6 +36,7 @@ namespace PlayCEASharp.Analysis
         /// Resets the stats of all teams in a given bracket.
         /// </summary>
         /// <param name="bracket">Bracket to reset stats for.</param>
+        /// <param name="configuration">The BracketConfiguration to analyze with.</param>
         private static void ResetStats(Bracket bracket, BracketConfiguration configuration)
         {
             foreach (Team team in bracket.Teams)
@@ -84,6 +86,7 @@ namespace PlayCEASharp.Analysis
         /// Resets stats for all brackets in a bracket set.
         /// </summary>
         /// <param name="bracketSet">The set of brackets to reset stats for.</param>
+        /// <param name="configuration">The BracketConfiguration to analyze with.</param>
         private static void ResetStats(BracketSet bracketSet, BracketConfiguration configuration)
         {
             foreach (Bracket bracket in bracketSet.Brackets)
