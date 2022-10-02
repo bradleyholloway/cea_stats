@@ -26,6 +26,7 @@ namespace PlayCEASharp.DataModel
         /// Creates a League based on the given bracket sets.
         /// </summary>
         /// <param name="bracketSets">Collection of bracket sets for this league.</param>
+        /// <param name="config">The BracketConfiguration to use for the League.</param>
         internal League(List<BracketSet> bracketSets, BracketConfiguration config)
         {
             this.configuration = config;
@@ -72,6 +73,11 @@ namespace PlayCEASharp.DataModel
         /// Gets the collection of all bracket sets for the league.
         /// </summary>
         public List<BracketSet> Brackets => this.bracketSets;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public BracketConfiguration Configuration => this.configuration;
 
         /// <summary>
         /// Lookup the stage for a given round.

@@ -17,6 +17,7 @@ namespace PlayCEASharp.Analysis
         /// Calculates the statistics for a bracket.
         /// </summary>
         /// <param name="bracket">The bracket to calculate for.</param>
+        /// <param name="config">The BracketConfiguration to use for analysis.</param>
         private static void CalculateBasicStats(Bracket bracket, BracketConfiguration config)
         {
             BracketRound round = null;
@@ -90,6 +91,7 @@ namespace PlayCEASharp.Analysis
         /// Calculates the basic statistics for all brackets in a bracket set.
         /// </summary>
         /// <param name="bracketSet">The bracket set to calculate for.</param>
+        /// <param name="configuration">The BracketConfiguration to use for analysis.</param>
         internal static void CalculateBasicStats(BracketSet bracketSet, BracketConfiguration configuration)
         {
             foreach (Bracket bracket in bracketSet.Brackets)

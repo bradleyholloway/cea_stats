@@ -17,6 +17,7 @@ namespace PlayCEASharp.Configuration
         /// Generates the BracketConfiguration given the collection of all tournaments.
         /// </summary>
         /// <param name="allTournaments">All tournaments read from the tournaments endpoint.</param>
+        /// <param name="config">The MatchingConfiguration to use to generate the BracketConfiguration.</param>
         /// <returns></returns>
         internal static BracketConfiguration GenerateConfiguration(List<Tournament> allTournaments, MatchingConfiguration config)
         {
@@ -37,6 +38,7 @@ namespace PlayCEASharp.Configuration
         /// Filters tournaments that do not match the MatchingConfiguration.
         /// </summary>
         /// <param name="allTournaments">All tournaments from the tournaments endpoint.</param>
+        /// <param name="config">The MatchingConfiguration to use to select matching tournaments.</param>
         /// <returns>New list of only tournaments which match the configuration.</returns>
         internal static List<Tournament> MatchingTournaments(List<Tournament> allTournaments, MatchingConfiguration config)
         {
@@ -49,6 +51,7 @@ namespace PlayCEASharp.Configuration
         /// <param name="tournaments">The filtered list of relevant tournaments.</param>
         /// <param name="bracketSets">The bracket sets that have been computed.</param>
         /// <param name="stageConfiguration">The mapping of roundNames -> stageNames.</param>
+        /// <param name="config">The MatchingConfiguration to use for building stage groups.</param>
         /// <returns>The collection of stage groups for this league.</returns>
         private static StageGroup[] BuildStageGroups(List<Tournament> tournaments, string[][] bracketSets, Dictionary<string, string> stageConfiguration, MatchingConfiguration config)
         {
@@ -141,6 +144,7 @@ namespace PlayCEASharp.Configuration
         /// Builds the bracket sets for a tournament.
         /// </summary>
         /// <param name="tournaments">The filtered list of tournaments.</param>
+        /// <param name="config">The MatchingConfiguration to use for building the bracket sets.</param>
         /// <returns>The list of list of bracketIds referenced by the tournaments.</returns>
         private static string[][] BuildBracketSets(List<Tournament> tournaments, MatchingConfiguration config)
         {
@@ -162,6 +166,7 @@ namespace PlayCEASharp.Configuration
         /// Builds mapping from each round name to the stage name associated.
         /// </summary>
         /// <param name="tournaments">The filtered list of tournaments.</param>
+        /// <param name="config">The MatchingConfiguration to buidl the stage configurations.</param>
         /// <returns>The StageConfiguration.</returns>
         private static Dictionary<string, string> BuildStageConfigurations(List<Tournament> tournaments, MatchingConfiguration config)
         {
@@ -190,6 +195,7 @@ namespace PlayCEASharp.Configuration
         /// </summary>
         /// <param name="t">The tournament for a given bracket.</param>
         /// <param name="b">The bracket.</param>
+        /// <param name="config">The MatchingConfiguration to resolve to a stage index.</param>
         /// <returns>The stage for this tournament/bracket pair.</returns>
         private static int Stage(Tournament t, Bracket b, MatchingConfiguration config)
         {
@@ -209,6 +215,7 @@ namespace PlayCEASharp.Configuration
         /// </summary>
         /// <param name="t">The tournament for a given bracket.</param>
         /// <param name="b">The bracket.</param>
+        /// <param name="config">The MatchingConfiguraiton to resolve to ordering index.</param>
         /// <returns>An offset for where this bracket should go in the ordering.</returns>
         private static int Ordering(Tournament t, Bracket b, MatchingConfiguration config)
         {
