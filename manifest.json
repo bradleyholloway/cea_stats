@@ -5,30 +5,6 @@
   "files": [
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/PlayCEASharp.Analysis.StageMatcher.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/PlayCEASharp.Analysis.StageMatcher.html",
-          "hash": "93gGZmfaOkjvL1DdiPKKnQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/PlayCEASharp.Analysis.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/PlayCEASharp.Analysis.html",
-          "hash": "+FfMz41SeHaV5DrI4wR/zg=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/PlayCEASharp.Configuration.MatchingConfiguration.yml",
       "output": {
         ".html": {
@@ -117,7 +93,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlayCEASharp.DataModel.League.html",
-          "hash": "j+iUEYcRu1hl/i+K0mIMDw=="
+          "hash": "ZoR5/RWjJmwrfPRxlKK6nw=="
         }
       },
       "is_incremental": false,
@@ -209,11 +185,23 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/PlayCEASharp.RequestManagement.LeagueInstanceManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlayCEASharp.RequestManagement.LeagueInstanceManager.html",
+          "hash": "ZtHd3TGE4O0eY/eUweYXYA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/PlayCEASharp.RequestManagement.LeagueManager.yml",
       "output": {
         ".html": {
           "relative_path": "api/PlayCEASharp.RequestManagement.LeagueManager.html",
-          "hash": "4yRxYivnL2K72tL4xzrPUg=="
+          "hash": "w8pWOeg77WoXhO6xnqJwLg=="
         }
       },
       "is_incremental": false,
@@ -225,7 +213,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlayCEASharp.RequestManagement.html",
-          "hash": "lK/NrWI6AxmXwxMSH9U45g=="
+          "hash": "a0G0yg1gKhKK14n4B7o2Ug=="
         }
       },
       "is_incremental": false,
@@ -333,7 +321,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "sYYQ4KPZAGOnvG7sD4lAPA=="
+          "hash": "XhBGuCZILcYbQt0cqX6ljw=="
         }
       },
       "is_incremental": false,
@@ -408,7 +396,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 26,
+          "total_file_count": 25,
           "skipped_file_count": 0
         },
         "TocDocumentProcessor": {

@@ -1,31 +1,6 @@
 ### YamlMime:XRefMap
 sorted: true
 references:
-- uid: PlayCEASharp.Analysis
-  name: PlayCEASharp.Analysis
-  href: api/PlayCEASharp.Analysis.html
-  commentId: N:PlayCEASharp.Analysis
-  fullName: PlayCEASharp.Analysis
-  nameWithType: PlayCEASharp.Analysis
-- uid: PlayCEASharp.Analysis.StageMatcher
-  name: StageMatcher
-  href: api/PlayCEASharp.Analysis.StageMatcher.html
-  commentId: T:PlayCEASharp.Analysis.StageMatcher
-  fullName: PlayCEASharp.Analysis.StageMatcher
-  nameWithType: StageMatcher
-- uid: PlayCEASharp.Analysis.StageMatcher.Lookup(System.String)
-  name: Lookup(String)
-  href: api/PlayCEASharp.Analysis.StageMatcher.html#PlayCEASharp_Analysis_StageMatcher_Lookup_System_String_
-  commentId: M:PlayCEASharp.Analysis.StageMatcher.Lookup(System.String)
-  fullName: PlayCEASharp.Analysis.StageMatcher.Lookup(System.String)
-  nameWithType: StageMatcher.Lookup(String)
-- uid: PlayCEASharp.Analysis.StageMatcher.Lookup*
-  name: Lookup
-  href: api/PlayCEASharp.Analysis.StageMatcher.html#PlayCEASharp_Analysis_StageMatcher_Lookup_
-  commentId: Overload:PlayCEASharp.Analysis.StageMatcher.Lookup
-  isSpec: "True"
-  fullName: PlayCEASharp.Analysis.StageMatcher.Lookup
-  nameWithType: StageMatcher.Lookup
 - uid: PlayCEASharp.Configuration
   name: PlayCEASharp.Configuration
   href: api/PlayCEASharp.Configuration.html
@@ -756,6 +731,19 @@ references:
   isSpec: "True"
   fullName: PlayCEASharp.DataModel.League.PlayerDiscordLookup
   nameWithType: League.PlayerDiscordLookup
+- uid: PlayCEASharp.DataModel.League.StageLookup(System.String)
+  name: StageLookup(String)
+  href: api/PlayCEASharp.DataModel.League.html#PlayCEASharp_DataModel_League_StageLookup_System_String_
+  commentId: M:PlayCEASharp.DataModel.League.StageLookup(System.String)
+  fullName: PlayCEASharp.DataModel.League.StageLookup(System.String)
+  nameWithType: League.StageLookup(String)
+- uid: PlayCEASharp.DataModel.League.StageLookup*
+  name: StageLookup
+  href: api/PlayCEASharp.DataModel.League.html#PlayCEASharp_DataModel_League_StageLookup_
+  commentId: Overload:PlayCEASharp.DataModel.League.StageLookup
+  isSpec: "True"
+  fullName: PlayCEASharp.DataModel.League.StageLookup
+  nameWithType: League.StageLookup
 - uid: PlayCEASharp.DataModel.MatchResult
   name: MatchResult
   href: api/PlayCEASharp.DataModel.MatchResult.html
@@ -1714,6 +1702,64 @@ references:
   commentId: N:PlayCEASharp.RequestManagement
   fullName: PlayCEASharp.RequestManagement
   nameWithType: PlayCEASharp.RequestManagement
+- uid: PlayCEASharp.RequestManagement.LeagueInstanceManager
+  name: LeagueInstanceManager
+  href: api/PlayCEASharp.RequestManagement.LeagueInstanceManager.html
+  commentId: T:PlayCEASharp.RequestManagement.LeagueInstanceManager
+  fullName: PlayCEASharp.RequestManagement.LeagueInstanceManager
+  nameWithType: LeagueInstanceManager
+- uid: PlayCEASharp.RequestManagement.LeagueInstanceManager.Bootstrap(PlayCEASharp.Configuration.MatchingConfiguration)
+  name: Bootstrap(MatchingConfiguration)
+  href: api/PlayCEASharp.RequestManagement.LeagueInstanceManager.html#PlayCEASharp_RequestManagement_LeagueInstanceManager_Bootstrap_PlayCEASharp_Configuration_MatchingConfiguration_
+  commentId: M:PlayCEASharp.RequestManagement.LeagueInstanceManager.Bootstrap(PlayCEASharp.Configuration.MatchingConfiguration)
+  fullName: PlayCEASharp.RequestManagement.LeagueInstanceManager.Bootstrap(PlayCEASharp.Configuration.MatchingConfiguration)
+  nameWithType: LeagueInstanceManager.Bootstrap(MatchingConfiguration)
+- uid: PlayCEASharp.RequestManagement.LeagueInstanceManager.Bootstrap*
+  name: Bootstrap
+  href: api/PlayCEASharp.RequestManagement.LeagueInstanceManager.html#PlayCEASharp_RequestManagement_LeagueInstanceManager_Bootstrap_
+  commentId: Overload:PlayCEASharp.RequestManagement.LeagueInstanceManager.Bootstrap
+  isSpec: "True"
+  fullName: PlayCEASharp.RequestManagement.LeagueInstanceManager.Bootstrap
+  nameWithType: LeagueInstanceManager.Bootstrap
+- uid: PlayCEASharp.RequestManagement.LeagueInstanceManager.BootstrapAsync(PlayCEASharp.Configuration.MatchingConfiguration)
+  name: BootstrapAsync(MatchingConfiguration)
+  href: api/PlayCEASharp.RequestManagement.LeagueInstanceManager.html#PlayCEASharp_RequestManagement_LeagueInstanceManager_BootstrapAsync_PlayCEASharp_Configuration_MatchingConfiguration_
+  commentId: M:PlayCEASharp.RequestManagement.LeagueInstanceManager.BootstrapAsync(PlayCEASharp.Configuration.MatchingConfiguration)
+  fullName: PlayCEASharp.RequestManagement.LeagueInstanceManager.BootstrapAsync(PlayCEASharp.Configuration.MatchingConfiguration)
+  nameWithType: LeagueInstanceManager.BootstrapAsync(MatchingConfiguration)
+- uid: PlayCEASharp.RequestManagement.LeagueInstanceManager.BootstrapAsync*
+  name: BootstrapAsync
+  href: api/PlayCEASharp.RequestManagement.LeagueInstanceManager.html#PlayCEASharp_RequestManagement_LeagueInstanceManager_BootstrapAsync_
+  commentId: Overload:PlayCEASharp.RequestManagement.LeagueInstanceManager.BootstrapAsync
+  isSpec: "True"
+  fullName: PlayCEASharp.RequestManagement.LeagueInstanceManager.BootstrapAsync
+  nameWithType: LeagueInstanceManager.BootstrapAsync
+- uid: PlayCEASharp.RequestManagement.LeagueInstanceManager.ForceUpdate(PlayCEASharp.Configuration.MatchingConfiguration)
+  name: ForceUpdate(MatchingConfiguration)
+  href: api/PlayCEASharp.RequestManagement.LeagueInstanceManager.html#PlayCEASharp_RequestManagement_LeagueInstanceManager_ForceUpdate_PlayCEASharp_Configuration_MatchingConfiguration_
+  commentId: M:PlayCEASharp.RequestManagement.LeagueInstanceManager.ForceUpdate(PlayCEASharp.Configuration.MatchingConfiguration)
+  fullName: PlayCEASharp.RequestManagement.LeagueInstanceManager.ForceUpdate(PlayCEASharp.Configuration.MatchingConfiguration)
+  nameWithType: LeagueInstanceManager.ForceUpdate(MatchingConfiguration)
+- uid: PlayCEASharp.RequestManagement.LeagueInstanceManager.ForceUpdate*
+  name: ForceUpdate
+  href: api/PlayCEASharp.RequestManagement.LeagueInstanceManager.html#PlayCEASharp_RequestManagement_LeagueInstanceManager_ForceUpdate_
+  commentId: Overload:PlayCEASharp.RequestManagement.LeagueInstanceManager.ForceUpdate
+  isSpec: "True"
+  fullName: PlayCEASharp.RequestManagement.LeagueInstanceManager.ForceUpdate
+  nameWithType: LeagueInstanceManager.ForceUpdate
+- uid: PlayCEASharp.RequestManagement.LeagueInstanceManager.League
+  name: League
+  href: api/PlayCEASharp.RequestManagement.LeagueInstanceManager.html#PlayCEASharp_RequestManagement_LeagueInstanceManager_League
+  commentId: P:PlayCEASharp.RequestManagement.LeagueInstanceManager.League
+  fullName: PlayCEASharp.RequestManagement.LeagueInstanceManager.League
+  nameWithType: LeagueInstanceManager.League
+- uid: PlayCEASharp.RequestManagement.LeagueInstanceManager.League*
+  name: League
+  href: api/PlayCEASharp.RequestManagement.LeagueInstanceManager.html#PlayCEASharp_RequestManagement_LeagueInstanceManager_League_
+  commentId: Overload:PlayCEASharp.RequestManagement.LeagueInstanceManager.League
+  isSpec: "True"
+  fullName: PlayCEASharp.RequestManagement.LeagueInstanceManager.League
+  nameWithType: LeagueInstanceManager.League
 - uid: PlayCEASharp.RequestManagement.LeagueManager
   name: LeagueManager
   href: api/PlayCEASharp.RequestManagement.LeagueManager.html
