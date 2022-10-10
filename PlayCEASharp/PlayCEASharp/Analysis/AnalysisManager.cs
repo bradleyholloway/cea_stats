@@ -25,10 +25,10 @@ namespace PlayCEASharp.Analysis
                 ResetStats(set, configuration);
                 UpdateRoundWeekNumbers(set);
             }
-            foreach (BracketSet set2 in brackets)
+            foreach (BracketSet set in brackets)
             {
-                BasicStats.CalculateBasicStats(set2, configuration);
-                TeamRankAssignmentHelper.PopulateAllRoundRanks(set2, configuration);
+                BasicStats.CalculateBasicStats(set, configuration);
+                TeamRankAssignmentHelper.PopulateAllRoundRanks(set, configuration);
             }
         }
 

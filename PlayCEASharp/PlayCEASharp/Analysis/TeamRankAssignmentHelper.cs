@@ -14,19 +14,6 @@ namespace PlayCEASharp.Analysis
     internal class TeamRankAssignmentHelper
     {
         /// <summary>
-        /// Populates all round rankings for a given bracket.
-        /// </summary>
-        /// <param name="bracket">The bracket to process.</param>
-        /// <param name="configuration">The backet configuration to use for analysis.</param>
-        internal static void PopulateAllRoundRanks(Bracket bracket, BracketConfiguration configuration)
-        {
-            foreach (BracketRound round in bracket.Rounds)
-            {
-                PopulateCustomRoundRank(round, configuration);
-            }
-        }
-
-        /// <summary>
         /// Populates all round rankings for a given bracket set.
         /// This requires basic statistics to have already been populated.
         /// </summary>
@@ -37,6 +24,19 @@ namespace PlayCEASharp.Analysis
             foreach (Bracket bracket in bracketSet.Brackets)
             {
                 PopulateAllRoundRanks(bracket, configuration);
+            }
+        }
+
+        /// <summary>
+        /// Populates all round rankings for a given bracket.
+        /// </summary>
+        /// <param name="bracket">The bracket to process.</param>
+        /// <param name="configuration">The backet configuration to use for analysis.</param>
+        internal static void PopulateAllRoundRanks(Bracket bracket, BracketConfiguration configuration)
+        {
+            foreach (BracketRound round in bracket.Rounds)
+            {
+                PopulateCustomRoundRank(round, configuration);
             }
         }
 

@@ -34,6 +34,7 @@ namespace PlayCEASharp.DataModel
         internal void ResetStats()
         {
             this.Stats.Reset();
+            this.RoundRanking.Clear();
             foreach (KeyValuePair<BracketRound, TeamStatistics> pair in this.RoundStats)
             {
                 pair.Value.Reset();

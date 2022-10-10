@@ -47,5 +47,10 @@ namespace PlayCEASharp.Configuration
         /// Mapping from bracket/tournament names to how they should be ordered to others in the same stage.
         /// </summary>
         public Dictionary<string, int> orderKeywords { get; set; }
+
+        /// <summary>
+        /// List of bracketIds to ignore.
+        /// </summary>
+        public List<string> bracketBlacklist { get; set; }
     }
 }

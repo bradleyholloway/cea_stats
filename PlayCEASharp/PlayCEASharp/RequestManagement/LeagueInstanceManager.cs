@@ -12,7 +12,7 @@ namespace PlayCEASharp.RequestManagement
     /// <summary>
     /// The public entry point to getting the League.
     /// </summary>
-    public class LeagueInstanceManager
+    internal class LeagueInstanceManager
     {
         /// <summary>
         /// Backing reference for the current league.
@@ -38,7 +38,7 @@ namespace PlayCEASharp.RequestManagement
         /// Ensures that the league is initialized and popualted.
         /// This is blocking and may take a while.
         /// </summary>
-        public void Bootstrap(MatchingConfiguration config)
+        internal void Bootstrap(MatchingConfiguration config)
         {
             lock (refreshLock)
             {
@@ -53,7 +53,7 @@ namespace PlayCEASharp.RequestManagement
         /// Starts the bootstrapping process asyncronously.
         /// </summary>
         /// <returns>Task for bootstrap.</returns>
-        public async Task BootstrapAsync(MatchingConfiguration config)
+        internal async Task BootstrapAsync(MatchingConfiguration config)
         {
             Task bootstrapTask = new Task(() => Bootstrap(config));
             await bootstrapTask;
@@ -62,7 +62,7 @@ namespace PlayCEASharp.RequestManagement
         /// <summary>
         /// Forces a refresh from PlayCEA.
         /// </summary>
-        public void ForceUpdate(MatchingConfiguration config = null)
+        internal void ForceUpdate(MatchingConfiguration config = null)
         {
             Refresh(config ?? prevMatchingConfig);
         }
@@ -103,7 +103,7 @@ namespace PlayCEASharp.RequestManagement
         /// <summary>
         /// The current league.
         /// </summary>
-        public League League
+        internal League League
         {
             get
             {
