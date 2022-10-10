@@ -102,6 +102,19 @@ references:
   commentId: T:PlayCEASharp.Configuration.MatchingConfiguration
   fullName: PlayCEASharp.Configuration.MatchingConfiguration
   nameWithType: MatchingConfiguration
+- uid: PlayCEASharp.Configuration.MatchingConfiguration.bracketBlacklist
+  name: bracketBlacklist
+  href: api/PlayCEASharp.Configuration.MatchingConfiguration.html#PlayCEASharp_Configuration_MatchingConfiguration_bracketBlacklist
+  commentId: P:PlayCEASharp.Configuration.MatchingConfiguration.bracketBlacklist
+  fullName: PlayCEASharp.Configuration.MatchingConfiguration.bracketBlacklist
+  nameWithType: MatchingConfiguration.bracketBlacklist
+- uid: PlayCEASharp.Configuration.MatchingConfiguration.bracketBlacklist*
+  name: bracketBlacklist
+  href: api/PlayCEASharp.Configuration.MatchingConfiguration.html#PlayCEASharp_Configuration_MatchingConfiguration_bracketBlacklist_
+  commentId: Overload:PlayCEASharp.Configuration.MatchingConfiguration.bracketBlacklist
+  isSpec: "True"
+  fullName: PlayCEASharp.Configuration.MatchingConfiguration.bracketBlacklist
+  nameWithType: MatchingConfiguration.bracketBlacklist
 - uid: PlayCEASharp.Configuration.MatchingConfiguration.gameId
   name: gameId
   href: api/PlayCEASharp.Configuration.MatchingConfiguration.html#PlayCEASharp_Configuration_MatchingConfiguration_gameId
@@ -1804,64 +1817,6 @@ references:
   commentId: N:PlayCEASharp.RequestManagement
   fullName: PlayCEASharp.RequestManagement
   nameWithType: PlayCEASharp.RequestManagement
-- uid: PlayCEASharp.RequestManagement.LeagueInstanceManager
-  name: LeagueInstanceManager
-  href: api/PlayCEASharp.RequestManagement.LeagueInstanceManager.html
-  commentId: T:PlayCEASharp.RequestManagement.LeagueInstanceManager
-  fullName: PlayCEASharp.RequestManagement.LeagueInstanceManager
-  nameWithType: LeagueInstanceManager
-- uid: PlayCEASharp.RequestManagement.LeagueInstanceManager.Bootstrap(PlayCEASharp.Configuration.MatchingConfiguration)
-  name: Bootstrap(MatchingConfiguration)
-  href: api/PlayCEASharp.RequestManagement.LeagueInstanceManager.html#PlayCEASharp_RequestManagement_LeagueInstanceManager_Bootstrap_PlayCEASharp_Configuration_MatchingConfiguration_
-  commentId: M:PlayCEASharp.RequestManagement.LeagueInstanceManager.Bootstrap(PlayCEASharp.Configuration.MatchingConfiguration)
-  fullName: PlayCEASharp.RequestManagement.LeagueInstanceManager.Bootstrap(PlayCEASharp.Configuration.MatchingConfiguration)
-  nameWithType: LeagueInstanceManager.Bootstrap(MatchingConfiguration)
-- uid: PlayCEASharp.RequestManagement.LeagueInstanceManager.Bootstrap*
-  name: Bootstrap
-  href: api/PlayCEASharp.RequestManagement.LeagueInstanceManager.html#PlayCEASharp_RequestManagement_LeagueInstanceManager_Bootstrap_
-  commentId: Overload:PlayCEASharp.RequestManagement.LeagueInstanceManager.Bootstrap
-  isSpec: "True"
-  fullName: PlayCEASharp.RequestManagement.LeagueInstanceManager.Bootstrap
-  nameWithType: LeagueInstanceManager.Bootstrap
-- uid: PlayCEASharp.RequestManagement.LeagueInstanceManager.BootstrapAsync(PlayCEASharp.Configuration.MatchingConfiguration)
-  name: BootstrapAsync(MatchingConfiguration)
-  href: api/PlayCEASharp.RequestManagement.LeagueInstanceManager.html#PlayCEASharp_RequestManagement_LeagueInstanceManager_BootstrapAsync_PlayCEASharp_Configuration_MatchingConfiguration_
-  commentId: M:PlayCEASharp.RequestManagement.LeagueInstanceManager.BootstrapAsync(PlayCEASharp.Configuration.MatchingConfiguration)
-  fullName: PlayCEASharp.RequestManagement.LeagueInstanceManager.BootstrapAsync(PlayCEASharp.Configuration.MatchingConfiguration)
-  nameWithType: LeagueInstanceManager.BootstrapAsync(MatchingConfiguration)
-- uid: PlayCEASharp.RequestManagement.LeagueInstanceManager.BootstrapAsync*
-  name: BootstrapAsync
-  href: api/PlayCEASharp.RequestManagement.LeagueInstanceManager.html#PlayCEASharp_RequestManagement_LeagueInstanceManager_BootstrapAsync_
-  commentId: Overload:PlayCEASharp.RequestManagement.LeagueInstanceManager.BootstrapAsync
-  isSpec: "True"
-  fullName: PlayCEASharp.RequestManagement.LeagueInstanceManager.BootstrapAsync
-  nameWithType: LeagueInstanceManager.BootstrapAsync
-- uid: PlayCEASharp.RequestManagement.LeagueInstanceManager.ForceUpdate(PlayCEASharp.Configuration.MatchingConfiguration)
-  name: ForceUpdate(MatchingConfiguration)
-  href: api/PlayCEASharp.RequestManagement.LeagueInstanceManager.html#PlayCEASharp_RequestManagement_LeagueInstanceManager_ForceUpdate_PlayCEASharp_Configuration_MatchingConfiguration_
-  commentId: M:PlayCEASharp.RequestManagement.LeagueInstanceManager.ForceUpdate(PlayCEASharp.Configuration.MatchingConfiguration)
-  fullName: PlayCEASharp.RequestManagement.LeagueInstanceManager.ForceUpdate(PlayCEASharp.Configuration.MatchingConfiguration)
-  nameWithType: LeagueInstanceManager.ForceUpdate(MatchingConfiguration)
-- uid: PlayCEASharp.RequestManagement.LeagueInstanceManager.ForceUpdate*
-  name: ForceUpdate
-  href: api/PlayCEASharp.RequestManagement.LeagueInstanceManager.html#PlayCEASharp_RequestManagement_LeagueInstanceManager_ForceUpdate_
-  commentId: Overload:PlayCEASharp.RequestManagement.LeagueInstanceManager.ForceUpdate
-  isSpec: "True"
-  fullName: PlayCEASharp.RequestManagement.LeagueInstanceManager.ForceUpdate
-  nameWithType: LeagueInstanceManager.ForceUpdate
-- uid: PlayCEASharp.RequestManagement.LeagueInstanceManager.League
-  name: League
-  href: api/PlayCEASharp.RequestManagement.LeagueInstanceManager.html#PlayCEASharp_RequestManagement_LeagueInstanceManager_League
-  commentId: P:PlayCEASharp.RequestManagement.LeagueInstanceManager.League
-  fullName: PlayCEASharp.RequestManagement.LeagueInstanceManager.League
-  nameWithType: LeagueInstanceManager.League
-- uid: PlayCEASharp.RequestManagement.LeagueInstanceManager.League*
-  name: League
-  href: api/PlayCEASharp.RequestManagement.LeagueInstanceManager.html#PlayCEASharp_RequestManagement_LeagueInstanceManager_League_
-  commentId: Overload:PlayCEASharp.RequestManagement.LeagueInstanceManager.League
-  isSpec: "True"
-  fullName: PlayCEASharp.RequestManagement.LeagueInstanceManager.League
-  nameWithType: LeagueInstanceManager.League
 - uid: PlayCEASharp.RequestManagement.LeagueManager
   name: LeagueManager
   href: api/PlayCEASharp.RequestManagement.LeagueManager.html
