@@ -44,7 +44,26 @@ namespace PlayCEASharp.DataModel
                 else
                 {
                     int num3 = this.GameDifferential - statistics.GameDifferential;
-                    num4 = (num3 == 0) ? 0 : num3;
+
+                    if (num3 != 0)
+                    {
+                        num4 = num3;
+                    } else
+                    {
+                        double goalsPerGameDiff = ((double)this.TotalGoals / this.TotalGames) - ((double)statistics.TotalGoals / statistics.TotalGames);
+                        if (goalsPerGameDiff > 0)
+                        {
+                            return 1;
+                        } 
+                        else if (goalsPerGameDiff < 0)
+                        {
+                            return -1;
+                        } 
+                        else
+                        {
+                            return 0;
+                        }
+                    }
                 }
             }
             return num4;

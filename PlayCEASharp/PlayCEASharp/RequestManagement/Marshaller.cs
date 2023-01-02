@@ -193,8 +193,8 @@ namespace PlayCEASharp.RequestManagement
                 MatchResult result = result3;
                 if ((optionalBracketRound != null) && (matchToken["ts"][(int)0]["rank"] != null))
                 {
-                    result.HomeTeam.RoundRanking[optionalBracketRound] = (int)matchToken["ts"][(int)0]["rank"];
-                    result.AwayTeam.RoundRanking[optionalBracketRound] = (int)matchToken["ts"][(int)1]["rank"];
+                    result.HomeTeam.FixedRoundRanking[optionalBracketRound] = (int)matchToken["ts"][(int)0]["rank"];
+                    result.AwayTeam.FixedRoundRanking[optionalBracketRound] = (int)matchToken["ts"][(int)1]["rank"];
                 }
                 JToken token = matchToken["gs"];
                 result.Games = new List<Game>();

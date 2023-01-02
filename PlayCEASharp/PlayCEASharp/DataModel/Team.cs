@@ -26,6 +26,7 @@ namespace PlayCEASharp.DataModel
             this.StageCumulativeRoundStats = new Dictionary<BracketRound, TeamStatistics>();
             this.StageStats = new Dictionary<string, TeamStatistics>();
             this.RoundRanking = new Dictionary<BracketRound, int>();
+            this.FixedRoundRanking = new Dictionary<BracketRound, int>();
         }
 
         /// <summary>
@@ -34,7 +35,6 @@ namespace PlayCEASharp.DataModel
         internal void ResetStats()
         {
             this.Stats.Reset();
-            this.RoundRanking.Clear();
             foreach (KeyValuePair<BracketRound, TeamStatistics> pair in this.RoundStats)
             {
                 pair.Value.Reset();
@@ -50,6 +50,12 @@ namespace PlayCEASharp.DataModel
             foreach (TeamStatistics statistics in this.StageStats.Values)
             {
                 statistics.Reset();
+            }
+
+            this.RoundRanking.Clear();
+            foreach (KeyValuePair<BracketRound, int> kvp in this.FixedRoundRanking)
+            {
+                this.RoundRanking.Add(kvp.Key, kvp.Value);
             }
         }
 
@@ -110,6 +116,11 @@ namespace PlayCEASharp.DataModel
         /// The rankings calculated for the team at each round.
         /// </summary>
         public Dictionary<BracketRound, int> RoundRanking { get; }
+
+        /// <summary>
+        /// Round rankings which are populated from PlayCEA itself (playoffs).
+        /// </summary>
+        public Dictionary<BracketRound, int> FixedRoundRanking { get; }
 
         /// <summary>
         /// The cumulative statistics for each stage.
