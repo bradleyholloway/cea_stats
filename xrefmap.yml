@@ -1260,6 +1260,19 @@ references:
   isSpec: "True"
   fullName: PlayCEASharp.DataModel.Team.CumulativeRoundStats
   nameWithType: Team.CumulativeRoundStats
+- uid: PlayCEASharp.DataModel.Team.FixedRoundRanking
+  name: FixedRoundRanking
+  href: api/PlayCEASharp.DataModel.Team.html#PlayCEASharp_DataModel_Team_FixedRoundRanking
+  commentId: P:PlayCEASharp.DataModel.Team.FixedRoundRanking
+  fullName: PlayCEASharp.DataModel.Team.FixedRoundRanking
+  nameWithType: Team.FixedRoundRanking
+- uid: PlayCEASharp.DataModel.Team.FixedRoundRanking*
+  name: FixedRoundRanking
+  href: api/PlayCEASharp.DataModel.Team.html#PlayCEASharp_DataModel_Team_FixedRoundRanking_
+  commentId: Overload:PlayCEASharp.DataModel.Team.FixedRoundRanking
+  isSpec: "True"
+  fullName: PlayCEASharp.DataModel.Team.FixedRoundRanking
+  nameWithType: Team.FixedRoundRanking
 - uid: PlayCEASharp.DataModel.Team.ImageURL
   name: ImageURL
   href: api/PlayCEASharp.DataModel.Team.html#PlayCEASharp_DataModel_Team_ImageURL
