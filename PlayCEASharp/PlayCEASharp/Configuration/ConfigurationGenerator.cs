@@ -160,7 +160,7 @@ namespace PlayCEASharp.Configuration
             {
                 foreach (Bracket b in t.Brackets)
                 {
-                    if (!config.bracketBlacklist.Contains(b.BracketId))
+                    if (config.bracketBlacklist == null || !config.bracketBlacklist.Contains(b.BracketId))
                     {
                         brackets.Add(new Tuple<Tournament, Bracket>(t, b));
                     }
