@@ -1746,6 +1746,32 @@ references:
   isSpec: "True"
   fullName: PlayCEASharp.DataModel.Tournament.Metadata
   nameWithType: Tournament.Metadata
+- uid: PlayCEASharp.DataModel.Tournament.Playoffs
+  name: Playoffs
+  href: api/PlayCEASharp.DataModel.Tournament.html#PlayCEASharp_DataModel_Tournament_Playoffs
+  commentId: P:PlayCEASharp.DataModel.Tournament.Playoffs
+  fullName: PlayCEASharp.DataModel.Tournament.Playoffs
+  nameWithType: Tournament.Playoffs
+- uid: PlayCEASharp.DataModel.Tournament.Playoffs*
+  name: Playoffs
+  href: api/PlayCEASharp.DataModel.Tournament.html#PlayCEASharp_DataModel_Tournament_Playoffs_
+  commentId: Overload:PlayCEASharp.DataModel.Tournament.Playoffs
+  isSpec: "True"
+  fullName: PlayCEASharp.DataModel.Tournament.Playoffs
+  nameWithType: Tournament.Playoffs
+- uid: PlayCEASharp.DataModel.Tournament.RegularSeason
+  name: RegularSeason
+  href: api/PlayCEASharp.DataModel.Tournament.html#PlayCEASharp_DataModel_Tournament_RegularSeason
+  commentId: P:PlayCEASharp.DataModel.Tournament.RegularSeason
+  fullName: PlayCEASharp.DataModel.Tournament.RegularSeason
+  nameWithType: Tournament.RegularSeason
+- uid: PlayCEASharp.DataModel.Tournament.RegularSeason*
+  name: RegularSeason
+  href: api/PlayCEASharp.DataModel.Tournament.html#PlayCEASharp_DataModel_Tournament_RegularSeason_
+  commentId: Overload:PlayCEASharp.DataModel.Tournament.RegularSeason
+  isSpec: "True"
+  fullName: PlayCEASharp.DataModel.Tournament.RegularSeason
+  nameWithType: Tournament.RegularSeason
 - uid: PlayCEASharp.DataModel.Tournament.SeasonLeague
   name: SeasonLeague
   href: api/PlayCEASharp.DataModel.Tournament.html#PlayCEASharp_DataModel_Tournament_SeasonLeague
