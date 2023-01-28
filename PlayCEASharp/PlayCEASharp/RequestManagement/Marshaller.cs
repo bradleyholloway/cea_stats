@@ -3,6 +3,7 @@ using PlayCEASharp.DataModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -47,14 +48,32 @@ namespace PlayCEASharp.RequestManagement
             tournament.SeasonSeason = (string)tournamentToken["sn"]["s"];
             tournament.SeasonYear = (string)tournamentToken["sn"]["y"];
 
+            string regularSeasonBracketId = (string)tournamentToken["sbkt"]["reg"];
+            if (!string.IsNullOrEmpty(regularSeasonBracketId))
+            {
+                Bracket reg = ResourceCache.GetBracket(regularSeasonBracketId);
+                tournament.RegularSeason = reg;
+                if (!tournament.Brackets.Contains(reg))
+                {
+                    tournament.Brackets.Add(reg);
+                }
+            }
+
+            string playoffBracketId = (string)tournamentToken["sbkt"]["po"];
+            if (!string.IsNullOrEmpty(playoffBracketId))
+            {
+                Bracket playoffs = ResourceCache.GetBracket(playoffBracketId);
+                tournament.Playoffs = playoffs;
+                if (!tournament.Brackets.Contains(playoffs))
+                {
+                    tournament.Brackets.Add(playoffs);
+                }
+            }
+
             foreach (JToken bracketToken in tournamentToken["bs"])
             {
                 Bracket b = ResourceCache.GetBracket((string)bracketToken["bid"]);
                 b.Name = (string)bracketToken["name"];
-                if (!tournament.Brackets.Contains(b))
-                {
-                    tournament.Brackets.Add(b);
-                }
             }
 
             foreach (JToken teamToken in tournamentToken["ts"])
@@ -159,9 +178,11 @@ namespace PlayCEASharp.RequestManagement
         internal static Game Game(JToken gameToken)
         {
             Game game1 = new Game((string)gameToken["gid"]);
-            game1.HomeTeam = ResourceCache.GetTeam((string)gameToken["ts"][(int)0]["tid"]);
+            JToken tid = gameToken["ts"][(int)0]["tid"];
+            game1.HomeTeam = ResourceCache.GetTeam(ExtractTid(tid));
             game1.HomeScore = (int)gameToken["ts"][(int)0]["rs"];
-            game1.AwayTeam = ResourceCache.GetTeam((string)gameToken["ts"][(int)1]["tid"]);
+            tid = gameToken["ts"][(int)1]["tid"];
+            game1.AwayTeam = ResourceCache.GetTeam(ExtractTid(tid));
             game1.AwayScore = (int)gameToken["ts"][(int)1]["rs"];
             return game1;
         }
@@ -261,6 +282,18 @@ namespace PlayCEASharp.RequestManagement
                 }
             }
             return team;
+        }
+
+        private static string ExtractTid(JToken tidToken)
+        {
+            try
+            {
+                return (string)tidToken;
+            }
+            catch (ArgumentException)
+            {
+                return (string)tidToken["tid"];
+            }
         }
     }
 }

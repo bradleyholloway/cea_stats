@@ -68,6 +68,16 @@ namespace PlayCEASharp.DataModel
         public List<Bracket> Brackets { get; internal set; }
 
         /// <summary>
+        /// The bracket for the regular season.
+        /// </summary>
+        public Bracket RegularSeason { get; internal set; }
+
+        /// <summary>
+        /// The bracket for the playoffs.
+        /// </summary>
+        public Bracket Playoffs { get; internal set; }
+
+        /// <summary>
         /// The collection of teams in the tournament.
         /// </summary>
         public List<Team> Teams { get; internal set; }

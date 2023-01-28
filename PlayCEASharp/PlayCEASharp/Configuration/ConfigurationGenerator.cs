@@ -57,10 +57,19 @@ namespace PlayCEASharp.Configuration
         {
             List<StageGroup> groups = new List<StageGroup>();
             Dictionary<string, Bracket> bracketLookup = tournaments.SelectMany(t => t.Brackets).ToDictionary(b => b.BracketId);
+            Dictionary<string, Tournament> tournamentLookup = new Dictionary<string, Tournament>();
+            foreach (Tournament t in tournaments)
+            {
+                foreach (Bracket b in t.Brackets)
+                {
+                    tournamentLookup.TryAdd(b.BracketId, t);
+                }
+            }
 
-            int stageIndex = -1;
             foreach (string[] brackets in bracketSets)
             {
+
+                int stageIndex = Stage(tournamentLookup[brackets.First()], bracketLookup[brackets.First()], config);
                 string stageName = config.stageNames[stageIndex];
                 List<StageGroup> roundGroups = new List<StageGroup>();
                 int startingRank = 1;
@@ -133,8 +142,6 @@ namespace PlayCEASharp.Configuration
                 }
 
                 groups.AddRange(roundGroups);
-                
-                stageIndex++;
             }
 
             return groups.ToArray();
