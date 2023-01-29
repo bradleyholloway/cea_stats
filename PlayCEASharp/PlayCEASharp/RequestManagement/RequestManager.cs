@@ -144,7 +144,14 @@ namespace PlayCEASharp.RequestManagement
         /// <returns>Task for updating the team.</returns>
         internal async Task UpdateTeamDetails(Team team, TournamentConfiguration tc)
         {
-            await this.GetTeam(team.TeamId, tc);
+            try
+            {
+                await this.GetTeam(team.TeamId, tc);
+            }
+            catch (Exception e)
+            {
+                Console.Error.WriteLine(e);
+            }
         }
     }
 }

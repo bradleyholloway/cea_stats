@@ -209,6 +209,11 @@ namespace PlayCEASharp.Configuration
         /// <returns>The stage for this tournament/bracket pair.</returns>
         private static int Stage(Tournament t, Bracket b, MatchingConfiguration config)
         {
+            if (config.stageKeywords == null)
+            {
+                return 0;
+            }
+
             foreach (KeyValuePair<string, int> kvp in config.stageKeywords)
             {
                 if (Contains(t, b, kvp.Key))
@@ -229,6 +234,11 @@ namespace PlayCEASharp.Configuration
         /// <returns>An offset for where this bracket should go in the ordering.</returns>
         private static int Ordering(Tournament t, Bracket b, MatchingConfiguration config)
         {
+            if (config.orderKeywords == null)
+            {
+                return 0;
+            }
+
             foreach (KeyValuePair<string, int> kvp in config.orderKeywords)
             {
                 if (Contains(t, b, kvp.Key))

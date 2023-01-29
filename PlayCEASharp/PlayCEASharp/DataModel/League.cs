@@ -33,12 +33,13 @@ namespace PlayCEASharp.DataModel
             if (bracketSets.Count > 0)
             {
                 this.bracketSets = bracketSets;
-                this.PlayerDiscordLookup = new Dictionary<string, Team>();
+                this.PlayerDiscordLookup = new Dictionary<string, List<Team>>();
                 foreach (Team team in this.Bracket.Teams)
                 {
                     foreach (Player player in team.Players)
                     {
-                        this.PlayerDiscordLookup[player.DiscordId] =  team;
+                        this.PlayerDiscordLookup[player.DiscordId] = this.PlayerDiscordLookup.GetValueOrDefault(player.DiscordId, new List<Team>());
+                        this.PlayerDiscordLookup[player.DiscordId].Add(team);
                     }
                 }
                 this.NextMatchLookup = new Dictionary<Team, MatchResult>();
@@ -57,7 +58,7 @@ namespace PlayCEASharp.DataModel
         /// <summary>
         /// Provides a precomputed dictionary from discriminated discord name to which team they are on.
         /// </summary>
-        public Dictionary<string, Team> PlayerDiscordLookup { get; }
+        public Dictionary<string, List<Team>> PlayerDiscordLookup { get; }
 
         /// <summary>
         /// Provides a precomputed dictionary from each team to their next match.

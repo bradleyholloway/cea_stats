@@ -31,6 +31,16 @@ namespace PlayCEASharp.RequestManagement
         private static object refreshLock = new object();
 
         /// <summary>
+        /// Looks up all teams a player is on.
+        /// </summary>
+        public readonly static Dictionary<string, List<Team>> PlayerLookup = new Dictionary<string, List<Team>>();
+
+        /// <summary>
+        /// Looks up the upcoming matches for a team, across all tournaments.
+        /// </summary>
+        public readonly static Dictionary<Team, List<MatchResult>> NextMatchLookup = new Dictionary<Team, List<MatchResult>>();
+
+        /// <summary>
         /// Starts a background refresh thread to update the league periodically.
         /// </summary>
         static LeagueManager()
@@ -91,6 +101,24 @@ namespace PlayCEASharp.RequestManagement
                     LeagueInstanceManager instanceManager = leagueInstanceManagers.GetValueOrDefault(tc.id, new LeagueInstanceManager());
                     instanceManager.ForceUpdate(tc);
                     leagueInstanceManagers[tc.id] = instanceManager;
+                }
+
+                PlayerLookup.Clear();
+                NextMatchLookup.Clear();
+                foreach (LeagueInstanceManager lim in leagueInstanceManagers.Values)
+                {
+                    League league = lim.League;
+                    foreach (KeyValuePair<string, List<Team>> kvp in league.PlayerDiscordLookup)
+                    {
+                        PlayerLookup[kvp.Key] = PlayerLookup.GetValueOrDefault(kvp.Key, new List<Team>());
+                        PlayerLookup[kvp.Key].AddRange(kvp.Value);
+                    }
+
+                    foreach (KeyValuePair<Team, MatchResult> kvp in league.NextMatchLookup)
+                    {
+                        NextMatchLookup[kvp.Key] = NextMatchLookup.GetValueOrDefault(kvp.Key, new List<MatchResult>());
+                        NextMatchLookup[kvp.Key].Add(kvp.Value);
+                    }
                 }
             }
         }
