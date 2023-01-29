@@ -2010,6 +2010,18 @@ references:
   isSpec: "True"
   fullName: PlayCEASharp.RequestManagement.LeagueManager.League
   nameWithType: LeagueManager.League
+- uid: PlayCEASharp.RequestManagement.LeagueManager.NextMatchLookup
+  name: NextMatchLookup
+  href: api/PlayCEASharp.RequestManagement.LeagueManager.html#PlayCEASharp_RequestManagement_LeagueManager_NextMatchLookup
+  commentId: F:PlayCEASharp.RequestManagement.LeagueManager.NextMatchLookup
+  fullName: PlayCEASharp.RequestManagement.LeagueManager.NextMatchLookup
+  nameWithType: LeagueManager.NextMatchLookup
+- uid: PlayCEASharp.RequestManagement.LeagueManager.PlayerLookup
+  name: PlayerLookup
+  href: api/PlayCEASharp.RequestManagement.LeagueManager.html#PlayCEASharp_RequestManagement_LeagueManager_PlayerLookup
+  commentId: F:PlayCEASharp.RequestManagement.LeagueManager.PlayerLookup
+  fullName: PlayCEASharp.RequestManagement.LeagueManager.PlayerLookup
+  nameWithType: LeagueManager.PlayerLookup
 - uid: PlayCEASharp.Utilities
   name: PlayCEASharp.Utilities
   href: api/PlayCEASharp.Utilities.html
