@@ -407,6 +407,70 @@ references:
   isSpec: "True"
   fullName: PlayCEASharp.Configuration.NamingConfiguration.ScoreWords
   nameWithType: NamingConfiguration.ScoreWords
+- uid: PlayCEASharp.Configuration.TournamentConfiguration
+  name: TournamentConfiguration
+  href: api/PlayCEASharp.Configuration.TournamentConfiguration.html
+  commentId: T:PlayCEASharp.Configuration.TournamentConfiguration
+  fullName: PlayCEASharp.Configuration.TournamentConfiguration
+  nameWithType: TournamentConfiguration
+- uid: PlayCEASharp.Configuration.TournamentConfiguration.id
+  name: id
+  href: api/PlayCEASharp.Configuration.TournamentConfiguration.html#PlayCEASharp_Configuration_TournamentConfiguration_id
+  commentId: P:PlayCEASharp.Configuration.TournamentConfiguration.id
+  fullName: PlayCEASharp.Configuration.TournamentConfiguration.id
+  nameWithType: TournamentConfiguration.id
+- uid: PlayCEASharp.Configuration.TournamentConfiguration.id*
+  name: id
+  href: api/PlayCEASharp.Configuration.TournamentConfiguration.html#PlayCEASharp_Configuration_TournamentConfiguration_id_
+  commentId: Overload:PlayCEASharp.Configuration.TournamentConfiguration.id
+  isSpec: "True"
+  fullName: PlayCEASharp.Configuration.TournamentConfiguration.id
+  nameWithType: TournamentConfiguration.id
+- uid: PlayCEASharp.Configuration.TournamentConfiguration.matchingConfig
+  name: matchingConfig
+  href: api/PlayCEASharp.Configuration.TournamentConfiguration.html#PlayCEASharp_Configuration_TournamentConfiguration_matchingConfig
+  commentId: P:PlayCEASharp.Configuration.TournamentConfiguration.matchingConfig
+  fullName: PlayCEASharp.Configuration.TournamentConfiguration.matchingConfig
+  nameWithType: TournamentConfiguration.matchingConfig
+- uid: PlayCEASharp.Configuration.TournamentConfiguration.matchingConfig*
+  name: matchingConfig
+  href: api/PlayCEASharp.Configuration.TournamentConfiguration.html#PlayCEASharp_Configuration_TournamentConfiguration_matchingConfig_
+  commentId: Overload:PlayCEASharp.Configuration.TournamentConfiguration.matchingConfig
+  isSpec: "True"
+  fullName: PlayCEASharp.Configuration.TournamentConfiguration.matchingConfig
+  nameWithType: TournamentConfiguration.matchingConfig
+- uid: PlayCEASharp.Configuration.TournamentConfiguration.namingConfig
+  name: namingConfig
+  href: api/PlayCEASharp.Configuration.TournamentConfiguration.html#PlayCEASharp_Configuration_TournamentConfiguration_namingConfig
+  commentId: P:PlayCEASharp.Configuration.TournamentConfiguration.namingConfig
+  fullName: PlayCEASharp.Configuration.TournamentConfiguration.namingConfig
+  nameWithType: TournamentConfiguration.namingConfig
+- uid: PlayCEASharp.Configuration.TournamentConfiguration.namingConfig*
+  name: namingConfig
+  href: api/PlayCEASharp.Configuration.TournamentConfiguration.html#PlayCEASharp_Configuration_TournamentConfiguration_namingConfig_
+  commentId: Overload:PlayCEASharp.Configuration.TournamentConfiguration.namingConfig
+  isSpec: "True"
+  fullName: PlayCEASharp.Configuration.TournamentConfiguration.namingConfig
+  nameWithType: TournamentConfiguration.namingConfig
+- uid: PlayCEASharp.Configuration.TournamentConfigurations
+  name: TournamentConfigurations
+  href: api/PlayCEASharp.Configuration.TournamentConfigurations.html
+  commentId: T:PlayCEASharp.Configuration.TournamentConfigurations
+  fullName: PlayCEASharp.Configuration.TournamentConfigurations
+  nameWithType: TournamentConfigurations
+- uid: PlayCEASharp.Configuration.TournamentConfigurations.configurations
+  name: configurations
+  href: api/PlayCEASharp.Configuration.TournamentConfigurations.html#PlayCEASharp_Configuration_TournamentConfigurations_configurations
+  commentId: P:PlayCEASharp.Configuration.TournamentConfigurations.configurations
+  fullName: PlayCEASharp.Configuration.TournamentConfigurations.configurations
+  nameWithType: TournamentConfigurations.configurations
+- uid: PlayCEASharp.Configuration.TournamentConfigurations.configurations*
+  name: configurations
+  href: api/PlayCEASharp.Configuration.TournamentConfigurations.html#PlayCEASharp_Configuration_TournamentConfigurations_configurations_
+  commentId: Overload:PlayCEASharp.Configuration.TournamentConfigurations.configurations
+  isSpec: "True"
+  fullName: PlayCEASharp.Configuration.TournamentConfigurations.configurations
+  nameWithType: TournamentConfigurations.configurations
 - uid: PlayCEASharp.DataModel
   name: PlayCEASharp.DataModel
   href: api/PlayCEASharp.DataModel.html
@@ -665,6 +729,25 @@ references:
   isSpec: "True"
   fullName: PlayCEASharp.DataModel.BracketSet.Teams
   nameWithType: BracketSet.Teams
+- uid: PlayCEASharp.DataModel.ConfiguredNamingObject
+  name: ConfiguredNamingObject
+  href: api/PlayCEASharp.DataModel.ConfiguredNamingObject.html
+  commentId: T:PlayCEASharp.DataModel.ConfiguredNamingObject
+  fullName: PlayCEASharp.DataModel.ConfiguredNamingObject
+  nameWithType: ConfiguredNamingObject
+- uid: PlayCEASharp.DataModel.ConfiguredNamingObject.NameConfiguration
+  name: NameConfiguration
+  href: api/PlayCEASharp.DataModel.ConfiguredNamingObject.html#PlayCEASharp_DataModel_ConfiguredNamingObject_NameConfiguration
+  commentId: P:PlayCEASharp.DataModel.ConfiguredNamingObject.NameConfiguration
+  fullName: PlayCEASharp.DataModel.ConfiguredNamingObject.NameConfiguration
+  nameWithType: ConfiguredNamingObject.NameConfiguration
+- uid: PlayCEASharp.DataModel.ConfiguredNamingObject.NameConfiguration*
+  name: NameConfiguration
+  href: api/PlayCEASharp.DataModel.ConfiguredNamingObject.html#PlayCEASharp_DataModel_ConfiguredNamingObject_NameConfiguration_
+  commentId: Overload:PlayCEASharp.DataModel.ConfiguredNamingObject.NameConfiguration
+  isSpec: "True"
+  fullName: PlayCEASharp.DataModel.ConfiguredNamingObject.NameConfiguration
+  nameWithType: ConfiguredNamingObject.NameConfiguration
 - uid: PlayCEASharp.DataModel.Game
   name: Game
   href: api/PlayCEASharp.DataModel.Game.html
@@ -1552,12 +1635,12 @@ references:
   isSpec: "True"
   fullName: PlayCEASharp.DataModel.TeamStatistics.Subtraction
   nameWithType: TeamStatistics.Subtraction
-- uid: PlayCEASharp.DataModel.TeamStatistics.Reset
-  name: Reset()
-  href: api/PlayCEASharp.DataModel.TeamStatistics.html#PlayCEASharp_DataModel_TeamStatistics_Reset
-  commentId: M:PlayCEASharp.DataModel.TeamStatistics.Reset
-  fullName: PlayCEASharp.DataModel.TeamStatistics.Reset()
-  nameWithType: TeamStatistics.Reset()
+- uid: PlayCEASharp.DataModel.TeamStatistics.Reset(PlayCEASharp.Configuration.NamingConfiguration)
+  name: Reset(NamingConfiguration)
+  href: api/PlayCEASharp.DataModel.TeamStatistics.html#PlayCEASharp_DataModel_TeamStatistics_Reset_PlayCEASharp_Configuration_NamingConfiguration_
+  commentId: M:PlayCEASharp.DataModel.TeamStatistics.Reset(PlayCEASharp.Configuration.NamingConfiguration)
+  fullName: PlayCEASharp.DataModel.TeamStatistics.Reset(PlayCEASharp.Configuration.NamingConfiguration)
+  nameWithType: TeamStatistics.Reset(NamingConfiguration)
 - uid: PlayCEASharp.DataModel.TeamStatistics.Reset*
   name: Reset
   href: api/PlayCEASharp.DataModel.TeamStatistics.html#PlayCEASharp_DataModel_TeamStatistics_Reset_
@@ -1901,6 +1984,19 @@ references:
   isSpec: "True"
   fullName: PlayCEASharp.RequestManagement.LeagueManager.ForceUpdate
   nameWithType: LeagueManager.ForceUpdate
+- uid: PlayCEASharp.RequestManagement.LeagueManager.GetLeague(System.String)
+  name: GetLeague(String)
+  href: api/PlayCEASharp.RequestManagement.LeagueManager.html#PlayCEASharp_RequestManagement_LeagueManager_GetLeague_System_String_
+  commentId: M:PlayCEASharp.RequestManagement.LeagueManager.GetLeague(System.String)
+  fullName: PlayCEASharp.RequestManagement.LeagueManager.GetLeague(System.String)
+  nameWithType: LeagueManager.GetLeague(String)
+- uid: PlayCEASharp.RequestManagement.LeagueManager.GetLeague*
+  name: GetLeague
+  href: api/PlayCEASharp.RequestManagement.LeagueManager.html#PlayCEASharp_RequestManagement_LeagueManager_GetLeague_
+  commentId: Overload:PlayCEASharp.RequestManagement.LeagueManager.GetLeague
+  isSpec: "True"
+  fullName: PlayCEASharp.RequestManagement.LeagueManager.GetLeague
+  nameWithType: LeagueManager.GetLeague
 - uid: PlayCEASharp.RequestManagement.LeagueManager.League
   name: League
   href: api/PlayCEASharp.RequestManagement.LeagueManager.html#PlayCEASharp_RequestManagement_LeagueManager_League
@@ -2060,12 +2156,12 @@ references:
   isSpec: "True"
   fullName: PlayCEASharp.Utilities.TeamStatisticsExtensions.ToCSV
   nameWithType: TeamStatisticsExtensions.ToCSV
-- uid: PlayCEASharp.Utilities.TeamStatisticsExtensions.ToCSVKeys
-  name: ToCSVKeys()
-  href: api/PlayCEASharp.Utilities.TeamStatisticsExtensions.html#PlayCEASharp_Utilities_TeamStatisticsExtensions_ToCSVKeys
-  commentId: M:PlayCEASharp.Utilities.TeamStatisticsExtensions.ToCSVKeys
-  fullName: PlayCEASharp.Utilities.TeamStatisticsExtensions.ToCSVKeys()
-  nameWithType: TeamStatisticsExtensions.ToCSVKeys()
+- uid: PlayCEASharp.Utilities.TeamStatisticsExtensions.ToCSVKeys(PlayCEASharp.DataModel.TeamStatistics)
+  name: ToCSVKeys(TeamStatistics)
+  href: api/PlayCEASharp.Utilities.TeamStatisticsExtensions.html#PlayCEASharp_Utilities_TeamStatisticsExtensions_ToCSVKeys_PlayCEASharp_DataModel_TeamStatistics_
+  commentId: M:PlayCEASharp.Utilities.TeamStatisticsExtensions.ToCSVKeys(PlayCEASharp.DataModel.TeamStatistics)
+  fullName: PlayCEASharp.Utilities.TeamStatisticsExtensions.ToCSVKeys(PlayCEASharp.DataModel.TeamStatistics)
+  nameWithType: TeamStatisticsExtensions.ToCSVKeys(TeamStatistics)
 - uid: PlayCEASharp.Utilities.TeamStatisticsExtensions.ToCSVKeys*
   name: ToCSVKeys
   href: api/PlayCEASharp.Utilities.TeamStatisticsExtensions.html#PlayCEASharp_Utilities_TeamStatisticsExtensions_ToCSVKeys_
