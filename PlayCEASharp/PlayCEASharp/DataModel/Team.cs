@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PlayCEASharp.Configuration;
 using PlayCEASharp.Utilities;
 
 namespace PlayCEASharp.DataModel
@@ -10,7 +11,7 @@ namespace PlayCEASharp.DataModel
     /// <summary>
     /// A team consists of players. It also has fields for many precomputed stats.
     /// </summary>
-    public class Team
+    public class Team : ConfiguredNamingObject
     {
         /// <summary>
         /// Creates a new team object with the given team id.
@@ -32,24 +33,24 @@ namespace PlayCEASharp.DataModel
         /// <summary>
         /// Resets all of the stats associated with this team.
         /// </summary>
-        internal void ResetStats()
+        internal void ResetStats(NamingConfiguration nameConfiguration)
         {
-            this.Stats.Reset();
+            this.Stats.Reset(nameConfiguration);
             foreach (KeyValuePair<BracketRound, TeamStatistics> pair in this.RoundStats)
             {
-                pair.Value.Reset();
+                pair.Value.Reset(nameConfiguration);
             }
             foreach (KeyValuePair<BracketRound, TeamStatistics> pair2 in this.CumulativeRoundStats)
             {
-                pair2.Value.Reset();
+                pair2.Value.Reset(nameConfiguration);
             }
             foreach (KeyValuePair<BracketRound, TeamStatistics> pair3 in this.StageCumulativeRoundStats)
             {
-                pair3.Value.Reset();
+                pair3.Value.Reset(nameConfiguration);
             }
             foreach (TeamStatistics statistics in this.StageStats.Values)
             {
-                statistics.Reset();
+                statistics.Reset(nameConfiguration);
             }
 
             this.RoundRanking.Clear();

@@ -16,9 +16,14 @@ namespace PlayCEASharp.RequestManagement
     public class LeagueManager
     {
         /// <summary>
-        /// Backing reference for the current league.
+        /// Collection of league instance managers.
         /// </summary>
-        private static LeagueInstanceManager leagueInstanceManager = null;
+        private static Dictionary<string, LeagueInstanceManager> leagueInstanceManagers;
+
+        /// <summary>
+        /// Performance booster to see if bootstrap is already done.
+        /// </summary>
+        private static bool completedBootstrap = false;
 
         /// <summary>
         /// Locks around refreshing to prevent duplicate work.
@@ -39,12 +44,18 @@ namespace PlayCEASharp.RequestManagement
         /// </summary>
         public static void Bootstrap()
         {
+            if (completedBootstrap)
+            {
+                return;
+            }
+
             lock (refreshLock)
             {
-                if (leagueInstanceManager == null)
+                if (leagueInstanceManagers == null)
                 {
-                    leagueInstanceManager = new LeagueInstanceManager();
+                    leagueInstanceManagers = new Dictionary<string, LeagueInstanceManager>();
                     Refresh();
+                    completedBootstrap = true;
                 }
             }
         }
@@ -74,11 +85,13 @@ namespace PlayCEASharp.RequestManagement
         {
             lock (refreshLock)
             {
-                // Eventually we should be able to handle multiple configurations within the library.
-                // LeagueManager will need to manage different LeagueInstanceManagers and behave appropriately.
-                // For now only one instance is managed.
-                MatchingConfiguration matchingConfig = ConfigurationManager.MatchingConfiguration;
-                leagueInstanceManager.ForceUpdate(matchingConfig);
+                TournamentConfigurations tournamentConfigs = ConfigurationManager.TournamentConfigurations;
+                foreach (TournamentConfiguration tc in tournamentConfigs.configurations)
+                {
+                    LeagueInstanceManager instanceManager = leagueInstanceManagers.GetValueOrDefault(tc.id, new LeagueInstanceManager());
+                    instanceManager.ForceUpdate(tc);
+                    leagueInstanceManagers[tc.id] = instanceManager;
+                }
             }
         }
 
@@ -108,12 +121,15 @@ namespace PlayCEASharp.RequestManagement
         {
             get
             {
-                if (leagueInstanceManager == null)
-                {
-                    Bootstrap();
-                }
-                return leagueInstanceManager.League;
+                Bootstrap();
+                return leagueInstanceManagers.Values.First().League;
             }
+        }
+
+        public static League GetLeague(string id)
+        {
+            Bootstrap();
+            return leagueInstanceManagers[id].League;
         }
     }
 }

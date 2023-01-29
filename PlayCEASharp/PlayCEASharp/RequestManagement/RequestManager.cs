@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
+using PlayCEASharp.Configuration;
 using PlayCEASharp.DataModel;
 using System;
 using System.Collections.Generic;
@@ -40,14 +41,14 @@ namespace PlayCEASharp.RequestManagement
         /// </summary>
         /// <param name="tournaments">Collection of tournaments to populate data for.</param>
         /// <returns>A task to load all of the data.</returns>
-        internal async Task LoadBrackets(List<Tournament> tournaments)
+        internal async Task LoadBrackets(List<Tournament> tournaments, TournamentConfiguration tc)
         {
             List<Task> allTasks = new List<Task>();
             foreach(Tournament t in tournaments)
             {
                 foreach(Bracket b in t.Brackets)
                 {
-                    allTasks.Add(this.GetBracket(b.BracketId));
+                    allTasks.Add(this.GetBracket(b.BracketId, tc));
                 }
             }
 
@@ -59,11 +60,11 @@ namespace PlayCEASharp.RequestManagement
         /// </summary>
         /// <param name="bracketId">The bracket id to read.</param>
         /// <returns>The fully populated Bracket.</returns>
-        internal async Task<Bracket> GetBracket(string bracketId)
+        internal async Task<Bracket> GetBracket(string bracketId, TournamentConfiguration tc)
         {
             string content = await this.client.GetStringAsync($"{apiEndpoint}/prod/brackets/{bracketId}");
             JObject jObject = JObject.Parse(content);
-            Bracket bracket = Marshaller.Bracket(jObject["data"][0]);
+            Bracket bracket = Marshaller.Bracket(jObject["data"][0], tc);
             return bracket;
         }
 
@@ -85,11 +86,11 @@ namespace PlayCEASharp.RequestManagement
         /// </summary>
         /// <param name="teamId">The team id</param>
         /// <returns>The updated team.</returns>
-        internal async Task<Team> GetTeam(string teamId)
+        internal async Task<Team> GetTeam(string teamId, TournamentConfiguration tc)
         {
             string content = await this.client.GetStringAsync($"{apiEndpoint}/prod/teams/{teamId}");
             JObject jObject = JObject.Parse(content);
-            Team team = Marshaller.Team(jObject["data"][0]);
+            Team team = Marshaller.Team(jObject["data"][0], tc);
             return team;
         }
 
@@ -97,12 +98,12 @@ namespace PlayCEASharp.RequestManagement
         /// Gets all tournaments from PlayCEA.
         /// </summary>
         /// <returns>Collection of all Tournaments from PlayCEA.</returns>
-        internal async Task<List<Tournament>> GetTournaments() {
+        internal async Task<List<Tournament>> GetTournaments(TournamentConfiguration tc) {
             string content = await this.client.GetStringAsync($"{apiEndpoint}/prod/tournaments");
             JObject jObject = JObject.Parse(content);
             List<Tournament> tournaments = new List<Tournament>();
             foreach (JToken t in jObject["data"]) {
-                Tournament tournament = Marshaller.Tournament(t);
+                Tournament tournament = Marshaller.Tournament(t, tc);
                 tournaments.Add(tournament);
             }
             return tournaments;
@@ -113,10 +114,10 @@ namespace PlayCEASharp.RequestManagement
         /// </summary>
         /// <param name="tournamentId">The tournament id.</param>
         /// <returns>The updated tournament.</returns>
-        internal async Task<Tournament> GetTournament(string tournamentId) {
+        internal async Task<Tournament> GetTournament(string tournamentId, TournamentConfiguration tc) {
             string content = await this.client.GetStringAsync($"{apiEndpoint}/prod/tournaments/{tournamentId}");
             JObject jObject = JObject.Parse(content);
-            Tournament tournament = Marshaller.Tournament(jObject["data"]);
+            Tournament tournament = Marshaller.Tournament(jObject["data"], tc);
             return tournament;
         }
 
@@ -125,12 +126,12 @@ namespace PlayCEASharp.RequestManagement
         /// </summary>
         /// <param name="teams">The list of teams to update.</param>
         /// <returns>Task for updating the teams in parallel.</returns>
-        internal async Task UpdateAllTeams(List<Team> teams)
+        internal async Task UpdateAllTeams(List<Team> teams, TournamentConfiguration tc)
         {
             List<Task> allTasks = new List<Task>();
             foreach (Team team in teams)
             {
-                allTasks.Add(this.UpdateTeamDetails(team));
+                allTasks.Add(this.UpdateTeamDetails(team, tc));
             }
 
             await Task.WhenAll(allTasks);
@@ -141,9 +142,9 @@ namespace PlayCEASharp.RequestManagement
         /// </summary>
         /// <param name="team">The team to update.</param>
         /// <returns>Task for updating the team.</returns>
-        internal async Task UpdateTeamDetails(Team team)
+        internal async Task UpdateTeamDetails(Team team, TournamentConfiguration tc)
         {
-            await this.GetTeam(team.TeamId);
+            await this.GetTeam(team.TeamId, tc);
         }
     }
 }

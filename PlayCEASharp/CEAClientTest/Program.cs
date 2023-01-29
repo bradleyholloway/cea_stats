@@ -17,7 +17,8 @@ namespace RlClientTest;public class Program {    public static void Main()  
       Console.WriteLine($"{teams[i]},{stats.ToCSV()}");
   }        Console.WriteLine(league);        */
 
-        RequestManager rm = new RequestManager();        List<Tournament> tournaments = rm.GetTournaments().Result;        tournaments = tournaments.Where(t => t.SeasonLeague.Equals("CORPORATE") && t.Playoffs != null && !t.Playoffs.BracketId.Equals("")).ToList();        Dictionary<Tournament, MatchResult> finalsMatches = tournaments.ToDictionary(t => t, t => GetFinalsMatch(t, rm));
+        TournamentConfiguration tc = ConfigurationManager.TournamentConfigurations.configurations.First();
+        RequestManager rm = new RequestManager();        List<Tournament> tournaments = rm.GetTournaments(tc).Result;        tournaments = tournaments.Where(t => t.SeasonLeague.Equals("CORPORATE") && t.Playoffs != null && !t.Playoffs.BracketId.Equals("")).ToList();        Dictionary<Tournament, MatchResult> finalsMatches = tournaments.ToDictionary(t => t, t => GetFinalsMatch(t, rm, tc));
         Dictionary<string, int> wins = new Dictionary<string, int>();
         Dictionary<string, int> finals = new Dictionary<string, int>();
         foreach (KeyValuePair<Tournament, MatchResult> result in finalsMatches)
@@ -32,8 +33,8 @@ namespace RlClientTest;public class Program {    public static void Main()  
         {
             int win = wins.GetValueOrDefault(org);
             //Console.WriteLine($"{org} {win} {finals[org]}");
-        }    }    private static MatchResult GetFinalsMatch(Tournament t, RequestManager rm)
+        }    }    private static MatchResult GetFinalsMatch(Tournament t, RequestManager rm, TournamentConfiguration tc)
     {
-        Bracket playoffBracket = rm.GetBracket(t.Playoffs.BracketId).Result;
+        Bracket playoffBracket = rm.GetBracket(t.Playoffs.BracketId, tc).Result;
         return playoffBracket.Rounds.Last().Matches.Last();
     }}

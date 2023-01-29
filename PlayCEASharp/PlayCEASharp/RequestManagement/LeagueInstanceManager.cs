@@ -20,9 +20,9 @@ namespace PlayCEASharp.RequestManagement
         private League league = null;
 
         /// <summary>
-        /// The previously used matching configuration for refreshes.
+        /// The previously used configuration for refreshes.
         /// </summary>
-        private MatchingConfiguration prevMatchingConfig = null;
+        private TournamentConfiguration prevTc = null;
 
         /// <summary>
         /// Locks around refreshing to prevent duplicate work.
@@ -38,13 +38,13 @@ namespace PlayCEASharp.RequestManagement
         /// Ensures that the league is initialized and popualted.
         /// This is blocking and may take a while.
         /// </summary>
-        internal void Bootstrap(MatchingConfiguration config)
+        internal void Bootstrap(TournamentConfiguration tc)
         {
             lock (refreshLock)
             {
                 if (league == null)
                 {
-                    Refresh(config);
+                    Refresh(tc);
                 }
             }
         }
@@ -53,37 +53,37 @@ namespace PlayCEASharp.RequestManagement
         /// Starts the bootstrapping process asyncronously.
         /// </summary>
         /// <returns>Task for bootstrap.</returns>
-        internal async Task BootstrapAsync(MatchingConfiguration config)
+        internal async Task BootstrapAsync(TournamentConfiguration tc)
         {
-            Task bootstrapTask = new Task(() => Bootstrap(config));
+            Task bootstrapTask = new Task(() => Bootstrap(tc));
             await bootstrapTask;
         }
 
         /// <summary>
         /// Forces a refresh from PlayCEA.
         /// </summary>
-        internal void ForceUpdate(MatchingConfiguration config = null)
+        internal void ForceUpdate(TournamentConfiguration tc = null)
         {
-            Refresh(config ?? prevMatchingConfig);
+            Refresh(tc ?? prevTc);
         }
 
         /// <summary>
         /// Internally refreshes the league.
         /// </summary>
-        private void Refresh(MatchingConfiguration matchingConfig)
+        private void Refresh(TournamentConfiguration tc)
         {
             lock (refreshLock)
             {
                 // Read all tournaments.
-                List<Tournament> tournaments = this.rm.GetTournaments().Result;
+                List<Tournament> tournaments = this.rm.GetTournaments(tc).Result;
                 // Filter to matching tournaments.
-                tournaments = ConfigurationGenerator.MatchingTournaments(tournaments, matchingConfig);
+                tournaments = ConfigurationGenerator.MatchingTournaments(tournaments, tc.matchingConfig);
                 // Populate brackets + teams for the scoped tournaments.
-                Task bracketLoading = this.rm.LoadBrackets(tournaments);
-                Task teamLoading = this.rm.UpdateAllTeams(tournaments.SelectMany(t => t.Teams).Distinct().ToList());
+                Task bracketLoading = this.rm.LoadBrackets(tournaments, tc);
+                Task teamLoading = this.rm.UpdateAllTeams(tournaments.SelectMany(t => t.Teams).Distinct().ToList(), tc);
                 Task.WaitAll(bracketLoading, teamLoading);
                 // Build the stage configurations for analysis from the populated tournaments.
-                BracketConfiguration config = ConfigurationGenerator.GenerateConfiguration(tournaments, matchingConfig);
+                BracketConfiguration config = ConfigurationGenerator.GenerateConfiguration(tournaments, tc.matchingConfig);
                 // Create a local bracket lookup for quick build of bracket sets.
                 Dictionary<string, Bracket> bracketLookup = tournaments.SelectMany(t => t.Brackets).ToDictionary(b => b.BracketId);
                 // Build bracket sets with actual brackets already populated from initial read.
@@ -93,10 +93,10 @@ namespace PlayCEASharp.RequestManagement
                     bracketSets.Add(new BracketSet(brackets.Select(b => bracketLookup[b]).ToList()));
                 }
                 // Analyze bracket sets.
-                AnalysisManager.Analyze(bracketSets, config);
+                AnalysisManager.Analyze(bracketSets, config, tc.namingConfig);
                 // Update league reference.
                 this.league = new League(bracketSets, config);
-                this.prevMatchingConfig = matchingConfig;
+                this.prevTc = tc;
             }
         }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PlayCEASharp.Configuration;
 using PlayCEASharp.Utilities;
 
 namespace PlayCEASharp.DataModel
@@ -10,14 +11,19 @@ namespace PlayCEASharp.DataModel
     /// <summary>
     /// The collection of statistics for a team.
     /// </summary>
-    public class TeamStatistics : IComparable
+    public class TeamStatistics : ConfiguredNamingObject, IComparable
     {
         /// <summary>
         /// Creates a new statistics object.
         /// </summary>
         public TeamStatistics()
         {
-            this.Reset();
+            this.MatchWins = 0;
+            this.MatchLosses = 0;
+            this.GameWins = 0;
+            this.GameLosses = 0;
+            this.TotalGoals = 0;
+            this.TotalGoalsAgainst = 0;
         }
 
         /// <inheritdoc/>
@@ -84,6 +90,7 @@ namespace PlayCEASharp.DataModel
             statistics1.GameLosses = a.GameLosses + b.GameLosses;
             statistics1.TotalGoals = a.TotalGoals + b.TotalGoals;
             statistics1.TotalGoalsAgainst = a.TotalGoalsAgainst + b.TotalGoalsAgainst;
+            statistics1.NameConfiguration = a.NameConfiguration;
             return statistics1;
         }
 
@@ -102,13 +109,14 @@ namespace PlayCEASharp.DataModel
             statistics1.GameLosses = a.GameLosses - b.GameLosses;
             statistics1.TotalGoals = a.TotalGoals - b.TotalGoals;
             statistics1.TotalGoalsAgainst = a.TotalGoalsAgainst - b.TotalGoalsAgainst;
+            statistics1.NameConfiguration = a.NameConfiguration;
             return statistics1;
         }
 
         /// <summary>
         /// Clears all stats for this object.
         /// </summary>
-        public void Reset()
+        public void Reset(NamingConfiguration nameConfiguration)
         {
             this.MatchWins = 0;
             this.MatchLosses = 0;
@@ -116,6 +124,7 @@ namespace PlayCEASharp.DataModel
             this.GameLosses = 0;
             this.TotalGoals = 0;
             this.TotalGoalsAgainst = 0;
+            this.NameConfiguration = nameConfiguration;
         }
 
         /// <inheritdoc/>

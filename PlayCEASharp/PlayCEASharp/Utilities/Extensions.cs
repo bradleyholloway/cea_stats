@@ -78,7 +78,7 @@ namespace PlayCEASharp.Utilities
         /// <returns>string representation of the MatchResult.</returns>
         public static string CustomToString(this MatchResult input)
         {
-            object[] objArray1 = new object[] { input.MatchId, (int)input.Round, input.HomeTeam.CustomToString(), input.AwayTeam.CustomToString(), (int)input.HomeGamesWon, (int)input.AwayGamesWon, (int)input.HomeGoalDifferential, ConfigurationManager.NamingConfiguration.ScoreWord };
+            object[] objArray1 = new object[] { input.MatchId, (int)input.Round, input.HomeTeam.CustomToString(), input.AwayTeam.CustomToString(), (int)input.HomeGamesWon, (int)input.AwayGamesWon, (int)input.HomeGoalDifferential, input.HomeTeam.NameConfiguration.ScoreWord };
             return string.Format("MatchId:{0}, Round:{1}, Home:{2}, Away:{3}, {4}-{5}, {7} Differential: {6}", (object[])objArray1);
         }
     }
@@ -131,19 +131,19 @@ namespace PlayCEASharp.Utilities
         /// Gets the CSV keys for using ToCSV on TeamStatistics.
         /// </summary>
         /// <returns>Comma separated list of keys.</returns>
-        public static string ToCSVKeys() =>
-            $"{ConfigurationManager.NamingConfiguration.MatchWord} Wins," +
-            $"{ConfigurationManager.NamingConfiguration.ScoreWord} Diff," +
-            $"{ConfigurationManager.NamingConfiguration.GameWord} Diff," +
-            $"{ConfigurationManager.NamingConfiguration.MatchWord} Losses," +
-            $"{ConfigurationManager.NamingConfiguration.MatchWord} Diff," +
-            $"{ConfigurationManager.NamingConfiguration.GameWord} Wins," +
-            $"{ConfigurationManager.NamingConfiguration.GameWord} Losses," +
-            $"{ConfigurationManager.NamingConfiguration.ScoreWords}," +
-            $"{ConfigurationManager.NamingConfiguration.ScoreWords} Against," +
-            $"Total {ConfigurationManager.NamingConfiguration.GameWords}," +
-            $"{ConfigurationManager.NamingConfiguration.ScoreWords}/{ConfigurationManager.NamingConfiguration.GameWord}," +
-            $"{ConfigurationManager.NamingConfiguration.ScoreWords} Against/{ConfigurationManager.NamingConfiguration.GameWord}";
+        public static string ToCSVKeys(this TeamStatistics input) =>
+            $"{input.NameConfiguration.MatchWord} Wins," +
+            $"{input.NameConfiguration.ScoreWord} Diff," +
+            $"{input.NameConfiguration.GameWord} Diff," +
+            $"{input.NameConfiguration.MatchWord} Losses," +
+            $"{input.NameConfiguration.MatchWord} Diff," +
+            $"{input.NameConfiguration.GameWord} Wins," +
+            $"{input.NameConfiguration.GameWord} Losses," +
+            $"{input.NameConfiguration.ScoreWords}," +
+            $"{input.NameConfiguration.ScoreWords} Against," +
+            $"Total {input.NameConfiguration.GameWords}," +
+            $"{input.NameConfiguration.ScoreWords}/{input.NameConfiguration.GameWord}," +
+            $"{input.NameConfiguration.ScoreWords} Against/{input.NameConfiguration.GameWord}";
 
         /// <summary>
         /// CustomToString for TeamStatistics.
@@ -159,11 +159,11 @@ namespace PlayCEASharp.Utilities
             if (detailed)
             {
                 object[] objArray1 = new object[] { input.MatchWins - input.MatchLosses, (int)input.TotalGoalDifferential, (int)input.GameDifferential, f(((double)input.TotalGoals) / ((double)input.TotalGames)), f(((double)input.TotalGoalsAgainst) / ((double)input.TotalGames)),
-                    ConfigurationManager.NamingConfiguration.MatchWord, ConfigurationManager.NamingConfiguration.GameWord, ConfigurationManager.NamingConfiguration.ScoreWord, ConfigurationManager.NamingConfiguration.ScoreWords};
+                    input.NameConfiguration.MatchWord, input.NameConfiguration.GameWord, input.NameConfiguration.ScoreWord, input.NameConfiguration.ScoreWords};
                 str = string.Format(" {5}Diff: {0}, {7}Diff: {1}, {6}Diff: {2}, {8}/{6}: {3}, {8}Against/{6}: {4}", (object[])objArray1);
             }
             object[] objArray2 = new object[] { (int)input.MatchWins, (int)input.MatchLosses, (int)input.GameWins, (int)input.GameLosses, (int)input.TotalGoals, (int)input.TotalGoalsAgainst, str,
-                ConfigurationManager.NamingConfiguration.MatchWords, ConfigurationManager.NamingConfiguration.GameWords, ConfigurationManager.NamingConfiguration.ScoreWords};
+                input.NameConfiguration.MatchWords, input.NameConfiguration.GameWords, input.NameConfiguration.ScoreWords};
             return string.Format("{7} [{0} - {1}], {8} [{2} - {3}], {9} [{4} - {5}]{6}", (object[])objArray2);
         }
     }

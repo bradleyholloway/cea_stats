@@ -10,7 +10,7 @@ namespace PlayCEASharp.DataModel
     /// <summary>
     /// Represents a match between two team.
     /// </summary>
-    public class MatchResult
+    public class MatchResult : ConfiguredNamingObject
     {
         /// <summary>
         /// Creates a match result given the match id.

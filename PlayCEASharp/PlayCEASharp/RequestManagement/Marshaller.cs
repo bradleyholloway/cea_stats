@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
+using PlayCEASharp.Configuration;
 using PlayCEASharp.DataModel;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace PlayCEASharp.RequestManagement
         /// </summary>
         /// <param name="tournamentToken">the json for the tournament.</param>
         /// <returns>A hydrated Tournament</returns>
-        internal static Tournament Tournament(JToken tournamentToken) {
+        internal static Tournament Tournament(JToken tournamentToken, TournamentConfiguration tc) {
             Tournament tournament = ResourceCache.GetTournament((string)tournamentToken["tmid"]);
             tournament.TournamentName = (string)tournamentToken["name"];
 
@@ -93,7 +94,7 @@ namespace PlayCEASharp.RequestManagement
         /// </summary>
         /// <param name="bracketToken">The json returned from PlayCEA.</param>
         /// <returns>A hydrated Bracket.</returns>
-        internal static Bracket Bracket(JToken bracketToken)
+        internal static Bracket Bracket(JToken bracketToken, TournamentConfiguration tc)
         {
             Bracket bracket1 = ResourceCache.GetBracket((string)bracketToken["bid"]);
             bracket1.Name = (string)bracketToken["name"];
@@ -108,7 +109,7 @@ namespace PlayCEASharp.RequestManagement
             }
             foreach (JToken token2 in bracketToken["ts"])
             {
-                Team team = Team(token2);
+                Team team = Team(token2, tc);
                 if (!bracket.Teams.Contains(team))
                 {
                     bracket.Teams.Add(team);
@@ -236,6 +237,7 @@ namespace PlayCEASharp.RequestManagement
                 }
                 result2 = result;
             }
+
             return result2;
         }
 
@@ -260,9 +262,10 @@ namespace PlayCEASharp.RequestManagement
         /// </summary>
         /// <param name="teamToken">the json representation of the team.</param>
         /// <returns>A hydrated Team.</returns>
-        internal static Team Team(JToken teamToken)
+        internal static Team Team(JToken teamToken, TournamentConfiguration tc)
         {
             Team team = ResourceCache.GetTeam((string)teamToken["tid"]);
+            team.NameConfiguration = tc.namingConfig;
             team.Name = (string)teamToken["dn"];
             team.Org = (string)teamToken["org"];
             team.ImageURL = (string)teamToken["ico"];
@@ -281,6 +284,7 @@ namespace PlayCEASharp.RequestManagement
                     }
                 }
             }
+
             return team;
         }
 

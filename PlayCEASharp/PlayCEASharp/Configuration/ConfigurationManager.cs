@@ -22,14 +22,11 @@ namespace PlayCEASharp.Configuration
             object fileLock = ConfigurationManager.fileLock;
             lock (fileLock)
             {
-                string configString = File.ReadAllText("Resources/configuration.json");
-                NamingConfiguration = JsonSerializer.Deserialize<NamingConfiguration>(configString);
-                MatchingConfiguration = JsonSerializer.Deserialize<MatchingConfiguration>(configString);
+                string configString = File.ReadAllText(configurationPath);
+                TournamentConfigurations = JsonSerializer.Deserialize<TournamentConfigurations>(configString);
             }
         }
 
-        internal static MatchingConfiguration MatchingConfiguration { get; private set; }
-
-        internal static NamingConfiguration NamingConfiguration { get; private set; }
+        internal static TournamentConfigurations TournamentConfigurations { get; private set; }
     }
 }

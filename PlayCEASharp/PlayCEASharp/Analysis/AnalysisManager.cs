@@ -18,11 +18,12 @@ namespace PlayCEASharp.Analysis
         /// </summary>
         /// <param name="brackets">Ordered collection of brackets to analze.</param>
         /// <param name="configuration">The bracket configuration to analyze with.</param>
-        internal static void Analyze(IEnumerable<BracketSet> brackets, BracketConfiguration configuration)
+        /// <param name="nameConfiguration">The naming configuration used for this bracket.</param>
+        internal static void Analyze(IEnumerable<BracketSet> brackets, BracketConfiguration configuration, NamingConfiguration nameConfiguration)
         {
             foreach (BracketSet set in brackets)
             {
-                ResetStats(set, configuration);
+                ResetStats(set, configuration, nameConfiguration);
                 UpdateRoundWeekNumbers(set);
             }
             foreach (BracketSet set in brackets)
@@ -37,46 +38,60 @@ namespace PlayCEASharp.Analysis
         /// </summary>
         /// <param name="bracket">Bracket to reset stats for.</param>
         /// <param name="configuration">The BracketConfiguration to analyze with.</param>
-        private static void ResetStats(Bracket bracket, BracketConfiguration configuration)
+        /// <param name="nameConfiguration">The NamingConfiguration used for this bracket.</param>
+        private static void ResetStats(Bracket bracket, BracketConfiguration configuration, NamingConfiguration nameConfiguration)
         {
             foreach (Team team in bracket.Teams)
             {
-                team.ResetStats();
+                team.ResetStats(nameConfiguration);
                 List<BracketRound> rounds = bracket.Rounds;
                 foreach (BracketRound round in rounds)
                 {
                     if (!team.RoundStats.ContainsKey(round))
                     {
-                        team.RoundStats[round] = new TeamStatistics();
+                        team.RoundStats[round] = new TeamStatistics()
+                        {
+                            NameConfiguration = nameConfiguration
+                        };
                     }
                     else
                     {
-                        team.RoundStats[round].Reset();
+                        team.RoundStats[round].Reset(nameConfiguration);
                     }
                     if (!team.CumulativeRoundStats.ContainsKey(round))
                     {
-                        team.CumulativeRoundStats[round] = new TeamStatistics();
+                        team.CumulativeRoundStats[round] = new TeamStatistics()
+                        {
+                            NameConfiguration = nameConfiguration
+                        };
                     }
                     else
                     {
-                        team.CumulativeRoundStats[round].Reset();
+                        team.CumulativeRoundStats[round].Reset(nameConfiguration);
                     }
                     if (!team.StageCumulativeRoundStats.ContainsKey(round))
                     {
-                        team.StageCumulativeRoundStats[round] = new TeamStatistics();
+                        team.StageCumulativeRoundStats[round] = new TeamStatistics()
+                        {
+                            NameConfiguration = nameConfiguration
+                        };
                     }
                     else
                     {
-                        team.StageCumulativeRoundStats[round].Reset();
+                        team.StageCumulativeRoundStats[round].Reset(nameConfiguration);
                     }
                     string key = configuration.StageLookup(round.RoundName);
                     if (!team.StageStats.ContainsKey(key))
                     {
-                        team.StageStats[key] = new TeamStatistics();
+                        team.StageStats[key] = new TeamStatistics()
+                        {
+                            NameConfiguration = nameConfiguration
+                        };
+
                     }
                     else
                     {
-                        team.StageStats[key].Reset();
+                        team.StageStats[key].Reset(nameConfiguration);
                     }
                 }
             }
@@ -87,11 +102,12 @@ namespace PlayCEASharp.Analysis
         /// </summary>
         /// <param name="bracketSet">The set of brackets to reset stats for.</param>
         /// <param name="configuration">The BracketConfiguration to analyze with.</param>
-        private static void ResetStats(BracketSet bracketSet, BracketConfiguration configuration)
+        /// <param name="nameConfiguration">The naming configuration for this bracket.</param>
+        private static void ResetStats(BracketSet bracketSet, BracketConfiguration configuration, NamingConfiguration nameConfiguration)
         {
             foreach (Bracket bracket in bracketSet.Brackets)
             {
-                ResetStats(bracket, configuration);
+                ResetStats(bracket, configuration, nameConfiguration);
             }
         }
 
