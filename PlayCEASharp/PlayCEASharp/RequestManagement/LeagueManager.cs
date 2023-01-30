@@ -76,16 +76,6 @@ namespace PlayCEASharp.RequestManagement
         }
 
         /// <summary>
-        /// Starts the bootstrapping process asyncronously.
-        /// </summary>
-        /// <returns>Task for bootstrap.</returns>
-        public static async Task BootstrapAsync()
-        {
-            Task bootstrapTask = new Task(Bootstrap);
-            await bootstrapTask;
-        }
-
-        /// <summary>
         /// Forces a refresh from PlayCEA.
         /// </summary>
         public static void ForceUpdate()
@@ -174,6 +164,7 @@ namespace PlayCEASharp.RequestManagement
         {
             get
             {
+                Bootstrap();
                 return leagueInstanceManagers.Values.Select(lim => lim.League).ToList();
             }
         }
@@ -181,6 +172,11 @@ namespace PlayCEASharp.RequestManagement
         public static League GetLeague(string id)
         {
             Bootstrap();
+            if (!leagueInstanceManagers.ContainsKey(id))
+            {
+                return null;
+            }
+
             return leagueInstanceManagers[id].League;
         }
     }
