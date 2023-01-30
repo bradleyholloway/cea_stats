@@ -1958,19 +1958,6 @@ references:
   isSpec: "True"
   fullName: PlayCEASharp.RequestManagement.LeagueManager.Bootstrap
   nameWithType: LeagueManager.Bootstrap
-- uid: PlayCEASharp.RequestManagement.LeagueManager.BootstrapAsync
-  name: BootstrapAsync()
-  href: api/PlayCEASharp.RequestManagement.LeagueManager.html#PlayCEASharp_RequestManagement_LeagueManager_BootstrapAsync
-  commentId: M:PlayCEASharp.RequestManagement.LeagueManager.BootstrapAsync
-  fullName: PlayCEASharp.RequestManagement.LeagueManager.BootstrapAsync()
-  nameWithType: LeagueManager.BootstrapAsync()
-- uid: PlayCEASharp.RequestManagement.LeagueManager.BootstrapAsync*
-  name: BootstrapAsync
-  href: api/PlayCEASharp.RequestManagement.LeagueManager.html#PlayCEASharp_RequestManagement_LeagueManager_BootstrapAsync_
-  commentId: Overload:PlayCEASharp.RequestManagement.LeagueManager.BootstrapAsync
-  isSpec: "True"
-  fullName: PlayCEASharp.RequestManagement.LeagueManager.BootstrapAsync
-  nameWithType: LeagueManager.BootstrapAsync
 - uid: PlayCEASharp.RequestManagement.LeagueManager.ForceUpdate
   name: ForceUpdate()
   href: api/PlayCEASharp.RequestManagement.LeagueManager.html#PlayCEASharp_RequestManagement_LeagueManager_ForceUpdate
