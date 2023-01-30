@@ -41,6 +41,11 @@ namespace PlayCEASharp.RequestManagement
         public readonly static Dictionary<Team, List<MatchResult>> NextMatchLookup = new Dictionary<Team, List<MatchResult>>();
 
         /// <summary>
+        /// Looks up which leagues a team is part of.
+        /// </summary>
+        public readonly static Dictionary<Team, List<League>> LeagueLookup = new Dictionary<Team, List<League>>();
+
+        /// <summary>
         /// Starts a background refresh thread to update the league periodically.
         /// </summary>
         static LeagueManager()
@@ -103,8 +108,10 @@ namespace PlayCEASharp.RequestManagement
                     leagueInstanceManagers[tc.id] = instanceManager;
                 }
 
+                // Compute common indicies.
                 PlayerLookup.Clear();
                 NextMatchLookup.Clear();
+                LeagueLookup.Clear();
                 foreach (LeagueInstanceManager lim in leagueInstanceManagers.Values)
                 {
                     League league = lim.League;
@@ -118,6 +125,12 @@ namespace PlayCEASharp.RequestManagement
                     {
                         NextMatchLookup[kvp.Key] = NextMatchLookup.GetValueOrDefault(kvp.Key, new List<MatchResult>());
                         NextMatchLookup[kvp.Key].Add(kvp.Value);
+                    }
+
+                    foreach (Team t in league.Bracket.Teams)
+                    {
+                        LeagueLookup[t] = LeagueLookup.GetValueOrDefault(t, new List<League>());
+                        LeagueLookup[t].Add(League);
                     }
                 }
             }
@@ -151,6 +164,17 @@ namespace PlayCEASharp.RequestManagement
             {
                 Bootstrap();
                 return leagueInstanceManagers.Values.First().League;
+            }
+        }
+
+        /// <summary>
+        /// All leagues currently watched.
+        /// </summary>
+        public static List<League> Leagues
+        {
+            get
+            {
+                return leagueInstanceManagers.Values.Select(lim => lim.League).ToList();
             }
         }
 
