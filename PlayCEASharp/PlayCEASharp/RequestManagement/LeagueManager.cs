@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using static PlayCEASharp.RequestManagement.LeagueInstanceManager;
 
 namespace PlayCEASharp.RequestManagement
 {
@@ -29,6 +30,18 @@ namespace PlayCEASharp.RequestManagement
         /// Locks around refreshing to prevent duplicate work.
         /// </summary>
         private static object refreshLock = new object();
+
+        /// <summary>
+        /// Event handler which can subscribe to be notified when there are new bracket rounds found in any of the leagues.
+        /// </summary>
+        /// <param name="sender">The object raising the event.</param>
+        /// <param name="newRounds">The new rounds which are found.</param>
+        public delegate void NewBracketRoundsEventHandler(object sender, Dictionary<BracketRound, League> newRounds);
+
+        /// <summary>
+        /// Event to subscribe to be notified when there are new BracketRounds located.
+        /// </summary>
+        public static event NewBracketRoundsEventHandler NewBracketRounds;
 
         /// <summary>
         /// Looks up all teams a player is on.
@@ -93,7 +106,7 @@ namespace PlayCEASharp.RequestManagement
                 TournamentConfigurations tournamentConfigs = ConfigurationManager.TournamentConfigurations;
                 foreach (TournamentConfiguration tc in tournamentConfigs.configurations)
                 {
-                    LeagueInstanceManager instanceManager = leagueInstanceManagers.GetValueOrDefault(tc.id, new LeagueInstanceManager());
+                    LeagueInstanceManager instanceManager = leagueInstanceManagers.GetValueOrDefault(tc.id, new LeagueInstanceManager(NewRoundsFound));
                     instanceManager.ForceUpdate(tc);
                     leagueInstanceManagers[tc.id] = instanceManager;
                 }
@@ -124,6 +137,12 @@ namespace PlayCEASharp.RequestManagement
                     }
                 }
             }
+        }
+
+        private static void NewRoundsFound(object sender, List<BracketRound> newBracketRounds)
+        {
+            LeagueInstanceManager instanceManager = sender as LeagueInstanceManager;
+            NewBracketRounds?.Invoke(sender, newBracketRounds.ToDictionary(r => r, r => instanceManager.League));
         }
 
         /// <summary>

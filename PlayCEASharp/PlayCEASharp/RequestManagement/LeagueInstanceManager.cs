@@ -15,6 +15,18 @@ namespace PlayCEASharp.RequestManagement
     internal class LeagueInstanceManager
     {
         /// <summary>
+        /// Provides an event handler for when new rounds are found.
+        /// </summary>
+        /// <param name="sender">The context from which the event is raised</param>
+        /// <param name="newRounds">The new rounds that were found.</param>
+        internal delegate void NewRoundEventHandler(object sender, List<BracketRound> newRounds);
+
+        /// <summary>
+        /// Event for when new rounds are found.
+        /// </summary>
+        internal event NewRoundEventHandler NewRoundEvent;
+
+        /// <summary>
         /// Backing reference for the current league.
         /// </summary>
         private League league = null;
@@ -33,6 +45,21 @@ namespace PlayCEASharp.RequestManagement
         /// The request manager for issuing requests to PlayCEA endpoints.
         /// </summary>
         private RequestManager rm = new RequestManager();
+
+        /// <summary>
+        /// Cache for which bracket rounds have been seen before.
+        /// </summary>
+        private BracketRoundCache bracketRoundCache = new BracketRoundCache();
+
+        /// <summary>
+        /// Bool for if this is still the bootstrap cycle.
+        /// </summary>
+        private bool bootstrapCycle = true;
+
+        public LeagueInstanceManager(NewRoundEventHandler newRoundsFound)
+        {
+            NewRoundEvent += newRoundsFound;
+        }
 
         /// <summary>
         /// Ensures that the league is initialized and popualted.
@@ -94,9 +121,20 @@ namespace PlayCEASharp.RequestManagement
                 }
                 // Analyze bracket sets.
                 AnalysisManager.Analyze(bracketSets, config, tc.namingConfig);
+
                 // Update league reference.
                 this.league = new League(bracketSets, config);
                 this.prevTc = tc;
+
+                // Check and handle new bracket round eventing.
+                List<BracketRound> allBracketRounds = this.league.Brackets.SelectMany(b => b.Brackets).SelectMany(b => b.Rounds).ToList();
+                List<BracketRound> newBracketRounds = allBracketRounds.Where(r => this.bracketRoundCache.IsNewBracketRound(r)).ToList();
+                if (!bootstrapCycle && newBracketRounds.Any())
+                {
+                    NewRoundEvent?.Invoke(this, newBracketRounds);
+                }
+
+                this.bootstrapCycle = false;
             }
         }
 

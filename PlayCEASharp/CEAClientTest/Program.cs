@@ -1,6 +1,8 @@
 ﻿using PlayCEASharp.Analysis;using PlayCEASharp.Configuration;using PlayCEASharp.DataModel;using PlayCEASharp.RequestManagement;using PlayCEASharp.Utilities;
 
 namespace RlClientTest;public class Program {    public static void Main()    {
+        LeagueManager.NewBracketRounds += NewRounds;
+
         League league = LeagueManager.League;
         Console.WriteLine("Done.");
 
@@ -37,4 +39,10 @@ namespace RlClientTest;public class Program {    public static void Main()  
     {
         Bracket playoffBracket = rm.GetBracket(t.Playoffs.BracketId, tc).Result;
         return playoffBracket.Rounds.Last().Matches.Last();
+    }    private static void NewRounds(object o, Dictionary<BracketRound, League> newRounds)
+    {
+        foreach (KeyValuePair<BracketRound, League> r in newRounds)
+        {
+            Console.WriteLine($"{r.Value.GameId} {r.Key.RoundName}");
+        }
     }}
