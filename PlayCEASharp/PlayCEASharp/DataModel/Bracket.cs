@@ -42,6 +42,11 @@ namespace PlayCEASharp.DataModel
         public string Name { get; internal set; }
 
         /// <summary>
+        /// The game id of the game for this bracket.
+        /// </summary>
+        public string Game { get; internal set; }
+
+        /// <summary>
         /// When meta is present, these are the teams in the top group.
         /// </summary>
         public List<Team> TopMetaTeams { get; internal set; }

@@ -76,9 +76,14 @@ namespace PlayCEASharp.DataModel
         public List<BracketSet> Brackets => this.bracketSets;
 
         /// <summary>
-        /// 
+        /// Gets the BracketConfiguration for this bracket.
         /// </summary>
         public BracketConfiguration Configuration => this.configuration;
+
+        /// <summary>
+        /// Gets the game id for this bracket.
+        /// </summary>
+        public string GameId => Bracket.Brackets.Last().Game;
 
         /// <summary>
         /// Lookup the stage for a given round.

@@ -120,7 +120,7 @@ namespace PlayCEASharp.RequestManagement
                     foreach (Team t in league.Bracket.Teams)
                     {
                         LeagueLookup[t] = LeagueLookup.GetValueOrDefault(t, new List<League>());
-                        LeagueLookup[t].Add(League);
+                        LeagueLookup[t].Add(league);
                     }
                 }
             }

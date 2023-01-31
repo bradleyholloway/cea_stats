@@ -98,6 +98,7 @@ namespace PlayCEASharp.RequestManagement
         {
             Bracket bracket1 = ResourceCache.GetBracket((string)bracketToken["bid"]);
             bracket1.Name = (string)bracketToken["name"];
+            bracket1.Game = (string)bracketToken["game"];
             Bracket bracket = bracket1;
             foreach (JToken token in bracketToken["rounds"])
             {
