@@ -2042,6 +2042,18 @@ references:
   isSpec: "True"
   fullName: PlayCEASharp.RequestManagement.LeagueManager.Leagues
   nameWithType: LeagueManager.Leagues
+- uid: PlayCEASharp.RequestManagement.LeagueManager.NewBracketRounds
+  name: NewBracketRounds
+  href: api/PlayCEASharp.RequestManagement.LeagueManager.html#PlayCEASharp_RequestManagement_LeagueManager_NewBracketRounds
+  commentId: E:PlayCEASharp.RequestManagement.LeagueManager.NewBracketRounds
+  fullName: PlayCEASharp.RequestManagement.LeagueManager.NewBracketRounds
+  nameWithType: LeagueManager.NewBracketRounds
+- uid: PlayCEASharp.RequestManagement.LeagueManager.NewBracketRoundsEventHandler
+  name: LeagueManager.NewBracketRoundsEventHandler
+  href: api/PlayCEASharp.RequestManagement.LeagueManager.NewBracketRoundsEventHandler.html
+  commentId: T:PlayCEASharp.RequestManagement.LeagueManager.NewBracketRoundsEventHandler
+  fullName: PlayCEASharp.RequestManagement.LeagueManager.NewBracketRoundsEventHandler
+  nameWithType: LeagueManager.NewBracketRoundsEventHandler
 - uid: PlayCEASharp.RequestManagement.LeagueManager.NextMatchLookup
   name: NextMatchLookup
   href: api/PlayCEASharp.RequestManagement.LeagueManager.html#PlayCEASharp_RequestManagement_LeagueManager_NextMatchLookup

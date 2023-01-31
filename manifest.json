@@ -257,11 +257,23 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/PlayCEASharp.RequestManagement.LeagueManager.NewBracketRoundsEventHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlayCEASharp.RequestManagement.LeagueManager.NewBracketRoundsEventHandler.html",
+          "hash": "L5R6osKTnkAbcXn5/GNLSA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/PlayCEASharp.RequestManagement.LeagueManager.yml",
       "output": {
         ".html": {
           "relative_path": "api/PlayCEASharp.RequestManagement.LeagueManager.html",
-          "hash": "oKoo/FD7pRqqtzichAwHsQ=="
+          "hash": "8hfAOvEjsfseluspI6YlDg=="
         }
       },
       "is_incremental": false,
@@ -273,7 +285,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlayCEASharp.RequestManagement.html",
-          "hash": "lK/NrWI6AxmXwxMSH9U45g=="
+          "hash": "Dv9nBqSMqQLWYEe69n67fg=="
         }
       },
       "is_incremental": false,
@@ -381,7 +393,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "jqkZ4z0FisMvJsi0MU3jCQ=="
+          "hash": "CWwIfdkC87R/wYUSDMrCzg=="
         }
       },
       "is_incremental": false,
@@ -456,7 +468,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 30,
+          "total_file_count": 31,
           "skipped_file_count": 0
         },
         "TocDocumentProcessor": {
