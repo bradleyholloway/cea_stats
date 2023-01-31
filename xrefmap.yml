@@ -509,6 +509,19 @@ references:
   isSpec: "True"
   fullName: PlayCEASharp.DataModel.Bracket.BracketId
   nameWithType: Bracket.BracketId
+- uid: PlayCEASharp.DataModel.Bracket.Game
+  name: Game
+  href: api/PlayCEASharp.DataModel.Bracket.html#PlayCEASharp_DataModel_Bracket_Game
+  commentId: P:PlayCEASharp.DataModel.Bracket.Game
+  fullName: PlayCEASharp.DataModel.Bracket.Game
+  nameWithType: Bracket.Game
+- uid: PlayCEASharp.DataModel.Bracket.Game*
+  name: Game
+  href: api/PlayCEASharp.DataModel.Bracket.html#PlayCEASharp_DataModel_Bracket_Game_
+  commentId: Overload:PlayCEASharp.DataModel.Bracket.Game
+  isSpec: "True"
+  fullName: PlayCEASharp.DataModel.Bracket.Game
+  nameWithType: Bracket.Game
 - uid: PlayCEASharp.DataModel.Bracket.MidMetaTeams
   name: MidMetaTeams
   href: api/PlayCEASharp.DataModel.Bracket.html#PlayCEASharp_DataModel_Bracket_MidMetaTeams
@@ -903,6 +916,19 @@ references:
   isSpec: "True"
   fullName: PlayCEASharp.DataModel.League.Configuration
   nameWithType: League.Configuration
+- uid: PlayCEASharp.DataModel.League.GameId
+  name: GameId
+  href: api/PlayCEASharp.DataModel.League.html#PlayCEASharp_DataModel_League_GameId
+  commentId: P:PlayCEASharp.DataModel.League.GameId
+  fullName: PlayCEASharp.DataModel.League.GameId
+  nameWithType: League.GameId
+- uid: PlayCEASharp.DataModel.League.GameId*
+  name: GameId
+  href: api/PlayCEASharp.DataModel.League.html#PlayCEASharp_DataModel_League_GameId_
+  commentId: Overload:PlayCEASharp.DataModel.League.GameId
+  isSpec: "True"
+  fullName: PlayCEASharp.DataModel.League.GameId
+  nameWithType: League.GameId
 - uid: PlayCEASharp.DataModel.League.NextMatchLookup
   name: NextMatchLookup
   href: api/PlayCEASharp.DataModel.League.html#PlayCEASharp_DataModel_League_NextMatchLookup
