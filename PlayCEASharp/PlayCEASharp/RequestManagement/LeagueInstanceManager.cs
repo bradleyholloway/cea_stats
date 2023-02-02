@@ -51,11 +51,6 @@ namespace PlayCEASharp.RequestManagement
         /// </summary>
         private BracketRoundCache bracketRoundCache = new BracketRoundCache();
 
-        /// <summary>
-        /// Bool for if this is still the bootstrap cycle.
-        /// </summary>
-        private bool bootstrapCycle = true;
-
         public LeagueInstanceManager(NewRoundEventHandler newRoundsFound, string? endpointOverride)
         {
             NewRoundEvent += newRoundsFound;
@@ -126,16 +121,17 @@ namespace PlayCEASharp.RequestManagement
                 // Update league reference.
                 this.league = new League(bracketSets, config);
                 this.prevTc = tc;
+            }
+        }
 
-                // Check and handle new bracket round eventing.
-                List<BracketRound> allBracketRounds = this.league.Brackets.SelectMany(b => b.Brackets).SelectMany(b => b.Rounds).ToList();
-                List<BracketRound> newBracketRounds = allBracketRounds.Where(r => this.bracketRoundCache.IsNewBracketRound(r)).ToList();
-                if (!bootstrapCycle && newBracketRounds.Any())
-                {
-                    NewRoundEvent?.Invoke(this, newBracketRounds);
-                }
-
-                this.bootstrapCycle = false;
+        internal void RaiseNewBracketEvents(bool bootstrapCycle)
+        {
+            // Check and handle new bracket round eventing.
+            List<BracketRound> allBracketRounds = this.league.Brackets.SelectMany(b => b.Brackets).SelectMany(b => b.Rounds).ToList();
+            List<BracketRound> newBracketRounds = allBracketRounds.Where(r => this.bracketRoundCache.IsNewBracketRound(r)).ToList();
+            if (!bootstrapCycle && newBracketRounds.Any())
+            {
+                NewRoundEvent?.Invoke(this, newBracketRounds);
             }
         }
 

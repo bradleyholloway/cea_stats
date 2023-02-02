@@ -141,6 +141,12 @@ namespace PlayCEASharp.RequestManagement
                         LeagueLookup[t].Add(league);
                     }
                 }
+
+                // Raise any events needed
+                foreach (LeagueInstanceManager lim in leagueInstanceManagers.Values)
+                {
+                    lim.RaiseNewBracketEvents(!completedBootstrap);
+                }
             }
         }
 
