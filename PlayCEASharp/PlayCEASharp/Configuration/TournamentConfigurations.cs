@@ -16,10 +16,5 @@ namespace PlayCEASharp.Configuration
         /// List of MatchingConfigurations to listen to.
         /// </summary>
         public List<TournamentConfiguration> configurations { get; set; }
-
-        /// <summary>
-        /// Optional override to the default production cea endpoint.
-        /// </summary>
-        public string endpoint { get; set; }
     }
 }

@@ -44,6 +44,11 @@ namespace PlayCEASharp.RequestManagement
         public static event NewBracketRoundsEventHandler NewBracketRounds;
 
         /// <summary>
+        /// Way to override the endpoint used by the library.
+        /// </summary>
+        public static string? EndpointOverride;
+
+        /// <summary>
         /// Looks up all teams a player is on.
         /// </summary>
         public readonly static Dictionary<string, List<Team>> PlayerLookup = new Dictionary<string, List<Team>>();
@@ -106,7 +111,7 @@ namespace PlayCEASharp.RequestManagement
                 TournamentConfigurations tournamentConfigs = ConfigurationManager.TournamentConfigurations;
                 foreach (TournamentConfiguration tc in tournamentConfigs.configurations)
                 {
-                    LeagueInstanceManager instanceManager = leagueInstanceManagers.GetValueOrDefault(tc.id, new LeagueInstanceManager(NewRoundsFound, tournamentConfigs.endpoint));
+                    LeagueInstanceManager instanceManager = leagueInstanceManagers.GetValueOrDefault(tc.id, new LeagueInstanceManager(NewRoundsFound, EndpointOverride));
                     instanceManager.ForceUpdate(tc);
                     leagueInstanceManagers[tc.id] = instanceManager;
                 }
