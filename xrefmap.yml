@@ -471,6 +471,19 @@ references:
   isSpec: "True"
   fullName: PlayCEASharp.Configuration.TournamentConfigurations.configurations
   nameWithType: TournamentConfigurations.configurations
+- uid: PlayCEASharp.Configuration.TournamentConfigurations.endpoint
+  name: endpoint
+  href: api/PlayCEASharp.Configuration.TournamentConfigurations.html#PlayCEASharp_Configuration_TournamentConfigurations_endpoint
+  commentId: P:PlayCEASharp.Configuration.TournamentConfigurations.endpoint
+  fullName: PlayCEASharp.Configuration.TournamentConfigurations.endpoint
+  nameWithType: TournamentConfigurations.endpoint
+- uid: PlayCEASharp.Configuration.TournamentConfigurations.endpoint*
+  name: endpoint
+  href: api/PlayCEASharp.Configuration.TournamentConfigurations.html#PlayCEASharp_Configuration_TournamentConfigurations_endpoint_
+  commentId: Overload:PlayCEASharp.Configuration.TournamentConfigurations.endpoint
+  isSpec: "True"
+  fullName: PlayCEASharp.Configuration.TournamentConfigurations.endpoint
+  nameWithType: TournamentConfigurations.endpoint
 - uid: PlayCEASharp.DataModel
   name: PlayCEASharp.DataModel
   href: api/PlayCEASharp.DataModel.html
