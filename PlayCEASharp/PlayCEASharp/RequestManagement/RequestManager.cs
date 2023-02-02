@@ -25,13 +25,19 @@ namespace PlayCEASharp.RequestManagement
         /// <summary>
         /// The base api endpoint for PlayCEA.
         /// </summary>
-        private const string apiEndpoint = "https://1ebv8yx4pa.execute-api.us-east-1.amazonaws.com";
+        private const string apiEndpoint = "https://1ebv8yx4pa.execute-api.us-east-1.amazonaws.com/prod";
+
+        /// <summary>
+        /// The endpoint override.
+        /// </summary>
+        private string endpoint;
 
         /// <summary>
         /// Creates a new request manager.
         /// </summary>
-        internal RequestManager()
+        internal RequestManager(string? optionalEndpoint)
         {
+            this.endpoint = optionalEndpoint ?? apiEndpoint;
             this.client.DefaultRequestHeaders.Accept.Clear();
             this.client.DefaultRequestHeaders.Add("User-Agent", "Play CEA Stats Collector");
         }
@@ -62,7 +68,7 @@ namespace PlayCEASharp.RequestManagement
         /// <returns>The fully populated Bracket.</returns>
         internal async Task<Bracket> GetBracket(string bracketId, TournamentConfiguration tc)
         {
-            string content = await this.client.GetStringAsync($"{apiEndpoint}/prod/brackets/{bracketId}");
+            string content = await this.client.GetStringAsync($"{endpoint}/brackets/{bracketId}");
             JObject jObject = JObject.Parse(content);
             Bracket bracket = Marshaller.Bracket(jObject["data"][0], tc);
             return bracket;
@@ -75,7 +81,7 @@ namespace PlayCEASharp.RequestManagement
         /// <returns>The most recent info for the match.</returns>
         internal async Task<MatchResult> GetMatchResult(string matchId)
         {
-            string content = await this.client.GetStringAsync($"{apiEndpoint}/prod/matches/{matchId}");
+            string content = await this.client.GetStringAsync($"{endpoint}/matches/{matchId}");
             JObject jObject = JObject.Parse(content);
             MatchResult match = Marshaller.Match(jObject["data"]);
             return match;
@@ -88,7 +94,7 @@ namespace PlayCEASharp.RequestManagement
         /// <returns>The updated team.</returns>
         internal async Task<Team> GetTeam(string teamId, TournamentConfiguration tc)
         {
-            string content = await this.client.GetStringAsync($"{apiEndpoint}/prod/teams/{teamId}");
+            string content = await this.client.GetStringAsync($"{endpoint}/teams/{teamId}");
             JObject jObject = JObject.Parse(content);
             Team team = Marshaller.Team(jObject["data"][0], tc);
             return team;
@@ -99,7 +105,7 @@ namespace PlayCEASharp.RequestManagement
         /// </summary>
         /// <returns>Collection of all Tournaments from PlayCEA.</returns>
         internal async Task<List<Tournament>> GetTournaments(TournamentConfiguration tc) {
-            string content = await this.client.GetStringAsync($"{apiEndpoint}/prod/tournaments");
+            string content = await this.client.GetStringAsync($"{endpoint}/tournaments");
             JObject jObject = JObject.Parse(content);
             List<Tournament> tournaments = new List<Tournament>();
             foreach (JToken t in jObject["data"]) {
@@ -115,7 +121,7 @@ namespace PlayCEASharp.RequestManagement
         /// <param name="tournamentId">The tournament id.</param>
         /// <returns>The updated tournament.</returns>
         internal async Task<Tournament> GetTournament(string tournamentId, TournamentConfiguration tc) {
-            string content = await this.client.GetStringAsync($"{apiEndpoint}/prod/tournaments/{tournamentId}");
+            string content = await this.client.GetStringAsync($"{endpoint}/tournaments/{tournamentId}");
             JObject jObject = JObject.Parse(content);
             Tournament tournament = Marshaller.Tournament(jObject["data"], tc);
             return tournament;

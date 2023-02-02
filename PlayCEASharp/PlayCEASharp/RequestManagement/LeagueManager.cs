@@ -106,7 +106,7 @@ namespace PlayCEASharp.RequestManagement
                 TournamentConfigurations tournamentConfigs = ConfigurationManager.TournamentConfigurations;
                 foreach (TournamentConfiguration tc in tournamentConfigs.configurations)
                 {
-                    LeagueInstanceManager instanceManager = leagueInstanceManagers.GetValueOrDefault(tc.id, new LeagueInstanceManager(NewRoundsFound));
+                    LeagueInstanceManager instanceManager = leagueInstanceManagers.GetValueOrDefault(tc.id, new LeagueInstanceManager(NewRoundsFound, tournamentConfigs.endpoint));
                     instanceManager.ForceUpdate(tc);
                     leagueInstanceManagers[tc.id] = instanceManager;
                 }

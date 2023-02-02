@@ -44,7 +44,7 @@ namespace PlayCEASharp.RequestManagement
         /// <summary>
         /// The request manager for issuing requests to PlayCEA endpoints.
         /// </summary>
-        private RequestManager rm = new RequestManager();
+        private RequestManager rm;
 
         /// <summary>
         /// Cache for which bracket rounds have been seen before.
@@ -56,9 +56,10 @@ namespace PlayCEASharp.RequestManagement
         /// </summary>
         private bool bootstrapCycle = true;
 
-        public LeagueInstanceManager(NewRoundEventHandler newRoundsFound)
+        public LeagueInstanceManager(NewRoundEventHandler newRoundsFound, string? endpointOverride)
         {
             NewRoundEvent += newRoundsFound;
+            rm = new RequestManager(endpointOverride);
         }
 
         /// <summary>

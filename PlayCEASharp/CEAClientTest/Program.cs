@@ -20,7 +20,7 @@ namespace RlClientTest;public class Program {    public static void Main()  
   }        Console.WriteLine(league);        */
 
         TournamentConfiguration tc = ConfigurationManager.TournamentConfigurations.configurations.First();
-        RequestManager rm = new RequestManager();        List<Tournament> tournaments = rm.GetTournaments(tc).Result;        tournaments = tournaments.Where(t => t.SeasonLeague.Equals("CORPORATE") && t.Playoffs != null && !t.Playoffs.BracketId.Equals("")).ToList();        Dictionary<Tournament, MatchResult> finalsMatches = tournaments.ToDictionary(t => t, t => GetFinalsMatch(t, rm, tc));
+        RequestManager rm = new RequestManager(null);        List<Tournament> tournaments = rm.GetTournaments(tc).Result;        tournaments = tournaments.Where(t => t.SeasonLeague.Equals("CORPORATE") && t.Playoffs != null && !t.Playoffs.BracketId.Equals("")).ToList();        Dictionary<Tournament, MatchResult> finalsMatches = tournaments.ToDictionary(t => t, t => GetFinalsMatch(t, rm, tc));
         Dictionary<string, int> wins = new Dictionary<string, int>();
         Dictionary<string, int> finals = new Dictionary<string, int>();
         foreach (KeyValuePair<Tournament, MatchResult> result in finalsMatches)
