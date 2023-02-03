@@ -17,14 +17,26 @@ namespace PlayCEASharp.RequestManagement
         /// <summary>
         /// Provides an event handler for when new rounds are found.
         /// </summary>
-        /// <param name="sender">The context from which the event is raised</param>
+        /// <param name="sender">The context from which the event is raised.</param>
         /// <param name="newRounds">The new rounds that were found.</param>
         internal delegate void NewRoundEventHandler(object sender, List<BracketRound> newRounds);
+
+        /// <summary>
+        /// Event for when a match has updated information.
+        /// </summary>
+        /// <param name="sender">The context from which the event is raised.</param>
+        /// <param name="matches">The updated matches.</param>
+        internal delegate void MatchUpdatedEventHandler(object sender, List<MatchResult> matches);
 
         /// <summary>
         /// Event for when new rounds are found.
         /// </summary>
         internal event NewRoundEventHandler NewRoundEvent;
+
+        /// <summary>
+        /// Event for when matches are updated.
+        /// </summary>
+        internal event MatchUpdatedEventHandler MatchUpdatedEvent;
 
         /// <summary>
         /// Backing reference for the current league.
@@ -51,9 +63,15 @@ namespace PlayCEASharp.RequestManagement
         /// </summary>
         private BracketRoundCache bracketRoundCache = new BracketRoundCache();
 
-        public LeagueInstanceManager(NewRoundEventHandler newRoundsFound, string? endpointOverride)
+        /// <summary>
+        /// Cache for which match results are updated.
+        /// </summary>
+        private MatchResultCache matchResultCache = new MatchResultCache();
+
+        public LeagueInstanceManager(NewRoundEventHandler newRoundsFound, MatchUpdatedEventHandler matchUpdated, string? endpointOverride)
         {
             NewRoundEvent += newRoundsFound;
+            MatchUpdatedEvent += matchUpdated;
             rm = new RequestManager(endpointOverride);
         }
 
@@ -124,7 +142,7 @@ namespace PlayCEASharp.RequestManagement
             }
         }
 
-        internal void RaiseNewBracketEvents(bool bootstrapCycle)
+        internal void RaiseEvents(bool bootstrapCycle)
         {
             // Check and handle new bracket round eventing.
             List<BracketRound> allBracketRounds = this.league.Brackets.SelectMany(b => b.Brackets).SelectMany(b => b.Rounds).ToList();
@@ -132,6 +150,13 @@ namespace PlayCEASharp.RequestManagement
             if (!bootstrapCycle && newBracketRounds.Any())
             {
                 NewRoundEvent?.Invoke(this, newBracketRounds);
+            }
+
+            List<MatchResult> allMatchResults = allBracketRounds.SelectMany(r => r.Matches).ToList();
+            List<MatchResult> updatedMatches = allMatchResults.Where(m => this.matchResultCache.IsUpdatedMatch(m)).ToList();
+            if (!bootstrapCycle && updatedMatches.Any())
+            {
+                MatchUpdatedEvent?.Invoke(this, updatedMatches);
             }
         }
 
