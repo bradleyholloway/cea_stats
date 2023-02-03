@@ -26,7 +26,7 @@ namespace PlayCEASharp.RequestManagement
                 hasUpdates = HasNewInformation(cache[match.MatchId], match);
             }
 
-            cache.Add(match.MatchId, new MatchResult(match));
+            cache[match.MatchId] = new MatchResult(match);
             return hasUpdates;
         }
 
