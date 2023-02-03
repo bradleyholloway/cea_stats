@@ -30,10 +30,12 @@ namespace PlayCEASharp.DataModel
         internal League(List<BracketSet> bracketSets, BracketConfiguration config)
         {
             this.configuration = config;
+            this.bracketSets = bracketSets;
+            this.PlayerDiscordLookup = new Dictionary<string, List<Team>>();
+            this.NextMatchLookup = new Dictionary<Team, MatchResult>();
+
             if (bracketSets.Count > 0)
             {
-                this.bracketSets = bracketSets;
-                this.PlayerDiscordLookup = new Dictionary<string, List<Team>>();
                 foreach (Team team in this.Bracket.Teams)
                 {
                     foreach (Player player in team.Players)
@@ -42,7 +44,6 @@ namespace PlayCEASharp.DataModel
                         this.PlayerDiscordLookup[player.DiscordId].Add(team);
                     }
                 }
-                this.NextMatchLookup = new Dictionary<Team, MatchResult>();
 
                 foreach (MatchResult result in this.Bracket.Rounds.Last().SelectMany(r => r.Matches))
                 {

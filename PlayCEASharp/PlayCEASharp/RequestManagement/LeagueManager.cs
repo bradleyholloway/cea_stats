@@ -135,22 +135,26 @@ namespace PlayCEASharp.RequestManagement
                 foreach (LeagueInstanceManager lim in leagueInstanceManagers.Values)
                 {
                     League league = lim.League;
-                    foreach (KeyValuePair<string, List<Team>> kvp in league.PlayerDiscordLookup)
-                    {
-                        PlayerLookup[kvp.Key] = PlayerLookup.GetValueOrDefault(kvp.Key, new List<Team>());
-                        PlayerLookup[kvp.Key].AddRange(kvp.Value);
-                    }
 
-                    foreach (KeyValuePair<Team, MatchResult> kvp in league.NextMatchLookup)
+                    if (league.Configuration.bracketSets.Length > 0)
                     {
-                        NextMatchLookup[kvp.Key] = NextMatchLookup.GetValueOrDefault(kvp.Key, new List<MatchResult>());
-                        NextMatchLookup[kvp.Key].Add(kvp.Value);
-                    }
+                        foreach (KeyValuePair<string, List<Team>> kvp in league.PlayerDiscordLookup)
+                        {
+                            PlayerLookup[kvp.Key] = PlayerLookup.GetValueOrDefault(kvp.Key, new List<Team>());
+                            PlayerLookup[kvp.Key].AddRange(kvp.Value);
+                        }
 
-                    foreach (Team t in league.Bracket.Teams)
-                    {
-                        LeagueLookup[t] = LeagueLookup.GetValueOrDefault(t, new List<League>());
-                        LeagueLookup[t].Add(league);
+                        foreach (KeyValuePair<Team, MatchResult> kvp in league.NextMatchLookup)
+                        {
+                            NextMatchLookup[kvp.Key] = NextMatchLookup.GetValueOrDefault(kvp.Key, new List<MatchResult>());
+                            NextMatchLookup[kvp.Key].Add(kvp.Value);
+                        }
+
+                        foreach (Team t in league.Bracket.Teams)
+                        {
+                            LeagueLookup[t] = LeagueLookup.GetValueOrDefault(t, new List<League>());
+                            LeagueLookup[t].Add(league);
+                        }
                     }
                 }
 

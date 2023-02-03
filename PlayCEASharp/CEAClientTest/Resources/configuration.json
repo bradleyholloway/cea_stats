@@ -53,6 +53,30 @@
         "gameWord": "map",
         "scoreWord": "point"
       }
+    },
+    {
+      "id": "dota",
+      "matchingConfig": {
+        "gameId": "dota",
+        "year": "2023",
+        "season": "SPRING",
+        "stageNames": {
+          "-1": "Preseason",
+          "0": "Swiss",
+          "2": "Playoffs"
+        },
+        "stageKeywords": {
+          "preseason": -1,
+          "playoff": 2,
+          "swiss": 0
+        }
+      },
+      "namingConfig": {
+        "matchWord": "match",
+        "matchWordPlural": "matches",
+        "gameWord": "game",
+        "scoreWord": "point"
+      }
     }
   ]
 }
