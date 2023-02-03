@@ -29,7 +29,7 @@ namespace PlayCEASharp.DataModel
             this.MatchId = match.MatchId;
             this.HomeTeam = match.HomeTeam;
             this.AwayTeam = match.AwayTeam;
-            this.Games = new List<Game>(match.Games);
+            this.Games = match.Games == null ? null : new List<Game>(match.Games);
             this.Round = match.Round;
             this.HomeGamesWon = match.HomeGamesWon;
             this.AwayGamesWon = match.AwayGamesWon;
