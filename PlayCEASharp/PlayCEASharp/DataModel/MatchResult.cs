@@ -21,6 +21,24 @@ namespace PlayCEASharp.DataModel
         }
 
         /// <summary>
+        /// Provides a deep copy constructor.
+        /// </summary>
+        /// <param name="match">The match to copy from.</param>
+        internal MatchResult(MatchResult match)
+        {
+            this.MatchId = match.MatchId;
+            this.HomeTeam = match.HomeTeam;
+            this.AwayTeam = match.AwayTeam;
+            this.Games = new List<Game>(match.Games);
+            this.Round = match.Round;
+            this.HomeGamesWon = match.HomeGamesWon;
+            this.AwayGamesWon = match.AwayGamesWon;
+            this.HomeGoals = match.HomeGoals;
+            this.AwayGoals = match.AwayGoals;
+            this.Bye = match.Bye;
+        }
+
+        /// <summary>
         /// Gets a string representation of the match.
         /// </summary>
         /// <returns>String representation of the match.</returns>

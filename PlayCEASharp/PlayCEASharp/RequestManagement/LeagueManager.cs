@@ -39,9 +39,21 @@ namespace PlayCEASharp.RequestManagement
         public delegate void NewBracketRoundsEventHandler(object sender, Dictionary<BracketRound, League> newRounds);
 
         /// <summary>
+        /// Event handler for when matches are updated. (The number of wins in this cycle does not match the previous number of wins).
+        /// </summary>
+        /// <param name="sender">The object raising the event.</param>
+        /// <param name="updatedMatches">The updated matches.</param>
+        public delegate void UpdatedMatchesEventHandler(object sender, Dictionary<MatchResult, League> updatedMatches);
+
+        /// <summary>
         /// Event to subscribe to be notified when there are new BracketRounds located.
         /// </summary>
         public static event NewBracketRoundsEventHandler NewBracketRounds;
+
+        /// <summary>
+        /// Event to subscribe to to be notified when there are updated Matches.
+        /// </summary>
+        public static event UpdatedMatchesEventHandler UpdatedMatches;
 
         /// <summary>
         /// Way to override the endpoint used by the library.
@@ -111,7 +123,7 @@ namespace PlayCEASharp.RequestManagement
                 TournamentConfigurations tournamentConfigs = ConfigurationManager.TournamentConfigurations;
                 foreach (TournamentConfiguration tc in tournamentConfigs.configurations)
                 {
-                    LeagueInstanceManager instanceManager = leagueInstanceManagers.GetValueOrDefault(tc.id, new LeagueInstanceManager(NewRoundsFound, EndpointOverride));
+                    LeagueInstanceManager instanceManager = leagueInstanceManagers.GetValueOrDefault(tc.id, new LeagueInstanceManager(NewRoundsFound, MatchUpdatesFound, EndpointOverride));
                     instanceManager.ForceUpdate(tc);
                     leagueInstanceManagers[tc.id] = instanceManager;
                 }
@@ -145,7 +157,7 @@ namespace PlayCEASharp.RequestManagement
                 // Raise any events needed
                 foreach (LeagueInstanceManager lim in leagueInstanceManagers.Values)
                 {
-                    lim.RaiseNewBracketEvents(!completedBootstrap);
+                    lim.RaiseEvents(!completedBootstrap);
                 }
             }
         }
@@ -154,6 +166,12 @@ namespace PlayCEASharp.RequestManagement
         {
             LeagueInstanceManager instanceManager = sender as LeagueInstanceManager;
             NewBracketRounds?.Invoke(sender, newBracketRounds.ToDictionary(r => r, r => instanceManager.League));
+        }
+
+        private static void MatchUpdatesFound(object sender, List<MatchResult> updatedMatches)
+        {
+            LeagueInstanceManager instanceManager = sender as LeagueInstanceManager;
+            UpdatedMatches?.Invoke(sender, updatedMatches.ToDictionary(r => r, r => instanceManager.League));
         }
 
         /// <summary>
