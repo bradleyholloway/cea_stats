@@ -2072,6 +2072,18 @@ references:
   commentId: F:PlayCEASharp.RequestManagement.LeagueManager.PlayerLookup
   fullName: PlayCEASharp.RequestManagement.LeagueManager.PlayerLookup
   nameWithType: LeagueManager.PlayerLookup
+- uid: PlayCEASharp.RequestManagement.LeagueManager.UpdatedMatches
+  name: UpdatedMatches
+  href: api/PlayCEASharp.RequestManagement.LeagueManager.html#PlayCEASharp_RequestManagement_LeagueManager_UpdatedMatches
+  commentId: E:PlayCEASharp.RequestManagement.LeagueManager.UpdatedMatches
+  fullName: PlayCEASharp.RequestManagement.LeagueManager.UpdatedMatches
+  nameWithType: LeagueManager.UpdatedMatches
+- uid: PlayCEASharp.RequestManagement.LeagueManager.UpdatedMatchesEventHandler
+  name: LeagueManager.UpdatedMatchesEventHandler
+  href: api/PlayCEASharp.RequestManagement.LeagueManager.UpdatedMatchesEventHandler.html
+  commentId: T:PlayCEASharp.RequestManagement.LeagueManager.UpdatedMatchesEventHandler
+  fullName: PlayCEASharp.RequestManagement.LeagueManager.UpdatedMatchesEventHandler
+  nameWithType: LeagueManager.UpdatedMatchesEventHandler
 - uid: PlayCEASharp.Utilities
   name: PlayCEASharp.Utilities
   href: api/PlayCEASharp.Utilities.html

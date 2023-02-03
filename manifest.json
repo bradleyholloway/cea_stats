@@ -177,7 +177,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlayCEASharp.DataModel.MatchResult.html",
-          "hash": "hnBESaUbSXrsdrc9cL96Pg=="
+          "hash": "fd65Vs6vlh/Ujl9ijT8B/Q=="
         }
       },
       "is_incremental": false,
@@ -269,11 +269,23 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/PlayCEASharp.RequestManagement.LeagueManager.UpdatedMatchesEventHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlayCEASharp.RequestManagement.LeagueManager.UpdatedMatchesEventHandler.html",
+          "hash": "O//HKTax9hEuc7PM2TfnlQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/PlayCEASharp.RequestManagement.LeagueManager.yml",
       "output": {
         ".html": {
           "relative_path": "api/PlayCEASharp.RequestManagement.LeagueManager.html",
-          "hash": "+2x1bgV1YF0T3I4qx5/dsA=="
+          "hash": "l6RQ/k4OPTF7e3o+AZy0QQ=="
         }
       },
       "is_incremental": false,
@@ -285,7 +297,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlayCEASharp.RequestManagement.html",
-          "hash": "Dv9nBqSMqQLWYEe69n67fg=="
+          "hash": "g8qDC5GjZMuvHQyGq7V75Q=="
         }
       },
       "is_incremental": false,
@@ -393,7 +405,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "CWwIfdkC87R/wYUSDMrCzg=="
+          "hash": "5U3WXWlAKhkzwAaMqiJgeg=="
         }
       },
       "is_incremental": false,
@@ -468,7 +480,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 31,
+          "total_file_count": 32,
           "skipped_file_count": 0
         },
         "TocDocumentProcessor": {

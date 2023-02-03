@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Namespace PlayCEASharp.RequestManagement
+    <title>Delegate LeagueManager.UpdatedMatchesEventHandler
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Namespace PlayCEASharp.RequestManagement
+    <meta name="title" content="Delegate LeagueManager.UpdatedMatchesEventHandler
    ">
     <meta name="generator" content="docfx 2.56.7.0">
     
@@ -68,26 +68,44 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="PlayCEASharp.RequestManagement">
+            <article class="content wrap" id="_content" data-uid="PlayCEASharp.RequestManagement.LeagueManager.UpdatedMatchesEventHandler">
   
-  <h1 id="PlayCEASharp_RequestManagement" data-uid="PlayCEASharp.RequestManagement" class="text-break">Namespace PlayCEASharp.RequestManagement
+  
+  <h1 id="PlayCEASharp_RequestManagement_LeagueManager_UpdatedMatchesEventHandler" data-uid="PlayCEASharp.RequestManagement.LeagueManager.UpdatedMatchesEventHandler" class="text-break">Delegate LeagueManager.UpdatedMatchesEventHandler
   </h1>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>Event handler for when matches are updated. (The number of wins in this cycle does not match the previous number of wins).</p>
+</div>
   <div class="markdown level0 conceptual"></div>
-  <div class="markdown level0 remarks"></div>
-    <h3 id="classes">Classes
-  </h3>
-      <h4><a class="xref" href="PlayCEASharp.RequestManagement.LeagueManager.html">LeagueManager</a></h4>
-      <section><p>The public entry point to getting the League.</p>
-</section>
-    <h3 id="delegates">Delegates
-  </h3>
-      <h4><a class="xref" href="PlayCEASharp.RequestManagement.LeagueManager.NewBracketRoundsEventHandler.html">LeagueManager.NewBracketRoundsEventHandler</a></h4>
-      <section><p>Event handler which can subscribe to be notified when there are new bracket rounds found in any of the leagues.</p>
-</section>
-      <h4><a class="xref" href="PlayCEASharp.RequestManagement.LeagueManager.UpdatedMatchesEventHandler.html">LeagueManager.UpdatedMatchesEventHandler</a></h4>
-      <section><p>Event handler for when matches are updated. (The number of wins in this cycle does not match the previous number of wins).</p>
-</section>
+  <h6><strong>Namespace</strong>: <a class="xref" href="PlayCEASharp.RequestManagement.html">PlayCEASharp.RequestManagement</a></h6>
+  <h6><strong>Assembly</strong>: PlayCEASharp.dll</h6>
+  <h5 id="PlayCEASharp_RequestManagement_LeagueManager_UpdatedMatchesEventHandler_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public delegate void UpdatedMatchesEventHandler(object sender, Dictionary&lt;MatchResult, League&gt; updatedMatches);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">sender</span></td>
+        <td><p>The object raising the event.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Dictionary</span>&lt;<a class="xref" href="PlayCEASharp.DataModel.MatchResult.html">MatchResult</a>, <a class="xref" href="PlayCEASharp.DataModel.League.html">League</a>&gt;</td>
+        <td><span class="parametername">updatedMatches</span></td>
+        <td><p>The updated matches.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 </article>
           </div>
           
@@ -95,6 +113,12 @@
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/bradleyholloway/cea_stats/new/main/apiSpec/new?filename=PlayCEASharp_RequestManagement_LeagueManager_UpdatedMatchesEventHandler.md&amp;value=---%0Auid%3A%20PlayCEASharp.RequestManagement.LeagueManager.UpdatedMatchesEventHandler%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/bradleyholloway/cea_stats/blob/main/PlayCEASharp/PlayCEASharp/RequestManagement/LeagueManager.cs/#L46" class="contribution-link">View Source</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
