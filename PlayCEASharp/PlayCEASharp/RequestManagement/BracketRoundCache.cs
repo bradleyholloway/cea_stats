@@ -25,6 +25,10 @@ namespace PlayCEASharp.RequestManagement
             {
                 hasUpdates = HasNewInformation(cache[round.RoundId], round);
             }
+            else
+            {
+                hasUpdates = true;
+            }
 
             cache[round.RoundId] = new BracketRound(round);
             return hasUpdates;

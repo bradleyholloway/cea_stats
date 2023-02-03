@@ -4,8 +4,8 @@
       "id": "rocketleague",
       "matchingConfig": {
         "gameId": "rl",
-        "year": "2022",
-        "season": "FALL",
+        "year": "2023",
+        "season": "SPRING",
         "stageNames": {
           "-1": "Preseason",
           "0": "Stage 1",

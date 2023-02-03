@@ -1,12 +1,17 @@
 ﻿using PlayCEASharp.Analysis;using PlayCEASharp.Configuration;using PlayCEASharp.DataModel;using PlayCEASharp.RequestManagement;using PlayCEASharp.Utilities;
 
 namespace RlClientTest;public class Program {    public static void Main()    {
+        LeagueManager.EndpointOverride = "https://z36ny63i72.execute-api.us-east-1.amazonaws.com/staging";
         LeagueManager.NewBracketRounds += NewRounds;
-
+        LeagueManager.UpdatedMatches += UpdatedMatches;
         League league = LeagueManager.League;
-        Console.WriteLine("Done.");
+        Console.WriteLine("Done Loading.");
 
-        /*        League league = LeagueManager.League;        List<BracketRound> lastRounds = league.Bracket.Brackets.Select(b => b.Rounds.Last()).ToList();        Dictionary<Team, BracketRound> rLookup = new Dictionary<Team, BracketRound>();        foreach (BracketRound round in lastRounds)
+        Console.WriteLine("Breakpoint before forcerefresh.");
+        LeagueManager.ForceUpdate();
+
+        /*
+        // Ad-hoc for building the spreadsheets for stats.        League league = LeagueManager.League;        List<BracketRound> lastRounds = league.Bracket.Brackets.Select(b => b.Rounds.Last()).ToList();        Dictionary<Team, BracketRound> rLookup = new Dictionary<Team, BracketRound>();        foreach (BracketRound round in lastRounds)
   {
       foreach (Team t in round.Matches.SelectMany(m => m.Teams))
       {
@@ -19,6 +24,8 @@ namespace RlClientTest;public class Program {    public static void Main()  
       Console.WriteLine($"{teams[i]},{stats.ToCSV()}");
   }        Console.WriteLine(league);        */
 
+        /*
+        // Ad-hoc for getting info on orgs finals performances.
         TournamentConfiguration tc = ConfigurationManager.TournamentConfigurations.configurations.First();
         RequestManager rm = new RequestManager(null);        List<Tournament> tournaments = rm.GetTournaments(tc).Result;        tournaments = tournaments.Where(t => t.SeasonLeague.Equals("CORPORATE") && t.Playoffs != null && !t.Playoffs.BracketId.Equals("")).ToList();        Dictionary<Tournament, MatchResult> finalsMatches = tournaments.ToDictionary(t => t, t => GetFinalsMatch(t, rm, tc));
         Dictionary<string, int> wins = new Dictionary<string, int>();
@@ -35,7 +42,10 @@ namespace RlClientTest;public class Program {    public static void Main()  
         {
             int win = wins.GetValueOrDefault(org);
             //Console.WriteLine($"{org} {win} {finals[org]}");
-        }    }    private static MatchResult GetFinalsMatch(Tournament t, RequestManager rm, TournamentConfiguration tc)
+        }        */
+
+        // Prevent ending execution.
+        Thread.Sleep(TimeSpan.FromDays(1));    }    private static MatchResult GetFinalsMatch(Tournament t, RequestManager rm, TournamentConfiguration tc)
     {
         Bracket playoffBracket = rm.GetBracket(t.Playoffs.BracketId, tc).Result;
         return playoffBracket.Rounds.Last().Matches.Last();
@@ -43,6 +53,12 @@ namespace RlClientTest;public class Program {    public static void Main()  
     {
         foreach (KeyValuePair<BracketRound, League> r in newRounds)
         {
-            Console.WriteLine($"{r.Value.GameId} {r.Key.RoundName}");
+            Console.WriteLine($"{r.Value.GameId} {r.Key.RoundName} {r.Key.RoundId}");
+        }
+    }    private static void UpdatedMatches (object o, Dictionary<MatchResult, League> updatedMatches)
+    {
+        foreach (KeyValuePair<MatchResult, League> m in updatedMatches)
+        {
+            Console.WriteLine($"{m.Value.GameId} {m.Key.ToString()}");
         }
     }}
