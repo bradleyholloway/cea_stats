@@ -17,6 +17,20 @@
         }
 
         /// <summary>
+        /// Creates a deep copy of the bracket round.
+        /// </summary>
+        /// <param name="round">The round to copy.</param>
+        internal BracketRound(BracketRound round)
+        {
+            this.RoundId = round.RoundId;
+            this.Matches = new List<MatchResult>(round.Matches);
+            this.RoundName = round.RoundName;
+            this.Complete = round.Complete;
+            this.GameCount = round.GameCount;
+            this.WeekNumber = round.WeekNumber;
+        }
+
+        /// <summary>
         /// The RoundId within PlayCEA.
         /// </summary>
         public string RoundId { get; internal set; }

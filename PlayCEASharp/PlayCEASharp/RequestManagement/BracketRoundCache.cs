@@ -11,7 +11,7 @@ namespace PlayCEASharp.RequestManagement
         /// <summary>
         /// The backing cache for the objects.
         /// </summary>
-        private readonly Dictionary<string, DateTime> cache = new Dictionary<string, DateTime>();
+        private readonly Dictionary<string, BracketRound> cache = new Dictionary<string, BracketRound>();
 
         /// <summary>
         /// Checks if a round has been seen before, and also adds the round to the seen cache.
@@ -20,13 +20,19 @@ namespace PlayCEASharp.RequestManagement
         /// <returns>true if this is a new round.</returns>
         internal bool IsNewBracketRound(BracketRound round)
         {
+            bool hasUpdates = false;
             if (cache.ContainsKey(round.RoundId))
             {
-                return false;
+                hasUpdates = HasNewInformation(cache[round.RoundId], round);
             }
 
-            cache.Add(round.RoundId, DateTime.Now);
-            return true;
+            cache.Add(round.RoundId, new BracketRound(round));
+            return hasUpdates;
+        }
+
+        internal bool HasNewInformation(BracketRound prev, BracketRound curr)
+        {
+            return curr.Matches.Count != prev.Matches.Count;
         }
     }
 }
