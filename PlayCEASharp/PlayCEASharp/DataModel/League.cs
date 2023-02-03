@@ -69,7 +69,7 @@ namespace PlayCEASharp.DataModel
         /// <summary>
         /// Gets the most recent bracket set for the league.
         /// </summary>
-        public BracketSet Bracket { get { return bracketSets.Last(); } }
+        public BracketSet Bracket { get { return bracketSets.LastOrDefault(); } }
 
         /// <summary>
         /// Gets the collection of all bracket sets for the league.
