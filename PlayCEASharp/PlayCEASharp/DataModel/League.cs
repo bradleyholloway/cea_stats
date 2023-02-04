@@ -84,7 +84,14 @@ namespace PlayCEASharp.DataModel
         /// <summary>
         /// Gets the game id for this bracket.
         /// </summary>
-        public string GameId => Bracket.Brackets.Last().Game;
+        public string GameId
+        {
+            get
+            {
+                
+                return Bracket?.Brackets?.LastOrDefault()?.Game ?? null;
+            }
+        }
 
         /// <summary>
         /// Lookup the stage for a given round.
