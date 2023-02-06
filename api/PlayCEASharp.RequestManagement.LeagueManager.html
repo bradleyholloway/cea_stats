@@ -124,7 +124,7 @@
     <a href="https://github.com/bradleyholloway/cea_stats/new/main/apiSpec/new?filename=PlayCEASharp_RequestManagement_LeagueManager_LeagueLookup.md&amp;value=---%0Auid%3A%20PlayCEASharp.RequestManagement.LeagueManager.LeagueLookup%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/bradleyholloway/cea_stats/blob/main/PlayCEASharp/PlayCEASharp/RequestManagement/LeagueManager.cs/#L76">View Source</a>
+    <a href="https://github.com/bradleyholloway/cea_stats/blob/main/PlayCEASharp/PlayCEASharp/RequestManagement/LeagueManager.cs/#L81">View Source</a>
   </span>
   <h4 id="PlayCEASharp_RequestManagement_LeagueManager_LeagueLookup" data-uid="PlayCEASharp.RequestManagement.LeagueManager.LeagueLookup">LeagueLookup</h4>
   <div class="markdown level1 summary"><p>Looks up which leagues a team is part of.</p>
@@ -154,7 +154,7 @@
     <a href="https://github.com/bradleyholloway/cea_stats/new/main/apiSpec/new?filename=PlayCEASharp_RequestManagement_LeagueManager_NextMatchLookup.md&amp;value=---%0Auid%3A%20PlayCEASharp.RequestManagement.LeagueManager.NextMatchLookup%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/bradleyholloway/cea_stats/blob/main/PlayCEASharp/PlayCEASharp/RequestManagement/LeagueManager.cs/#L71">View Source</a>
+    <a href="https://github.com/bradleyholloway/cea_stats/blob/main/PlayCEASharp/PlayCEASharp/RequestManagement/LeagueManager.cs/#L76">View Source</a>
   </span>
   <h4 id="PlayCEASharp_RequestManagement_LeagueManager_NextMatchLookup" data-uid="PlayCEASharp.RequestManagement.LeagueManager.NextMatchLookup">NextMatchLookup</h4>
   <div class="markdown level1 summary"><p>Looks up the upcoming matches for a team, across all tournaments.</p>
@@ -175,6 +175,36 @@
     <tbody>
       <tr>
         <td><span class="xref">Dictionary</span>&lt;<a class="xref" href="PlayCEASharp.DataModel.Team.html">Team</a>, <span class="xref">List</span>&lt;<a class="xref" href="PlayCEASharp.DataModel.MatchResult.html">MatchResult</a>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/bradleyholloway/cea_stats/new/main/apiSpec/new?filename=PlayCEASharp_RequestManagement_LeagueManager_PlayerIdLookup.md&amp;value=---%0Auid%3A%20PlayCEASharp.RequestManagement.LeagueManager.PlayerIdLookup%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/bradleyholloway/cea_stats/blob/main/PlayCEASharp/PlayCEASharp/RequestManagement/LeagueManager.cs/#L71">View Source</a>
+  </span>
+  <h4 id="PlayCEASharp_RequestManagement_LeagueManager_PlayerIdLookup" data-uid="PlayCEASharp.RequestManagement.LeagueManager.PlayerIdLookup">PlayerIdLookup</h4>
+  <div class="markdown level1 summary"><p>Looks up all teams a player is on.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly Dictionary&lt;ulong, List&lt;Team&gt;&gt; PlayerIdLookup</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Dictionary</span>&lt;<span class="xref">System.UInt64</span>, <span class="xref">List</span>&lt;<a class="xref" href="PlayCEASharp.DataModel.Team.html">Team</a>&gt;&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -216,7 +246,7 @@
     <a href="https://github.com/bradleyholloway/cea_stats/new/main/apiSpec/new?filename=PlayCEASharp_RequestManagement_LeagueManager_League.md&amp;value=---%0Auid%3A%20PlayCEASharp.RequestManagement.LeagueManager.League%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/bradleyholloway/cea_stats/blob/main/PlayCEASharp/PlayCEASharp/RequestManagement/LeagueManager.cs/#L203">View Source</a>
+    <a href="https://github.com/bradleyholloway/cea_stats/blob/main/PlayCEASharp/PlayCEASharp/RequestManagement/LeagueManager.cs/#L215">View Source</a>
   </span>
   <a id="PlayCEASharp_RequestManagement_LeagueManager_League_" data-uid="PlayCEASharp.RequestManagement.LeagueManager.League*"></a>
   <h4 id="PlayCEASharp_RequestManagement_LeagueManager_League" data-uid="PlayCEASharp.RequestManagement.LeagueManager.League">League</h4>
@@ -247,7 +277,7 @@
     <a href="https://github.com/bradleyholloway/cea_stats/new/main/apiSpec/new?filename=PlayCEASharp_RequestManagement_LeagueManager_Leagues.md&amp;value=---%0Auid%3A%20PlayCEASharp.RequestManagement.LeagueManager.Leagues%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/bradleyholloway/cea_stats/blob/main/PlayCEASharp/PlayCEASharp/RequestManagement/LeagueManager.cs/#L215">View Source</a>
+    <a href="https://github.com/bradleyholloway/cea_stats/blob/main/PlayCEASharp/PlayCEASharp/RequestManagement/LeagueManager.cs/#L227">View Source</a>
   </span>
   <a id="PlayCEASharp_RequestManagement_LeagueManager_Leagues_" data-uid="PlayCEASharp.RequestManagement.LeagueManager.Leagues*"></a>
   <h4 id="PlayCEASharp_RequestManagement_LeagueManager_Leagues" data-uid="PlayCEASharp.RequestManagement.LeagueManager.Leagues">Leagues</h4>
@@ -280,7 +310,7 @@
     <a href="https://github.com/bradleyholloway/cea_stats/new/main/apiSpec/new?filename=PlayCEASharp_RequestManagement_LeagueManager_Bootstrap.md&amp;value=---%0Auid%3A%20PlayCEASharp.RequestManagement.LeagueManager.Bootstrap%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/bradleyholloway/cea_stats/blob/main/PlayCEASharp/PlayCEASharp/RequestManagement/LeagueManager.cs/#L90">View Source</a>
+    <a href="https://github.com/bradleyholloway/cea_stats/blob/main/PlayCEASharp/PlayCEASharp/RequestManagement/LeagueManager.cs/#L95">View Source</a>
   </span>
   <a id="PlayCEASharp_RequestManagement_LeagueManager_Bootstrap_" data-uid="PlayCEASharp.RequestManagement.LeagueManager.Bootstrap*"></a>
   <h4 id="PlayCEASharp_RequestManagement_LeagueManager_Bootstrap" data-uid="PlayCEASharp.RequestManagement.LeagueManager.Bootstrap">Bootstrap()</h4>
@@ -297,7 +327,7 @@ This is blocking and may take a while.</p>
     <a href="https://github.com/bradleyholloway/cea_stats/new/main/apiSpec/new?filename=PlayCEASharp_RequestManagement_LeagueManager_ForceUpdate.md&amp;value=---%0Auid%3A%20PlayCEASharp.RequestManagement.LeagueManager.ForceUpdate%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/bradleyholloway/cea_stats/blob/main/PlayCEASharp/PlayCEASharp/RequestManagement/LeagueManager.cs/#L111">View Source</a>
+    <a href="https://github.com/bradleyholloway/cea_stats/blob/main/PlayCEASharp/PlayCEASharp/RequestManagement/LeagueManager.cs/#L116">View Source</a>
   </span>
   <a id="PlayCEASharp_RequestManagement_LeagueManager_ForceUpdate_" data-uid="PlayCEASharp.RequestManagement.LeagueManager.ForceUpdate*"></a>
   <h4 id="PlayCEASharp_RequestManagement_LeagueManager_ForceUpdate" data-uid="PlayCEASharp.RequestManagement.LeagueManager.ForceUpdate">ForceUpdate()</h4>
@@ -313,7 +343,7 @@ This is blocking and may take a while.</p>
     <a href="https://github.com/bradleyholloway/cea_stats/new/main/apiSpec/new?filename=PlayCEASharp_RequestManagement_LeagueManager_GetLeague_System_String_.md&amp;value=---%0Auid%3A%20PlayCEASharp.RequestManagement.LeagueManager.GetLeague(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/bradleyholloway/cea_stats/blob/main/PlayCEASharp/PlayCEASharp/RequestManagement/LeagueManager.cs/#L224">View Source</a>
+    <a href="https://github.com/bradleyholloway/cea_stats/blob/main/PlayCEASharp/PlayCEASharp/RequestManagement/LeagueManager.cs/#L236">View Source</a>
   </span>
   <a id="PlayCEASharp_RequestManagement_LeagueManager_GetLeague_" data-uid="PlayCEASharp.RequestManagement.LeagueManager.GetLeague*"></a>
   <h4 id="PlayCEASharp_RequestManagement_LeagueManager_GetLeague_System_String_" data-uid="PlayCEASharp.RequestManagement.LeagueManager.GetLeague(System.String)">GetLeague(String)</h4>

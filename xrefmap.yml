@@ -942,6 +942,19 @@ references:
   isSpec: "True"
   fullName: PlayCEASharp.DataModel.League.NextMatchLookup
   nameWithType: League.NextMatchLookup
+- uid: PlayCEASharp.DataModel.League.PlayerDiscordIdLookup
+  name: PlayerDiscordIdLookup
+  href: api/PlayCEASharp.DataModel.League.html#PlayCEASharp_DataModel_League_PlayerDiscordIdLookup
+  commentId: P:PlayCEASharp.DataModel.League.PlayerDiscordIdLookup
+  fullName: PlayCEASharp.DataModel.League.PlayerDiscordIdLookup
+  nameWithType: League.PlayerDiscordIdLookup
+- uid: PlayCEASharp.DataModel.League.PlayerDiscordIdLookup*
+  name: PlayerDiscordIdLookup
+  href: api/PlayCEASharp.DataModel.League.html#PlayCEASharp_DataModel_League_PlayerDiscordIdLookup_
+  commentId: Overload:PlayCEASharp.DataModel.League.PlayerDiscordIdLookup
+  isSpec: "True"
+  fullName: PlayCEASharp.DataModel.League.PlayerDiscordIdLookup
+  nameWithType: League.PlayerDiscordIdLookup
 - uid: PlayCEASharp.DataModel.League.PlayerDiscordLookup
   name: PlayerDiscordLookup
   href: api/PlayCEASharp.DataModel.League.html#PlayCEASharp_DataModel_League_PlayerDiscordLookup
@@ -2066,6 +2079,12 @@ references:
   commentId: F:PlayCEASharp.RequestManagement.LeagueManager.NextMatchLookup
   fullName: PlayCEASharp.RequestManagement.LeagueManager.NextMatchLookup
   nameWithType: LeagueManager.NextMatchLookup
+- uid: PlayCEASharp.RequestManagement.LeagueManager.PlayerIdLookup
+  name: PlayerIdLookup
+  href: api/PlayCEASharp.RequestManagement.LeagueManager.html#PlayCEASharp_RequestManagement_LeagueManager_PlayerIdLookup
+  commentId: F:PlayCEASharp.RequestManagement.LeagueManager.PlayerIdLookup
+  fullName: PlayCEASharp.RequestManagement.LeagueManager.PlayerIdLookup
+  nameWithType: LeagueManager.PlayerIdLookup
 - uid: PlayCEASharp.RequestManagement.LeagueManager.PlayerLookup
   name: PlayerLookup
   href: api/PlayCEASharp.RequestManagement.LeagueManager.html#PlayCEASharp_RequestManagement_LeagueManager_PlayerLookup
