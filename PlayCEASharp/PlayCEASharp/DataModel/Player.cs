@@ -43,7 +43,7 @@ namespace PlayCEASharp.DataModel
         /// <summary>
         /// The id for the player.
         /// </summary>
-        public string DiscordUID { get; internal set; }
+        public ulong DiscordUID { get; internal set; }
 
         /// <summary>
         /// If this player is a captain for their team.

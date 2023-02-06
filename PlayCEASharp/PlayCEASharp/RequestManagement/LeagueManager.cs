@@ -66,6 +66,11 @@ namespace PlayCEASharp.RequestManagement
         public readonly static Dictionary<string, List<Team>> PlayerLookup = new Dictionary<string, List<Team>>();
 
         /// <summary>
+        /// Looks up all teams a player is on.
+        /// </summary>
+        public readonly static Dictionary<ulong, List<Team>> PlayerIdLookup = new Dictionary<ulong, List<Team>>();
+
+        /// <summary>
         /// Looks up the upcoming matches for a team, across all tournaments.
         /// </summary>
         public readonly static Dictionary<Team, List<MatchResult>> NextMatchLookup = new Dictionary<Team, List<MatchResult>>();
@@ -130,6 +135,7 @@ namespace PlayCEASharp.RequestManagement
 
                 // Compute common indicies.
                 PlayerLookup.Clear();
+                PlayerIdLookup.Clear();
                 NextMatchLookup.Clear();
                 LeagueLookup.Clear();
                 foreach (LeagueInstanceManager lim in leagueInstanceManagers.Values)
@@ -142,6 +148,12 @@ namespace PlayCEASharp.RequestManagement
                         {
                             PlayerLookup[kvp.Key] = PlayerLookup.GetValueOrDefault(kvp.Key, new List<Team>());
                             PlayerLookup[kvp.Key].AddRange(kvp.Value);
+                        }
+
+                        foreach (KeyValuePair<ulong, List<Team>> kvp in league.PlayerDiscordIdLookup)
+                        {
+                            PlayerIdLookup[kvp.Key] = PlayerIdLookup.GetValueOrDefault(kvp.Key, new List<Team>());
+                            PlayerIdLookup[kvp.Key].AddRange(kvp.Value);
                         }
 
                         foreach (KeyValuePair<Team, MatchResult> kvp in league.NextMatchLookup)
