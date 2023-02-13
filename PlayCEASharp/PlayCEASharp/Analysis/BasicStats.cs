@@ -83,6 +83,33 @@ namespace PlayCEASharp.Analysis
                         }
                     }
                 }
+                foreach (MatchResult result in round2.ByeMatches)
+                {
+                    TeamStatistics local1 = result.HomeTeam.RoundStats[round2];
+                    local1.TotalGoals += result.HomeGoals;
+                    TeamStatistics local9 = result.HomeTeam.RoundStats[round2];
+                    local9.MatchWins ++;
+                    Team homeTeam = result.HomeTeam;
+                    homeTeam.Stats += result.HomeTeam.RoundStats[round2];
+                    Dictionary<string, TeamStatistics> stageStats = result.HomeTeam.StageStats;
+                    string key = str;
+                    stageStats[key] = stageStats[key] + result.HomeTeam.RoundStats[round2];
+                    result.HomeTeam.CumulativeRoundStats[round2] = result.HomeTeam.RoundStats[round2];
+                    result.HomeTeam.StageCumulativeRoundStats[round2] = result.HomeTeam.RoundStats[round2];
+                    if (round != null)
+                    {
+                        Dictionary<BracketRound, TeamStatistics> cumulativeRoundStats = result.HomeTeam.CumulativeRoundStats;
+                        BracketRound round3 = round2;
+                        cumulativeRoundStats[round3] = cumulativeRoundStats[round3] + result.HomeTeam.CumulativeRoundStats[round];
+                        if (str.Equals(config.StageLookup(round2.RoundName)))
+                        {
+                            cumulativeRoundStats = result.HomeTeam.StageCumulativeRoundStats;
+                            round3 = round2;
+                            cumulativeRoundStats[round3] = cumulativeRoundStats[round3] + result.HomeTeam.StageCumulativeRoundStats[round];
+                        }
+                    }
+                }
+
                 round = round2;
             }
         }
