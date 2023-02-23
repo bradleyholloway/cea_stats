@@ -36,6 +36,7 @@ namespace PlayCEASharp.DataModel
             this.HomeGoals = match.HomeGoals;
             this.AwayGoals = match.AwayGoals;
             this.Bye = match.Bye;
+            this.BracketRound = match.BracketRound;
         }
 
         /// <summary>
@@ -71,6 +72,11 @@ namespace PlayCEASharp.DataModel
         /// The round that this match occurred in the bracket.
         /// </summary>
         public int Round { get; internal set; }
+
+        /// <summary>
+        /// The bracket round that this match belongs to.
+        /// </summary>
+        public BracketRound BracketRound { get; internal set; }
 
         /// <summary>
         /// The number of games the home team won.

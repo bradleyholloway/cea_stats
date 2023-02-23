@@ -60,5 +60,10 @@ namespace PlayCEASharp.DataModel
         /// When meta is present these are the teams in the bottom group.
         /// </summary>
         public List<Team> BotMetaTeams { get; internal set; }
+
+        /// <summary>
+        /// Backlink to the tournament linked to this bracket.
+        /// </summary>
+        public Tournament Tournament { get; internal set; }
     }
 }

@@ -79,6 +79,11 @@ namespace PlayCEASharp.DataModel
         public string Org { get; internal set; }
 
         /// <summary>
+        /// The charity the team is supporting.
+        /// </summary>
+        public string Charity { get; internal set; }
+
+        /// <summary>
         /// The url to the avatar for the team.
         /// </summary>
         public string ImageURL { get; internal set; }

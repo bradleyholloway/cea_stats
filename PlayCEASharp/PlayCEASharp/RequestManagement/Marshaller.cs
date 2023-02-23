@@ -54,6 +54,7 @@ namespace PlayCEASharp.RequestManagement
             {
                 Bracket reg = ResourceCache.GetBracket(regularSeasonBracketId);
                 tournament.RegularSeason = reg;
+                reg.Tournament = tournament;
                 if (!tournament.Brackets.Contains(reg))
                 {
                     tournament.Brackets.Add(reg);
@@ -64,6 +65,7 @@ namespace PlayCEASharp.RequestManagement
             if (!string.IsNullOrEmpty(playoffBracketId))
             {
                 Bracket playoffs = ResourceCache.GetBracket(playoffBracketId);
+                playoffs.Tournament = tournament;
                 tournament.Playoffs = playoffs;
                 if (!tournament.Brackets.Contains(playoffs))
                 {
@@ -102,7 +104,7 @@ namespace PlayCEASharp.RequestManagement
             Bracket bracket = bracket1;
             foreach (JToken token in bracketToken["rounds"])
             {
-                BracketRound round = BracketRound(token);
+                BracketRound round = BracketRound(token, bracket);
                 if (!bracket.Rounds.Contains(round))
                 {
                     bracket.Rounds.Add(round);
@@ -156,8 +158,9 @@ namespace PlayCEASharp.RequestManagement
         /// Transforms a json bracket round into a BracketRound.
         /// </summary>
         /// <param name="roundToken">the json of a bracketround from PlayCEA.</param>
+        /// <param name="bracket">the bracket parent of this round.</param>
         /// <returns>A hydrated BracketRound.</returns>
-        internal static BracketRound BracketRound(JToken roundToken)
+        internal static BracketRound BracketRound(JToken roundToken, Bracket bracket)
         {
             BracketRound bracketRound = ResourceCache.GetBracketRound((string)roundToken["rid"]);
             bracketRound.RoundName = (string)roundToken["roundName"];
@@ -169,6 +172,8 @@ namespace PlayCEASharp.RequestManagement
                 MatchResult item = Match(token, bracketRound);
                 bracketRound.Matches.Add(item);
             }
+
+            bracketRound.Bracket = bracket;
             return bracketRound;
         }
 
@@ -205,6 +210,7 @@ namespace PlayCEASharp.RequestManagement
                 result1.HomeTeam = ResourceCache.GetTeam((string)matchToken["ts"][(int)0]["tid"]);
                 result1.AwayTeam = null;
                 result1.Bye = true;
+                result1.BracketRound = optionalBracketRound;
                 result2 = result1;
             }
             else
@@ -236,6 +242,7 @@ namespace PlayCEASharp.RequestManagement
                     result.AwayGoals += item.AwayScore;
                     result.Games.Add(item);
                 }
+                result.BracketRound = optionalBracketRound;
                 result2 = result;
             }
 
@@ -284,6 +291,11 @@ namespace PlayCEASharp.RequestManagement
                         team.Players.Add(player);
                     }
                 }
+            }
+
+            if (teamToken["meta"] != null && teamToken["meta"]["charity"] != null)
+            {
+                team.Charity = (string)teamToken["meta"]["charity"];
             }
 
             return team;

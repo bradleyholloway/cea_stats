@@ -82,5 +82,10 @@
         /// The week number for this round.
         /// </summary>
         public int WeekNumber { get; internal set; }
+
+        /// <summary>
+        /// The bracket this round belongs to.
+        /// </summary>
+        public Bracket Bracket { get; internal set; }
     }
 }
