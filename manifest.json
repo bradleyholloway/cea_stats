@@ -105,7 +105,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlayCEASharp.DataModel.Bracket.html",
-          "hash": "40KluO2TMEeSMEQmhdkywg=="
+          "hash": "w+Qt3TatSUCR42Fl+j5CDQ=="
         }
       },
       "is_incremental": false,
@@ -117,7 +117,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlayCEASharp.DataModel.BracketRound.html",
-          "hash": "ELBfEE84QQj8ukBcARMMtA=="
+          "hash": "3B9M6ochtmvoy90u35YTcg=="
         }
       },
       "is_incremental": false,
@@ -177,7 +177,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlayCEASharp.DataModel.MatchResult.html",
-          "hash": "fd65Vs6vlh/Ujl9ijT8B/Q=="
+          "hash": "L73v2x5cRnxTk2E3N0ZwPQ=="
         }
       },
       "is_incremental": false,
@@ -213,7 +213,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlayCEASharp.DataModel.Team.html",
-          "hash": "g2jwilQ9fUlM1o3C8fQ+aA=="
+          "hash": "ATzLq+cgT01lLDVqY4EydQ=="
         }
       },
       "is_incremental": false,

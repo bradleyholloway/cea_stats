@@ -587,12 +587,38 @@ references:
   isSpec: "True"
   fullName: PlayCEASharp.DataModel.Bracket.TopMetaTeams
   nameWithType: Bracket.TopMetaTeams
+- uid: PlayCEASharp.DataModel.Bracket.Tournament
+  name: Tournament
+  href: api/PlayCEASharp.DataModel.Bracket.html#PlayCEASharp_DataModel_Bracket_Tournament
+  commentId: P:PlayCEASharp.DataModel.Bracket.Tournament
+  fullName: PlayCEASharp.DataModel.Bracket.Tournament
+  nameWithType: Bracket.Tournament
+- uid: PlayCEASharp.DataModel.Bracket.Tournament*
+  name: Tournament
+  href: api/PlayCEASharp.DataModel.Bracket.html#PlayCEASharp_DataModel_Bracket_Tournament_
+  commentId: Overload:PlayCEASharp.DataModel.Bracket.Tournament
+  isSpec: "True"
+  fullName: PlayCEASharp.DataModel.Bracket.Tournament
+  nameWithType: Bracket.Tournament
 - uid: PlayCEASharp.DataModel.BracketRound
   name: BracketRound
   href: api/PlayCEASharp.DataModel.BracketRound.html
   commentId: T:PlayCEASharp.DataModel.BracketRound
   fullName: PlayCEASharp.DataModel.BracketRound
   nameWithType: BracketRound
+- uid: PlayCEASharp.DataModel.BracketRound.Bracket
+  name: Bracket
+  href: api/PlayCEASharp.DataModel.BracketRound.html#PlayCEASharp_DataModel_BracketRound_Bracket
+  commentId: P:PlayCEASharp.DataModel.BracketRound.Bracket
+  fullName: PlayCEASharp.DataModel.BracketRound.Bracket
+  nameWithType: BracketRound.Bracket
+- uid: PlayCEASharp.DataModel.BracketRound.Bracket*
+  name: Bracket
+  href: api/PlayCEASharp.DataModel.BracketRound.html#PlayCEASharp_DataModel_BracketRound_Bracket_
+  commentId: Overload:PlayCEASharp.DataModel.BracketRound.Bracket
+  isSpec: "True"
+  fullName: PlayCEASharp.DataModel.BracketRound.Bracket
+  nameWithType: BracketRound.Bracket
 - uid: PlayCEASharp.DataModel.BracketRound.ByeMatches
   name: ByeMatches
   href: api/PlayCEASharp.DataModel.BracketRound.html#PlayCEASharp_DataModel_BracketRound_ByeMatches
@@ -1039,6 +1065,19 @@ references:
   isSpec: "True"
   fullName: PlayCEASharp.DataModel.MatchResult.AwayTeam
   nameWithType: MatchResult.AwayTeam
+- uid: PlayCEASharp.DataModel.MatchResult.BracketRound
+  name: BracketRound
+  href: api/PlayCEASharp.DataModel.MatchResult.html#PlayCEASharp_DataModel_MatchResult_BracketRound
+  commentId: P:PlayCEASharp.DataModel.MatchResult.BracketRound
+  fullName: PlayCEASharp.DataModel.MatchResult.BracketRound
+  nameWithType: MatchResult.BracketRound
+- uid: PlayCEASharp.DataModel.MatchResult.BracketRound*
+  name: BracketRound
+  href: api/PlayCEASharp.DataModel.MatchResult.html#PlayCEASharp_DataModel_MatchResult_BracketRound_
+  commentId: Overload:PlayCEASharp.DataModel.MatchResult.BracketRound
+  isSpec: "True"
+  fullName: PlayCEASharp.DataModel.MatchResult.BracketRound
+  nameWithType: MatchResult.BracketRound
 - uid: PlayCEASharp.DataModel.MatchResult.Bye
   name: Bye
   href: api/PlayCEASharp.DataModel.MatchResult.html#PlayCEASharp_DataModel_MatchResult_Bye
@@ -1369,6 +1408,19 @@ references:
   isSpec: "True"
   fullName: PlayCEASharp.DataModel.Team.Team
   nameWithType: Team.Team
+- uid: PlayCEASharp.DataModel.Team.Charity
+  name: Charity
+  href: api/PlayCEASharp.DataModel.Team.html#PlayCEASharp_DataModel_Team_Charity
+  commentId: P:PlayCEASharp.DataModel.Team.Charity
+  fullName: PlayCEASharp.DataModel.Team.Charity
+  nameWithType: Team.Charity
+- uid: PlayCEASharp.DataModel.Team.Charity*
+  name: Charity
+  href: api/PlayCEASharp.DataModel.Team.html#PlayCEASharp_DataModel_Team_Charity_
+  commentId: Overload:PlayCEASharp.DataModel.Team.Charity
+  isSpec: "True"
+  fullName: PlayCEASharp.DataModel.Team.Charity
+  nameWithType: Team.Charity
 - uid: PlayCEASharp.DataModel.Team.CumulativeRoundStats
   name: CumulativeRoundStats
   href: api/PlayCEASharp.DataModel.Team.html#PlayCEASharp_DataModel_Team_CumulativeRoundStats
