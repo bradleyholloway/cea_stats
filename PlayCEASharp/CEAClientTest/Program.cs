@@ -1,28 +1,14 @@
 ﻿using PlayCEASharp.Analysis;using PlayCEASharp.Configuration;using PlayCEASharp.DataModel;using PlayCEASharp.RequestManagement;using PlayCEASharp.Utilities;
 
 namespace RlClientTest;public class Program {    public static void Main()    {
-        LeagueManager.EndpointOverride = "https://z36ny63i72.execute-api.us-east-1.amazonaws.com/staging";
-        LeagueManager.NewBracketRounds += NewRounds;
-        LeagueManager.UpdatedMatches += UpdatedMatches;
-        League league = LeagueManager.League;
-        Console.WriteLine("Done Loading.");
+        // LeagueManager.EndpointOverride = "https://z36ny63i72.execute-api.us-east-1.amazonaws.com/staging";
+        // LeagueManager.NewBracketRounds += NewRounds;
+        // LeagueManager.UpdatedMatches += UpdatedMatches;
+        // League league = LeagueManager.League;
+        // Console.WriteLine("Done Loading.");
 
-        Console.WriteLine("Breakpoint before forcerefresh.");
-        LeagueManager.ForceUpdate();
-
-        /*
-        // Ad-hoc for building the spreadsheets for stats.        League league = LeagueManager.League;        List<BracketRound> lastRounds = league.Bracket.Brackets.Select(b => b.Rounds.Last()).ToList();        Dictionary<Team, BracketRound> rLookup = new Dictionary<Team, BracketRound>();        foreach (BracketRound round in lastRounds)
-  {
-      foreach (Team t in round.Matches.SelectMany(m => m.Teams))
-      {
-          rLookup[t] = round;
-      }
-  }        Dictionary<Team, int> rank = league.Bracket.Teams.ToDictionary(t => t, t => t.RoundRanking[rLookup[t]]);        List<Team> teams = league.Bracket.Teams.OrderBy(t => rank[t]).ToList();        string keys = "Team," + TeamStatisticsExtensions.ToCSVKeys();        Console.WriteLine(keys);        for (int i = 0; i < teams.Count; i++)
-  {
-      TeamStatistics stats = teams[i].StageCumulativeRoundStats[rLookup[teams[i]]];
-      //Console.WriteLine($"[{i}][{stats.MatchWins}][{stats.TotalGoalDifferential}] {teams[i]}");
-      Console.WriteLine($"{teams[i]},{stats.ToCSV()}");
-  }        Console.WriteLine(league);        */
+        // Console.WriteLine("Breakpoint before forcerefresh.");
+        // LeagueManager.ForceUpdate();
 
         /*
         // Ad-hoc for getting info on orgs finals performances.
@@ -44,6 +30,8 @@ namespace RlClientTest;public class Program {    public static void Main()  
             //Console.WriteLine($"{org} {win} {finals[org]}");
         }        */
 
+        PrintLeagueStats();
+
         // Prevent ending execution.
         Thread.Sleep(TimeSpan.FromDays(1));    }    private static MatchResult GetFinalsMatch(Tournament t, RequestManager rm, TournamentConfiguration tc)
     {
@@ -60,5 +48,19 @@ namespace RlClientTest;public class Program {    public static void Main()  
         foreach (KeyValuePair<MatchResult, League> m in updatedMatches)
         {
             Console.WriteLine($"{m.Value.GameId} {m.Key.ToString()}");
+        }
+    }    private static void PrintLeagueStats()
+    {
+        League league = LeagueManager.League;        List<BracketRound> lastRounds = league.Bracket.Brackets.Select(b => b.Rounds.Last()).ToList();        Dictionary<Team, BracketRound> rLookup = new Dictionary<Team, BracketRound>();        foreach (BracketRound round in lastRounds)
+        {
+            foreach (Team t in round.Matches.SelectMany(m => m.Teams))
+            {
+                rLookup[t] = round;
+            }
+        }        Dictionary<Team, int> rank = league.Bracket.Teams.ToDictionary(t => t, t => t.RoundRanking[rLookup[t]]);        List<Team> teams = league.Bracket.Teams.OrderBy(t => rank[t]).ToList();        string keys = "Team," + teams.First().Stats.ToCSVKeys();        Console.WriteLine(keys);        for (int i = 0; i < teams.Count; i++)
+        {
+            TeamStatistics stats = teams[i].StageCumulativeRoundStats[rLookup[teams[i]]];
+            //Console.WriteLine($"[{i}][{stats.MatchWins}][{stats.TotalGoalDifferential}] {teams[i]}");
+            Console.WriteLine($"{teams[i]},{stats.ToCSV()}");
         }
     }}
