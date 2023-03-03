@@ -48,12 +48,12 @@ namespace PlayCEASharp.DataModel
         /// <summary>
         /// The score that the home team scored.
         /// </summary>
-        public int HomeScore { get; internal set; }
+        public int HomeScore { get; set; }
 
         /// <summary>
         /// The score that the away team scored.
         /// </summary>
-        public int AwayScore { get; internal set; }
+        public int AwayScore { get; set; }
 
         /// <summary>
         /// Score differential in favor of the home team.

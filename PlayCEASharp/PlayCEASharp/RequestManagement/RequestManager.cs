@@ -15,7 +15,7 @@ namespace PlayCEASharp.RequestManagement
     /// <summary>
     /// Wraps requests to the api endpoints for PlayCEA.
     /// </summary>
-    internal class RequestManager
+    public class RequestManager
     {
         /// <summary>
         /// The HttpClient to use when issuing requests.
@@ -35,7 +35,7 @@ namespace PlayCEASharp.RequestManagement
         /// <summary>
         /// Creates a new request manager.
         /// </summary>
-        internal RequestManager(string? optionalEndpoint)
+        public RequestManager(string? optionalEndpoint)
         {
             this.endpoint = optionalEndpoint ?? apiEndpoint;
             this.client.DefaultRequestHeaders.Accept.Clear();
@@ -68,7 +68,7 @@ namespace PlayCEASharp.RequestManagement
         /// <returns>The fully populated Bracket.</returns>
         internal async Task<Bracket> GetBracket(string bracketId, TournamentConfiguration tc)
         {
-            string content = await this.client.GetStringAsync($"{endpoint}/brackets/{bracketId}");
+            string content = await this.GetStringWithRetryAsync($"{endpoint}/brackets/{bracketId}");
             JObject jObject = JObject.Parse(content);
             Bracket bracket = Marshaller.Bracket(jObject["data"][0], tc);
             return bracket;
@@ -79,9 +79,9 @@ namespace PlayCEASharp.RequestManagement
         /// </summary>
         /// <param name="matchId">The match id.</param>
         /// <returns>The most recent info for the match.</returns>
-        internal async Task<MatchResult> GetMatchResult(string matchId)
+        public async Task<MatchResult> GetMatchResult(string matchId)
         {
-            string content = await this.client.GetStringAsync($"{endpoint}/matches/{matchId}");
+            string content = await this.GetStringWithRetryAsync($"{endpoint}/matches/{matchId}");
             JObject jObject = JObject.Parse(content);
             MatchResult match = Marshaller.Match(jObject["data"]);
             return match;
@@ -92,12 +92,56 @@ namespace PlayCEASharp.RequestManagement
         /// </summary>
         /// <param name="teamId">The team id</param>
         /// <returns>The updated team.</returns>
-        internal async Task<Team> GetTeam(string teamId, TournamentConfiguration tc)
+        public async Task<Team> GetTeam(string teamId, TournamentConfiguration tc)
         {
-            string content = await this.client.GetStringAsync($"{endpoint}/teams/{teamId}");
+            string content = await this.GetStringWithRetryAsync($"{endpoint}/teams/{teamId}");
             JObject jObject = JObject.Parse(content);
             Team team = Marshaller.Team(jObject["data"][0], tc);
             return team;
+        }
+
+        /// <summary>
+        /// Reports scores for a match using a given discord bearer token.
+        /// </summary>
+        /// <param name="match">The match to report scores for.</param>
+        /// <param name="discordBearerToken">Bearer token to use to update.</param>
+        public async Task ReportScores(MatchResult match, string discordBearerToken)
+        {
+            HttpRequestMessage httpRequest = new HttpRequestMessage(HttpMethod.Post, $"{endpoint}/matches/{match.MatchId}/scores");
+            httpRequest.Headers.Add("authorization", $"bearer {discordBearerToken}");
+            StringContent content = new StringContent(MatchResultToScoresUpdate(match));
+            httpRequest.Content = content;
+            await this.client.SendAsync(httpRequest);
+        }
+
+        private string MatchResultToScoresUpdate(MatchResult match)
+        {
+            /*
+             * {"games":[
+             *  {"gid":"ogEXlcv8sT","scores":[{"tid":"ML0gzWQDdh","score":1},{"tid":"US78M7hQXt","score":0}]},
+             *  {"gid":"SyREj3hAWD","scores":[{"tid":"ML0gzWQDdh","score":0},{"tid":"US78M7hQXt","score":2}]},
+             *  {"gid":"5Tj58m2kqK","scores":[{"tid":"ML0gzWQDdh","score":3},{"tid":"US78M7hQXt","score":0}]},
+             *  {"gid":"4BiEpSQ_Pe","scores":[{"tid":"ML0gzWQDdh","score":0},{"tid":"US78M7hQXt","score":4}]},
+             *  {"gid":"k9lL7_0Zjo","scores":[{"tid":"ML0gzWQDdh","score":5},{"tid":"US78M7hQXt","score":0}]}]}
+             */
+            StringBuilder sb = new StringBuilder();
+            sb.Append("{\"games\":[");
+
+            int gameCount = match.Games.Count;
+            int gameNumber = 1;
+            foreach (Game game in match.Games)
+            {
+                sb.Append($"{{\"gid\":\"{game.GameId}\",\"scores\":[{{\"tid\":\"{game.HomeTeam.TeamId}\",\"score\":{game.HomeScore}}},{{\"tid\":\"{game.AwayTeam.TeamId}\",\"score\":{game.AwayScore}}}]}}");
+                if (gameNumber != gameCount)
+                {
+                    sb.Append(",");
+                }
+
+                gameNumber++;
+            }
+
+            sb.Append("]}");
+            return sb.ToString();
         }
 
         /// <summary>
@@ -105,7 +149,7 @@ namespace PlayCEASharp.RequestManagement
         /// </summary>
         /// <returns>Collection of all Tournaments from PlayCEA.</returns>
         internal async Task<List<Tournament>> GetTournaments(TournamentConfiguration tc) {
-            string content = await this.client.GetStringAsync($"{endpoint}/tournaments");
+            string content = await this.GetStringWithRetryAsync($"{endpoint}/tournaments");
             JObject jObject = JObject.Parse(content);
             List<Tournament> tournaments = new List<Tournament>();
             foreach (JToken t in jObject["data"]) {
@@ -121,7 +165,7 @@ namespace PlayCEASharp.RequestManagement
         /// <param name="tournamentId">The tournament id.</param>
         /// <returns>The updated tournament.</returns>
         internal async Task<Tournament> GetTournament(string tournamentId, TournamentConfiguration tc) {
-            string content = await this.client.GetStringAsync($"{endpoint}/tournaments/{tournamentId}");
+            string content = await this.GetStringWithRetryAsync($"{endpoint}/tournaments/{tournamentId}");
             JObject jObject = JObject.Parse(content);
             Tournament tournament = Marshaller.Tournament(jObject["data"], tc);
             return tournament;
@@ -158,6 +202,39 @@ namespace PlayCEASharp.RequestManagement
             {
                 Console.Error.WriteLine(e);
             }
+        }
+
+        private async Task<string> GetStringWithRetryAsync(string request)
+        {
+            HttpResponseMessage response = null;
+
+            int MaxRetryCount = 3;
+            for (int i = 0; i <= MaxRetryCount; i++)
+            {
+                response = await this.client.GetAsync(request);
+                if (response.IsSuccessStatusCode)
+                {
+                    return await response.Content.ReadAsStringAsync();
+                }
+
+                if (i == MaxRetryCount)
+                {
+                    continue;
+                }
+
+                switch (response.StatusCode)
+                {
+                    case System.Net.HttpStatusCode.TooManyRequests:
+                        await Task.Delay(500);
+                        break;
+                    case System.Net.HttpStatusCode.GatewayTimeout:
+                        await Task.Delay(200);
+                        break;
+                }
+            }
+
+            response?.EnsureSuccessStatusCode();
+            return null;
         }
     }
 }

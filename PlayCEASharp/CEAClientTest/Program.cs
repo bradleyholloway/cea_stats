@@ -2,9 +2,11 @@
 
 namespace RlClientTest;public class Program {    public static void Main()    {
         // LeagueManager.EndpointOverride = "https://z36ny63i72.execute-api.us-east-1.amazonaws.com/staging";
+        // TestUpdateMatch();
+
         // LeagueManager.NewBracketRounds += NewRounds;
         // LeagueManager.UpdatedMatches += UpdatedMatches;
-        // League league = LeagueManager.League;
+        League league = LeagueManager.League;
         // Console.WriteLine("Done Loading.");
 
         // Console.WriteLine("Breakpoint before forcerefresh.");
@@ -30,10 +32,21 @@ namespace RlClientTest;public class Program {    public static void Main()  
             //Console.WriteLine($"{org} {win} {finals[org]}");
         }        */
 
-        PrintLeagueStats();
+        // PrintLeagueStats();
 
         // Prevent ending execution.
-        Thread.Sleep(TimeSpan.FromDays(1));    }    private static MatchResult GetFinalsMatch(Tournament t, RequestManager rm, TournamentConfiguration tc)
+        Thread.Sleep(TimeSpan.FromDays(1));    }    private static void TestUpdateMatch()
+    {
+        League league = LeagueManager.League;
+
+        MatchResult match = league.NextMatchLookup.Values.First();
+
+        match.Games[0].HomeScore = 2;
+        match.Games[0].AwayScore = 0;
+
+        RequestManager rm = new RequestManager(LeagueManager.EndpointOverride);
+        rm.ReportScores(match, "bearertoken").Wait();
+    }    private static MatchResult GetFinalsMatch(Tournament t, RequestManager rm, TournamentConfiguration tc)
     {
         Bracket playoffBracket = rm.GetBracket(t.Playoffs.BracketId, tc).Result;
         return playoffBracket.Rounds.Last().Matches.Last();
