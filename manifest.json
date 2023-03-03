@@ -153,7 +153,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PlayCEASharp.DataModel.Game.html",
-          "hash": "Xas+AVWTvS18SfHP7w6dwg=="
+          "hash": "zg7RSX9+S4c48MalNGnL5g=="
         }
       },
       "is_incremental": false,
@@ -293,11 +293,23 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/PlayCEASharp.RequestManagement.RequestManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PlayCEASharp.RequestManagement.RequestManager.html",
+          "hash": "H1s/u5cgpQgD0YtPhNQZVg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/PlayCEASharp.RequestManagement.yml",
       "output": {
         ".html": {
           "relative_path": "api/PlayCEASharp.RequestManagement.html",
-          "hash": "g8qDC5GjZMuvHQyGq7V75Q=="
+          "hash": "vLwejKSYz9CK710jr1IvDg=="
         }
       },
       "is_incremental": false,
@@ -405,7 +417,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "5U3WXWlAKhkzwAaMqiJgeg=="
+          "hash": "tazZZLjtpEwMi1ndV6ecYg=="
         }
       },
       "is_incremental": false,
@@ -480,7 +492,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 32,
+          "total_file_count": 33,
           "skipped_file_count": 0
         },
         "TocDocumentProcessor": {

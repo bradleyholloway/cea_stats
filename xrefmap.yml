@@ -2155,6 +2155,67 @@ references:
   commentId: T:PlayCEASharp.RequestManagement.LeagueManager.UpdatedMatchesEventHandler
   fullName: PlayCEASharp.RequestManagement.LeagueManager.UpdatedMatchesEventHandler
   nameWithType: LeagueManager.UpdatedMatchesEventHandler
+- uid: PlayCEASharp.RequestManagement.RequestManager
+  name: RequestManager
+  href: api/PlayCEASharp.RequestManagement.RequestManager.html
+  commentId: T:PlayCEASharp.RequestManagement.RequestManager
+  fullName: PlayCEASharp.RequestManagement.RequestManager
+  nameWithType: RequestManager
+- uid: PlayCEASharp.RequestManagement.RequestManager.#ctor(System.Nullable{System.String})
+  name: RequestManager(Nullable<String>)
+  href: api/PlayCEASharp.RequestManagement.RequestManager.html#PlayCEASharp_RequestManagement_RequestManager__ctor_System_Nullable_System_String__
+  commentId: M:PlayCEASharp.RequestManagement.RequestManager.#ctor(System.Nullable{System.String})
+  name.vb: RequestManager(Nullable(Of String))
+  fullName: PlayCEASharp.RequestManagement.RequestManager.RequestManager(System.Nullable<System.String>)
+  fullName.vb: PlayCEASharp.RequestManagement.RequestManager.RequestManager(System.Nullable(Of System.String))
+  nameWithType: RequestManager.RequestManager(Nullable<String>)
+  nameWithType.vb: RequestManager.RequestManager(Nullable(Of String))
+- uid: PlayCEASharp.RequestManagement.RequestManager.#ctor*
+  name: RequestManager
+  href: api/PlayCEASharp.RequestManagement.RequestManager.html#PlayCEASharp_RequestManagement_RequestManager__ctor_
+  commentId: Overload:PlayCEASharp.RequestManagement.RequestManager.#ctor
+  isSpec: "True"
+  fullName: PlayCEASharp.RequestManagement.RequestManager.RequestManager
+  nameWithType: RequestManager.RequestManager
+- uid: PlayCEASharp.RequestManagement.RequestManager.GetMatchResult(System.String)
+  name: GetMatchResult(String)
+  href: api/PlayCEASharp.RequestManagement.RequestManager.html#PlayCEASharp_RequestManagement_RequestManager_GetMatchResult_System_String_
+  commentId: M:PlayCEASharp.RequestManagement.RequestManager.GetMatchResult(System.String)
+  fullName: PlayCEASharp.RequestManagement.RequestManager.GetMatchResult(System.String)
+  nameWithType: RequestManager.GetMatchResult(String)
+- uid: PlayCEASharp.RequestManagement.RequestManager.GetMatchResult*
+  name: GetMatchResult
+  href: api/PlayCEASharp.RequestManagement.RequestManager.html#PlayCEASharp_RequestManagement_RequestManager_GetMatchResult_
+  commentId: Overload:PlayCEASharp.RequestManagement.RequestManager.GetMatchResult
+  isSpec: "True"
+  fullName: PlayCEASharp.RequestManagement.RequestManager.GetMatchResult
+  nameWithType: RequestManager.GetMatchResult
+- uid: PlayCEASharp.RequestManagement.RequestManager.GetTeam(System.String,PlayCEASharp.Configuration.TournamentConfiguration)
+  name: GetTeam(String, TournamentConfiguration)
+  href: api/PlayCEASharp.RequestManagement.RequestManager.html#PlayCEASharp_RequestManagement_RequestManager_GetTeam_System_String_PlayCEASharp_Configuration_TournamentConfiguration_
+  commentId: M:PlayCEASharp.RequestManagement.RequestManager.GetTeam(System.String,PlayCEASharp.Configuration.TournamentConfiguration)
+  fullName: PlayCEASharp.RequestManagement.RequestManager.GetTeam(System.String, PlayCEASharp.Configuration.TournamentConfiguration)
+  nameWithType: RequestManager.GetTeam(String, TournamentConfiguration)
+- uid: PlayCEASharp.RequestManagement.RequestManager.GetTeam*
+  name: GetTeam
+  href: api/PlayCEASharp.RequestManagement.RequestManager.html#PlayCEASharp_RequestManagement_RequestManager_GetTeam_
+  commentId: Overload:PlayCEASharp.RequestManagement.RequestManager.GetTeam
+  isSpec: "True"
+  fullName: PlayCEASharp.RequestManagement.RequestManager.GetTeam
+  nameWithType: RequestManager.GetTeam
+- uid: PlayCEASharp.RequestManagement.RequestManager.ReportScores(PlayCEASharp.DataModel.MatchResult,System.String)
+  name: ReportScores(MatchResult, String)
+  href: api/PlayCEASharp.RequestManagement.RequestManager.html#PlayCEASharp_RequestManagement_RequestManager_ReportScores_PlayCEASharp_DataModel_MatchResult_System_String_
+  commentId: M:PlayCEASharp.RequestManagement.RequestManager.ReportScores(PlayCEASharp.DataModel.MatchResult,System.String)
+  fullName: PlayCEASharp.RequestManagement.RequestManager.ReportScores(PlayCEASharp.DataModel.MatchResult, System.String)
+  nameWithType: RequestManager.ReportScores(MatchResult, String)
+- uid: PlayCEASharp.RequestManagement.RequestManager.ReportScores*
+  name: ReportScores
+  href: api/PlayCEASharp.RequestManagement.RequestManager.html#PlayCEASharp_RequestManagement_RequestManager_ReportScores_
+  commentId: Overload:PlayCEASharp.RequestManagement.RequestManager.ReportScores
+  isSpec: "True"
+  fullName: PlayCEASharp.RequestManagement.RequestManager.ReportScores
+  nameWithType: RequestManager.ReportScores
 - uid: PlayCEASharp.Utilities
   name: PlayCEASharp.Utilities
   href: api/PlayCEASharp.Utilities.html
