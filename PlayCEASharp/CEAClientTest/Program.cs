@@ -1,4 +1,6 @@
 ﻿using PlayCEASharp.Analysis;using PlayCEASharp.Configuration;using PlayCEASharp.DataModel;using PlayCEASharp.RequestManagement;using PlayCEASharp.Utilities;
+using System.Runtime.CompilerServices;
+using System.Text;
 
 namespace RlClientTest;public class Program {    public static void Main()    {
         // LeagueManager.EndpointOverride = "https://z36ny63i72.execute-api.us-east-1.amazonaws.com/staging";
@@ -32,10 +34,19 @@ namespace RlClientTest;public class Program {    public static void Main()  
             //Console.WriteLine($"{org} {win} {finals[org]}");
         }        */
 
+        PrintTeamIds();
+
         // PrintLeagueStats();
 
         // Prevent ending execution.
-        Thread.Sleep(TimeSpan.FromDays(1));    }    private static void TestUpdateMatch()
+        Thread.Sleep(TimeSpan.FromDays(1));    }    private static void PrintTeamIds()
+    {
+        League league = LeagueManager.League;
+        foreach (Team t in league.Bracket.Teams)
+        {
+            Console.WriteLine(t);
+        }
+    }    private static void TestUpdateMatch()
     {
         League league = LeagueManager.League;
 
@@ -70,10 +81,37 @@ namespace RlClientTest;public class Program {    public static void Main()  
             {
                 rLookup[t] = round;
             }
-        }        Dictionary<Team, int> rank = league.Bracket.Teams.ToDictionary(t => t, t => t.RoundRanking[rLookup[t]]);        List<Team> teams = league.Bracket.Teams.OrderBy(t => rank[t]).ToList();        string keys = "Team," + teams.First().Stats.ToCSVKeys();        Console.WriteLine(keys);        for (int i = 0; i < teams.Count; i++)
+        }        Dictionary<Team, int> rank = league.Bracket.Teams.ToDictionary(t => t, t => t.RoundRanking[rLookup[t]]);        List<Team> teams = league.Bracket.Teams.OrderBy(t => rank[t]).ToList();        string keys = "Team," + teams.First().Stats.ToCSVKeys() + ",tid";        Console.WriteLine(keys);        for (int i = 0; i < teams.Count; i++)
         {
             TeamStatistics stats = teams[i].StageCumulativeRoundStats[rLookup[teams[i]]];
             //Console.WriteLine($"[{i}][{stats.MatchWins}][{stats.TotalGoalDifferential}] {teams[i]}");
-            Console.WriteLine($"{teams[i]},{stats.ToCSV()}");
+            Console.WriteLine($"{teams[i]},{stats.ToCSV()},{teams[i].TeamId}");
         }
+
+        Console.WriteLine();
+        Console.WriteLine();
+
+        //Console.WriteLine(GenerateSeedString(teams, 8, 24, 16));
+    }    private static string GenerateSeedString(List<Team> teams, int top, int mid, int bottom)
+    {
+        string topString = string.Join(',', teams.Take(top).Select(t => $"{{ \"S\": \"{t.TeamId}\"}}"));
+        string midString = string.Join(',', teams.Skip(top).Take(mid).Select(t => $"{{ \"S\": \"{t.TeamId}\"}}"));
+        string botString = string.Join(',', teams.Skip(top + mid).Take(bottom).Select(t => $"{{ \"S\": \"{t.TeamId}\"}}"));
+
+
+        StringBuilder sb = new StringBuilder();
+
+        sb.Append("\"seed\": { \"M\": { ");
+        sb.Append("\"bot\": { \"L\": [");
+        sb.Append(botString);
+        sb.Append("] },");
+        sb.Append("\"mid\": { \"L\": [");
+        sb.Append(midString);
+        sb.Append("] },");
+        sb.Append("\"top\": { \"L\": [");
+        sb.Append(topString);
+        sb.Append("] }");
+        sb.Append("} }");
+
+        return sb.ToString();
     }}

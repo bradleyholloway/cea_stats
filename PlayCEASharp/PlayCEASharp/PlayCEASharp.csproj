@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFrameworks>netstandard2.1;net8.0</TargetFrameworks>
     <LangVersion>10</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <AssemblyName>PlayCEASharp</AssemblyName>
     <PackageId>PlayCEASharp</PackageId>
-    <Version>2.1.20</Version>
+    <Version>2.2.1</Version>
     <Authors>Bradley Holloway</Authors>
     <Company>None</Company>
     <Description>

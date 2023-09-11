@@ -5,7 +5,7 @@
       "matchingConfig": {
         "gameId": "rl",
         "year": "2023",
-        "season": "SPRING",
+        "season": "FALL",
         "stageNames": {
           "-1": "Preseason",
           "0": "Stage 1",
@@ -20,7 +20,10 @@
         },
         "orderKeywords": {
           "legacy": -1,
-          "contender": 1
+          "contender": 1,
+          "group a": -1,
+          "group b": 0,
+          "group c":  1
         }
       },
       "namingConfig": {
@@ -28,54 +31,6 @@
         "matchWordPlural": "matches",
         "gameWord": "game",
         "scoreWord": "goal"
-      }
-    },
-    {
-      "id": "overwatch",
-      "matchingConfig": {
-        "gameId": "ow",
-        "year": "2022",
-        "season": "FALL",
-        "stageNames": {
-          "-1": "Preseason",
-          "0": "Swiss",
-          "2": "Playoffs"
-        },
-        "stageKeywords": {
-          "preseason": -1,
-          "playoff": 2,
-          "swiss": 0
-        }
-      },
-      "namingConfig": {
-        "matchWord": "match",
-        "matchWordPlural": "matches",
-        "gameWord": "map",
-        "scoreWord": "point"
-      }
-    },
-    {
-      "id": "dota",
-      "matchingConfig": {
-        "gameId": "dota",
-        "year": "2023",
-        "season": "SPRING",
-        "stageNames": {
-          "-1": "Preseason",
-          "0": "Swiss",
-          "2": "Playoffs"
-        },
-        "stageKeywords": {
-          "preseason": -1,
-          "playoff": 2,
-          "swiss": 0
-        }
-      },
-      "namingConfig": {
-        "matchWord": "match",
-        "matchWordPlural": "matches",
-        "gameWord": "game",
-        "scoreWord": "point"
       }
     }
   ]

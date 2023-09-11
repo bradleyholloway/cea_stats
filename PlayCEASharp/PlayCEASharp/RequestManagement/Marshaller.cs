@@ -119,7 +119,7 @@ namespace PlayCEASharp.RequestManagement
                 }
             }
 
-            if (bracketToken["meta"] != null)
+            if (bracketToken["meta"] != null && bracket.Rounds.Count > 0)
             {
                 string firstRoundId = bracket.Rounds.First().RoundId;
                 if (bracketToken["meta"][firstRoundId] != null && bracketToken["meta"][firstRoundId]["buckets"] != null)
