@@ -2161,15 +2161,12 @@ references:
   commentId: T:PlayCEASharp.RequestManagement.RequestManager
   fullName: PlayCEASharp.RequestManagement.RequestManager
   nameWithType: RequestManager
-- uid: PlayCEASharp.RequestManagement.RequestManager.#ctor(System.Nullable{System.String})
-  name: RequestManager(Nullable<String>)
-  href: api/PlayCEASharp.RequestManagement.RequestManager.html#PlayCEASharp_RequestManagement_RequestManager__ctor_System_Nullable_System_String__
-  commentId: M:PlayCEASharp.RequestManagement.RequestManager.#ctor(System.Nullable{System.String})
-  name.vb: RequestManager(Nullable(Of String))
-  fullName: PlayCEASharp.RequestManagement.RequestManager.RequestManager(System.Nullable<System.String>)
-  fullName.vb: PlayCEASharp.RequestManagement.RequestManager.RequestManager(System.Nullable(Of System.String))
-  nameWithType: RequestManager.RequestManager(Nullable<String>)
-  nameWithType.vb: RequestManager.RequestManager(Nullable(Of String))
+- uid: PlayCEASharp.RequestManagement.RequestManager.#ctor(System.String)
+  name: RequestManager(String)
+  href: api/PlayCEASharp.RequestManagement.RequestManager.html#PlayCEASharp_RequestManagement_RequestManager__ctor_System_String_
+  commentId: M:PlayCEASharp.RequestManagement.RequestManager.#ctor(System.String)
+  fullName: PlayCEASharp.RequestManagement.RequestManager.RequestManager(System.String)
+  nameWithType: RequestManager.RequestManager(String)
 - uid: PlayCEASharp.RequestManagement.RequestManager.#ctor*
   name: RequestManager
   href: api/PlayCEASharp.RequestManagement.RequestManager.html#PlayCEASharp_RequestManagement_RequestManager__ctor_
