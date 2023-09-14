@@ -19,8 +19,10 @@ namespace PlayCEASharp.RequestManagement
         /// Transforms a json tournament into a Tournament.
         /// </summary>
         /// <param name="tournamentToken">the json for the tournament.</param>
+        /// <param name="tc">Tournament configuration to be used for this tournament.</param>
         /// <returns>A hydrated Tournament</returns>
-        internal static Tournament Tournament(JToken tournamentToken, TournamentConfiguration tc) {
+        internal static Tournament Tournament(JToken tournamentToken, TournamentConfiguration tc)
+        {
             Tournament tournament = ResourceCache.GetTournament((string)tournamentToken["tmid"]);
             tournament.TournamentName = (string)tournamentToken["name"];
 
@@ -95,6 +97,7 @@ namespace PlayCEASharp.RequestManagement
         /// Transforms the json bracket into a Bracket.
         /// </summary>
         /// <param name="bracketToken">The json returned from PlayCEA.</param>
+        /// <param name="tc">The Tournament Configuration used for this Bracket.</param>
         /// <returns>A hydrated Bracket.</returns>
         internal static Bracket Bracket(JToken bracketToken, TournamentConfiguration tc)
         {
@@ -269,6 +272,7 @@ namespace PlayCEASharp.RequestManagement
         /// Transforms the json representation of a team into a Team.
         /// </summary>
         /// <param name="teamToken">the json representation of the team.</param>
+        /// <param name="tc">The TournamentConfiguration used for the context of this team.</param>
         /// <returns>A hydrated Team.</returns>
         internal static Team Team(JToken teamToken, TournamentConfiguration tc)
         {

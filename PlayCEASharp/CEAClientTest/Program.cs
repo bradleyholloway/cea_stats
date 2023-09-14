@@ -34,6 +34,8 @@ namespace RlClientTest;public class Program {    public static void Main()  
             //Console.WriteLine($"{org} {win} {finals[org]}");
         }        */
 
+        FindScoreDifferential(4);
+
         PrintTeamIds();
 
         // PrintLeagueStats();
@@ -45,6 +47,22 @@ namespace RlClientTest;public class Program {    public static void Main()  
         foreach (Team t in league.Bracket.Teams)
         {
             Console.WriteLine(t);
+        }
+    }    private static void FindScoreDifferential(int maxDiff)
+    {
+        League league = LeagueManager.League;
+        foreach (BracketRound round in league.Bracket.Rounds.Last())
+        {
+            foreach (MatchResult match in round.Matches)
+            {
+                if (match.Games != null)
+                {
+                    foreach (Game game in match.Games.Where(g => Math.Abs(g.HomeScoreDifferential) > maxDiff))
+                    {
+                        Console.WriteLine(match);
+                    }
+                }
+            }
         }
     }    private static void TestUpdateMatch()
     {

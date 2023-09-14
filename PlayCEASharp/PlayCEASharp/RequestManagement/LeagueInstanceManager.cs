@@ -68,7 +68,7 @@ namespace PlayCEASharp.RequestManagement
         /// </summary>
         private MatchResultCache matchResultCache = new MatchResultCache();
 
-        public LeagueInstanceManager(NewRoundEventHandler newRoundsFound, MatchUpdatedEventHandler matchUpdated, string? endpointOverride)
+        public LeagueInstanceManager(NewRoundEventHandler newRoundsFound, MatchUpdatedEventHandler matchUpdated, string endpointOverride)
         {
             NewRoundEvent += newRoundsFound;
             MatchUpdatedEvent += matchUpdated;

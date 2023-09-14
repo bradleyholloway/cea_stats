@@ -58,7 +58,7 @@ namespace PlayCEASharp.RequestManagement
         /// <summary>
         /// Way to override the endpoint used by the library.
         /// </summary>
-        public static string? EndpointOverride;
+        public static string EndpointOverride = null;
 
         /// <summary>
         /// Looks up all teams a player is on.
@@ -233,6 +233,11 @@ namespace PlayCEASharp.RequestManagement
             }
         }
 
+        /// <summary>
+        /// Gets a specific league based on the id from the configuration.
+        /// </summary>
+        /// <param name="id">The string identifier for the league.</param>
+        /// <returns>The league if present. Null if not present.</returns>
         public static League GetLeague(string id)
         {
             Bootstrap();
