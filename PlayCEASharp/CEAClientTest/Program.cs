@@ -46,7 +46,7 @@ namespace RlClientTest;public class Program {    public static void Main()  
         League league = LeagueManager.League;
         foreach (Team t in league.Bracket.Teams)
         {
-            Console.WriteLine(t);
+            Console.WriteLine($"{t} {t.TeamId}");
         }
     }    private static void FindScoreDifferential(int maxDiff)
     {

@@ -1,11 +1,11 @@
-﻿using Newtonsoft.Json.Linq;
-using PlayCEASharp.Configuration;
+﻿using PlayCEASharp.Configuration;
 using PlayCEASharp.DataModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 
 namespace PlayCEASharp.RequestManagement
@@ -21,7 +21,7 @@ namespace PlayCEASharp.RequestManagement
         /// <param name="tournamentToken">the json for the tournament.</param>
         /// <param name="tc">Tournament configuration to be used for this tournament.</param>
         /// <returns>A hydrated Tournament</returns>
-        internal static Tournament Tournament(JToken tournamentToken, TournamentConfiguration tc)
+        internal static Tournament Tournament(JsonNode tournamentToken, TournamentConfiguration tc)
         {
             Tournament tournament = ResourceCache.GetTournament((string)tournamentToken["tmid"]);
             tournament.TournamentName = (string)tournamentToken["name"];
@@ -49,7 +49,16 @@ namespace PlayCEASharp.RequestManagement
             tournament.GameName = (string)tournamentToken["game"]["name"];
             tournament.SeasonLeague = (string)tournamentToken["sn"]["l"];
             tournament.SeasonSeason = (string)tournamentToken["sn"]["s"];
-            tournament.SeasonYear = (string)tournamentToken["sn"]["y"];
+
+            // Some seasons are in the database as strings, while others are numbers.
+            // We default trying to decode as a string first, and if that is invalid we attempt as a number.
+            try
+            {
+                tournament.SeasonYear = (string)tournamentToken["sn"]["y"];
+            }
+            catch (InvalidOperationException) {
+                tournament.SeasonYear = ((int)tournamentToken["sn"]["y"]).ToString();
+            }
 
             string regularSeasonBracketId = (string)tournamentToken["sbkt"]["reg"];
             if (!string.IsNullOrEmpty(regularSeasonBracketId))
@@ -75,13 +84,13 @@ namespace PlayCEASharp.RequestManagement
                 }
             }
 
-            foreach (JToken bracketToken in tournamentToken["bs"])
+            foreach (JsonNode bracketToken in tournamentToken["bs"].AsArray())
             {
                 Bracket b = ResourceCache.GetBracket((string)bracketToken["bid"]);
                 b.Name = (string)bracketToken["name"];
             }
 
-            foreach (JToken teamToken in tournamentToken["ts"])
+            foreach (JsonNode teamToken in tournamentToken["ts"].AsArray())
             {
                 Team team = ResourceCache.GetTeam((string)teamToken["tid"]);
                 if (!tournament.Teams.Contains(team))
@@ -99,13 +108,13 @@ namespace PlayCEASharp.RequestManagement
         /// <param name="bracketToken">The json returned from PlayCEA.</param>
         /// <param name="tc">The Tournament Configuration used for this Bracket.</param>
         /// <returns>A hydrated Bracket.</returns>
-        internal static Bracket Bracket(JToken bracketToken, TournamentConfiguration tc)
+        internal static Bracket Bracket(JsonNode bracketToken, TournamentConfiguration tc)
         {
             Bracket bracket1 = ResourceCache.GetBracket((string)bracketToken["bid"]);
             bracket1.Name = (string)bracketToken["name"];
             bracket1.Game = (string)bracketToken["game"];
             Bracket bracket = bracket1;
-            foreach (JToken token in bracketToken["rounds"])
+            foreach (JsonNode token in bracketToken["rounds"].AsArray())
             {
                 BracketRound round = BracketRound(token, bracket);
                 if (!bracket.Rounds.Contains(round))
@@ -113,7 +122,7 @@ namespace PlayCEASharp.RequestManagement
                     bracket.Rounds.Add(round);
                 }
             }
-            foreach (JToken token2 in bracketToken["ts"])
+            foreach (JsonNode token2 in bracketToken["ts"].AsArray())
             {
                 Team team = Team(token2, tc);
                 if (!bracket.Teams.Contains(team))
@@ -127,11 +136,11 @@ namespace PlayCEASharp.RequestManagement
                 string firstRoundId = bracket.Rounds.First().RoundId;
                 if (bracketToken["meta"][firstRoundId] != null && bracketToken["meta"][firstRoundId]["buckets"] != null)
                 {
-                    JToken topBucket = bracketToken["meta"][firstRoundId]["buckets"]["top"];
+                    JsonNode topBucket = bracketToken["meta"][firstRoundId]["buckets"]["top"];
                     bracket.TopMetaTeams = ExtractTeamsFromBucket(topBucket);
-                    JToken midBucket = bracketToken["meta"][firstRoundId]["buckets"]["mid"];
+                    JsonNode midBucket = bracketToken["meta"][firstRoundId]["buckets"]["mid"];
                     bracket.MidMetaTeams = ExtractTeamsFromBucket(midBucket);
-                    JToken botBucket = bracketToken["meta"][firstRoundId]["buckets"]["bot"];
+                    JsonNode botBucket = bracketToken["meta"][firstRoundId]["buckets"]["bot"];
                     bracket.BotMetaTeams = ExtractTeamsFromBucket(botBucket);
                 }
             }
@@ -144,11 +153,11 @@ namespace PlayCEASharp.RequestManagement
         /// </summary>
         /// <param name="bucketToken">The meatdata bucket token.</param>
         /// <returns>List of teams.</returns>
-        private static List<Team> ExtractTeamsFromBucket(JToken bucketToken)
+        private static List<Team> ExtractTeamsFromBucket(JsonNode bucketToken)
         {
             List<Team> teams = new List<Team>();
 
-            foreach (JToken teamToken in bucketToken)
+            foreach (JsonNode teamToken in bucketToken.AsArray())
             {
                 Team t = ResourceCache.GetTeam((string)teamToken["tid"]);
                 teams.Add(t);
@@ -163,14 +172,14 @@ namespace PlayCEASharp.RequestManagement
         /// <param name="roundToken">the json of a bracketround from PlayCEA.</param>
         /// <param name="bracket">the bracket parent of this round.</param>
         /// <returns>A hydrated BracketRound.</returns>
-        internal static BracketRound BracketRound(JToken roundToken, Bracket bracket)
+        internal static BracketRound BracketRound(JsonNode roundToken, Bracket bracket)
         {
             BracketRound bracketRound = ResourceCache.GetBracketRound((string)roundToken["rid"]);
             bracketRound.RoundName = (string)roundToken["roundName"];
             bracketRound.Complete = (bool)roundToken["complete"];
             bracketRound.GameCount = (int)roundToken["gameCount"];
             bracketRound.Matches.Clear();
-            foreach (JToken token in roundToken["matches"])
+            foreach (JsonNode token in roundToken["matches"].AsArray())
             {
                 MatchResult item = Match(token, bracketRound);
                 bracketRound.Matches.Add(item);
@@ -185,10 +194,10 @@ namespace PlayCEASharp.RequestManagement
         /// </summary>
         /// <param name="gameToken">json representation of a game.</param>
         /// <returns>A hydrated Game.</returns>
-        internal static Game Game(JToken gameToken)
+        internal static Game Game(JsonNode gameToken)
         {
             Game game1 = new Game((string)gameToken["gid"]);
-            JToken tid = gameToken["ts"][(int)0]["tid"];
+            JsonNode tid = gameToken["ts"][(int)0]["tid"];
             game1.HomeTeam = ResourceCache.GetTeam(ExtractTid(tid));
             game1.HomeScore = (int)gameToken["ts"][(int)0]["rs"];
             tid = gameToken["ts"][(int)1]["tid"];
@@ -203,10 +212,10 @@ namespace PlayCEASharp.RequestManagement
         /// <param name="matchToken">the json representation from PlayCEA.</param>
         /// <param name="optionalBracketRound">The BracketRound to provide a backlink for round rankings.</param>
         /// <returns>A MatchResult for the given match.</returns>
-        internal static MatchResult Match(JToken matchToken, BracketRound optionalBracketRound = null)
+        internal static MatchResult Match(JsonNode matchToken, BracketRound optionalBracketRound = null)
         {
             MatchResult result2;
-            if (object.ReferenceEquals(matchToken["ts"].First, matchToken["ts"].Last))
+            if (object.ReferenceEquals(matchToken["ts"].AsArray().First(), matchToken["ts"].AsArray().Last()))
             {
                 MatchResult result1 = new MatchResult((string)matchToken["mid"]);
                 result1.Round = (int)matchToken["rnd"];
@@ -228,9 +237,9 @@ namespace PlayCEASharp.RequestManagement
                     result.HomeTeam.FixedRoundRanking[optionalBracketRound] = (int)matchToken["ts"][(int)0]["rank"];
                     result.AwayTeam.FixedRoundRanking[optionalBracketRound] = (int)matchToken["ts"][(int)1]["rank"];
                 }
-                JToken token = matchToken["gs"];
+                JsonNode token = matchToken["gs"];
                 result.Games = new List<Game>();
-                foreach (JToken token2 in token)
+                foreach (JsonNode token2 in token.AsArray())
                 {
                     Game item = Game(token2);
                     if (item.HomeScore > item.AwayScore)
@@ -257,7 +266,7 @@ namespace PlayCEASharp.RequestManagement
         /// </summary>
         /// <param name="playerToken">the json representation of the player.</param>
         /// <returns>A hydrated Player.</returns>
-        internal static Player Player(JToken playerToken)
+        internal static Player Player(JsonNode playerToken)
         {
             Player player1 = ResourceCache.GetPlayer((string)playerToken["uid"]);
             player1.DisplayName = (string)playerToken["dn"];
@@ -274,7 +283,7 @@ namespace PlayCEASharp.RequestManagement
         /// <param name="teamToken">the json representation of the team.</param>
         /// <param name="tc">The TournamentConfiguration used for the context of this team.</param>
         /// <returns>A hydrated Team.</returns>
-        internal static Team Team(JToken teamToken, TournamentConfiguration tc)
+        internal static Team Team(JsonNode teamToken, TournamentConfiguration tc)
         {
             Team team = ResourceCache.GetTeam((string)teamToken["tid"]);
             team.NameConfiguration = tc.namingConfig;
@@ -287,7 +296,7 @@ namespace PlayCEASharp.RequestManagement
             }
             if (teamToken["mbr"] != null)
             {
-                foreach (JToken token in teamToken["mbr"])
+                foreach (JsonNode token in teamToken["mbr"].AsArray())
                 {
                     Player player = Player(token);
                     if (!team.Players.Contains(player))
@@ -305,7 +314,7 @@ namespace PlayCEASharp.RequestManagement
             return team;
         }
 
-        private static string ExtractTid(JToken tidToken)
+        private static string ExtractTid(JsonNode tidToken)
         {
             try
             {

@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json.Linq;
-using PlayCEASharp.Configuration;
+﻿using PlayCEASharp.Configuration;
 using PlayCEASharp.DataModel;
 using System;
 using System.Collections.Generic;
@@ -7,6 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.Json.Nodes;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -71,7 +71,7 @@ namespace PlayCEASharp.RequestManagement
         internal async Task<Bracket> GetBracket(string bracketId, TournamentConfiguration tc)
         {
             string content = await this.GetStringWithRetryAsync($"{endpoint}/brackets/{bracketId}");
-            JObject jObject = JObject.Parse(content);
+            JsonObject jObject = JsonNode.Parse(content).AsObject();
             Bracket bracket = Marshaller.Bracket(jObject["data"][0], tc);
             return bracket;
         }
@@ -84,7 +84,7 @@ namespace PlayCEASharp.RequestManagement
         public async Task<MatchResult> GetMatchResult(string matchId)
         {
             string content = await this.GetStringWithRetryAsync($"{endpoint}/matches/{matchId}");
-            JObject jObject = JObject.Parse(content);
+            JsonObject jObject = JsonNode.Parse(content).AsObject();
             MatchResult match = Marshaller.Match(jObject["data"]);
             return match;
         }
@@ -98,7 +98,7 @@ namespace PlayCEASharp.RequestManagement
         public async Task<Team> GetTeam(string teamId, TournamentConfiguration tc)
         {
             string content = await this.GetStringWithRetryAsync($"{endpoint}/teams/{teamId}");
-            JObject jObject = JObject.Parse(content);
+            JsonObject jObject = JsonNode.Parse(content).AsObject();
             Team team = Marshaller.Team(jObject["data"][0], tc);
             return team;
         }
@@ -153,9 +153,9 @@ namespace PlayCEASharp.RequestManagement
         /// <returns>Collection of all Tournaments from PlayCEA.</returns>
         internal async Task<List<Tournament>> GetTournaments(TournamentConfiguration tc) {
             string content = await this.GetStringWithRetryAsync($"{endpoint}/tournaments");
-            JObject jObject = JObject.Parse(content);
+            JsonObject jObject = JsonNode.Parse(content).AsObject();
             List<Tournament> tournaments = new List<Tournament>();
-            foreach (JToken t in jObject["data"]) {
+            foreach (JsonNode t in jObject["data"].AsArray()) {
                 Tournament tournament = Marshaller.Tournament(t, tc);
                 tournaments.Add(tournament);
             }
@@ -171,7 +171,7 @@ namespace PlayCEASharp.RequestManagement
         internal async Task<Tournament> GetTournament(string tournamentId, TournamentConfiguration tc)
         {
             string content = await this.GetStringWithRetryAsync($"{endpoint}/tournaments/{tournamentId}");
-            JObject jObject = JObject.Parse(content);
+            JsonObject jObject = JsonNode.Parse(content).AsObject();
             Tournament tournament = Marshaller.Tournament(jObject["data"], tc);
             return tournament;
         }
