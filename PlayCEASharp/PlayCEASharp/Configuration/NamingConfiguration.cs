@@ -15,6 +15,11 @@ namespace PlayCEASharp.Configuration
     public class NamingConfiguration
     {
         /// <summary>
+        /// The default instance for an unfilled naming configuration.
+        /// </summary>
+        public static readonly NamingConfiguration DefaultInstance = new NamingConfiguration();
+
+        /// <summary>
         /// lowercase Noun for what is a single game (part of a match).
         /// </summary>
         public string gameWord { get; set; } = "game";

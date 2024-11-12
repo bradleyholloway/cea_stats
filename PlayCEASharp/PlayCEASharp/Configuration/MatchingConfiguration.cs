@@ -51,6 +51,11 @@ namespace PlayCEASharp.Configuration
         /// <summary>
         /// List of bracketIds to ignore.
         /// </summary>
-        public List<string> bracketBlacklist { get; set; }
+        public List<string> bracketBlacklist { get; set; } = new List<string>();
+
+        /// <summary>
+        /// List of tournamentIds to ignore.
+        /// </summary>
+        public List<string> tournamentBlacklist { get; set; } = new List<string>();
     }
 }

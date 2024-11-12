@@ -42,7 +42,7 @@ namespace PlayCEASharp.Configuration
         /// <returns>New list of only tournaments which match the configuration.</returns>
         internal static List<Tournament> MatchingTournaments(List<Tournament> allTournaments, MatchingConfiguration config)
         {
-            return allTournaments.Where(t => t.GameId.Equals(config.gameId) && t.SeasonYear.Equals(config.year) && t.SeasonLeague.Equals(config.league) && t.SeasonSeason.Equals(config.season)).ToList();
+            return allTournaments.Where(t => !config.tournamentBlacklist.Contains(t.TournamentId) && t.GameId.Equals(config.gameId) && t.SeasonYear.Equals(config.year) && t.SeasonLeague.Equals(config.league) && t.SeasonSeason.Equals(config.season)).ToList();
         }
 
         /// <summary>

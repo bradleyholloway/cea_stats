@@ -36,7 +36,7 @@ namespace PlayCEASharp.Configuration
         public string StageLookup(string roundName)
         {
             string str;
-            return this.stageConfiguration.TryGetValue(roundName, out str) ? str : "default_stage";
+            return this.stageConfiguration == null ? "default_stage" : this.stageConfiguration.TryGetValue(roundName, out str) ? str : "default_stage";
         }
     }
 }

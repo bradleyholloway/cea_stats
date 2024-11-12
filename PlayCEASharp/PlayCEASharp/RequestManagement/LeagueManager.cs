@@ -81,6 +81,11 @@ namespace PlayCEASharp.RequestManagement
         public readonly static Dictionary<Team, List<League>> LeagueLookup = new Dictionary<Team, List<League>>();
 
         /// <summary>
+        /// Looks up a specific MatchResult.
+        /// </summary>
+        private readonly static Dictionary<string, MatchResult> MatchLookup = new Dictionary<string, MatchResult>();
+
+        /// <summary>
         /// Starts a background refresh thread to update the league periodically.
         /// </summary>
         static LeagueManager()
@@ -138,11 +143,13 @@ namespace PlayCEASharp.RequestManagement
                 PlayerIdLookup.Clear();
                 NextMatchLookup.Clear();
                 LeagueLookup.Clear();
+                MatchLookup.Clear();
+
                 foreach (LeagueInstanceManager lim in leagueInstanceManagers.Values)
                 {
                     League league = lim.League;
 
-                    if (league.Configuration.bracketSets.Length > 0)
+                    if (league.Teams.Count > 0)
                     {
                         foreach (KeyValuePair<string, List<Team>> kvp in league.PlayerDiscordLookup)
                         {
@@ -156,16 +163,24 @@ namespace PlayCEASharp.RequestManagement
                             PlayerIdLookup[kvp.Key].AddRange(kvp.Value);
                         }
 
+                        foreach (Team t in league.Teams)
+                        {
+                            LeagueLookup[t] = LeagueLookup.GetValueOrDefault(t, new List<League>());
+                            LeagueLookup[t].Add(league);
+                        }
+                    }
+
+                    if (league.Configuration.bracketSets.Length > 0)
+                    {
                         foreach (KeyValuePair<Team, MatchResult> kvp in league.NextMatchLookup)
                         {
                             NextMatchLookup[kvp.Key] = NextMatchLookup.GetValueOrDefault(kvp.Key, new List<MatchResult>());
                             NextMatchLookup[kvp.Key].Add(kvp.Value);
                         }
 
-                        foreach (Team t in league.Bracket.Teams)
+                        foreach (MatchResult m in league.MatchLookup.Values)
                         {
-                            LeagueLookup[t] = LeagueLookup.GetValueOrDefault(t, new List<League>());
-                            LeagueLookup[t].Add(league);
+                            MatchLookup[m.MatchId] = m;
                         }
                     }
                 }
@@ -247,6 +262,33 @@ namespace PlayCEASharp.RequestManagement
             }
 
             return leagueInstanceManagers[id].League;
+        }
+
+        /// <summary>
+        /// Gets a set of leagues based on the id from the configuration.
+        /// </summary>
+        /// <param name="idsToExclude">Collection of ids to not include.</param>
+        /// <param name="onlyInclude">If any values are present, only include leagues identified here.</param>
+        /// <returns>The league if present. Null if not present.</returns>
+        public static List<League> GetLeagues(HashSet<string> idsToExclude, HashSet<string> onlyInclude)
+        {
+            Bootstrap();
+            if (onlyInclude == null || onlyInclude.Count == 0)
+            {
+                return leagueInstanceManagers.Where(lim => !idsToExclude.Contains(lim.Key)).Select(lim => lim.Value.League).ToList();
+            }
+
+            return leagueInstanceManagers.Where(lim => onlyInclude.Contains(lim.Key)).Select(lim => lim.Value.League).ToList();
+        }
+
+        /// <summary>
+        /// Gets a match for a given id, or null if no matches.
+        /// </summary>
+        /// <param name="MatchId">The unique matchId for the match.</param>
+        /// <returns>The MatchResult object.</returns>
+        public static MatchResult GetMatch(string MatchId)
+        {
+            return MatchLookup.GetValueOrDefault(MatchId, null);
         }
     }
 }

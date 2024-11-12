@@ -23,32 +23,52 @@ namespace PlayCEASharp.DataModel
         private List<BracketSet> bracketSets;
 
         /// <summary>
+        /// The collection of teams in the League.
+        /// </summary>
+        private List<Team> teams;
+
+        /// <summary>
+        /// The Game Id.
+        /// </summary>
+        private string gameId;
+
+        /// <summary>
         /// Creates a League based on the given bracket sets.
         /// </summary>
         /// <param name="bracketSets">Collection of bracket sets for this league.</param>
         /// <param name="config">The BracketConfiguration to use for the League.</param>
-        internal League(List<BracketSet> bracketSets, BracketConfiguration config)
+        /// <param name="tournaments">List of tournaments used in this League</param>
+        internal League(List<BracketSet> bracketSets, BracketConfiguration config, List<Tournament> tournaments)
         {
             this.configuration = config;
             this.bracketSets = bracketSets;
             this.PlayerDiscordLookup = new Dictionary<string, List<Team>>();
             this.PlayerDiscordIdLookup = new Dictionary<ulong, List<Team>>();
             this.NextMatchLookup = new Dictionary<Team, MatchResult>();
+            this.teams = new List<Team>();
+
+            foreach (Tournament t in tournaments)
+            {
+                this.gameId = t.GameId;
+                foreach (Team team in t.Teams)
+                {
+                    if (!this.teams.Contains(team))
+                    {
+                        this.teams.Add(team);
+                        foreach (Player player in team.Players)
+                        {
+                            this.PlayerDiscordLookup[player.DiscordId] = this.PlayerDiscordLookup.GetValueOrDefault(player.DiscordId, new List<Team>());
+                            this.PlayerDiscordLookup[player.DiscordId].Add(team);
+
+                            this.PlayerDiscordIdLookup[player.DiscordUID] = this.PlayerDiscordIdLookup.GetValueOrDefault(player.DiscordUID, new List<Team>());
+                            this.PlayerDiscordIdLookup[player.DiscordUID].Add(team);
+                        }
+                    }
+                }
+            }
 
             if (bracketSets.Count > 0)
             {
-                foreach (Team team in this.Bracket.Teams)
-                {
-                    foreach (Player player in team.Players)
-                    {
-                        this.PlayerDiscordLookup[player.DiscordId] = this.PlayerDiscordLookup.GetValueOrDefault(player.DiscordId, new List<Team>());
-                        this.PlayerDiscordLookup[player.DiscordId].Add(team);
-
-                        this.PlayerDiscordIdLookup[player.DiscordUID] = this.PlayerDiscordIdLookup.GetValueOrDefault(player.DiscordUID, new List<Team>());
-                        this.PlayerDiscordIdLookup[player.DiscordUID].Add(team);
-                    }
-                }
-
                 foreach (MatchResult result in this.Bracket.Rounds.Last().SelectMany(r => r.Matches))
                 {
                     this.NextMatchLookup[result.HomeTeam] = result;
@@ -58,6 +78,8 @@ namespace PlayCEASharp.DataModel
                     }
                 }
             }
+
+            this.MatchLookup = this.Brackets.SelectMany(b => b.Rounds).SelectMany(r => r).SelectMany(r => r.Matches).ToDictionary(m => m.MatchId, m => m);
         }
 
         /// <summary>
@@ -76,6 +98,11 @@ namespace PlayCEASharp.DataModel
         public Dictionary<Team, MatchResult> NextMatchLookup { get; }
 
         /// <summary>
+        /// Looks up a match given a matchid.
+        /// </summary>
+        public Dictionary<string, MatchResult> MatchLookup { get; }
+
+        /// <summary>
         /// Gets the most recent bracket set for the league.
         /// </summary>
         public BracketSet Bracket { get { return bracketSets.LastOrDefault(); } }
@@ -91,15 +118,16 @@ namespace PlayCEASharp.DataModel
         public BracketConfiguration Configuration => this.configuration;
 
         /// <summary>
+        /// Gets the Teams involved in a league.
+        /// </summary>
+        public List<Team> Teams { get { return new List<Team>(teams); } }
+
+        /// <summary>
         /// Gets the game id for this bracket.
         /// </summary>
         public string GameId
         {
-            get
-            {
-                
-                return Bracket?.Brackets?.LastOrDefault()?.Game ?? null;
-            }
+            get { return this.gameId; }
         }
 
         /// <summary>

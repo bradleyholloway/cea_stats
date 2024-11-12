@@ -36,7 +36,29 @@ namespace PlayCEASharp.RequestManagement
 
         internal bool HasNewInformation(MatchResult prev, MatchResult curr)
         {
-            return (prev.AwayGamesWon != curr.AwayGamesWon) || (prev.HomeGamesWon != curr.HomeGamesWon);
+            if((prev.AwayGamesWon != curr.AwayGamesWon) || (prev.HomeGamesWon != curr.HomeGamesWon)) {
+                return true;
+            }
+
+            if (prev.Games == null && curr.Games == null)
+            {
+                return false;
+            }
+
+            if (prev.Games == null || curr.Games == null)
+            {
+                return true;
+            }
+
+            for (int i = 0; i < Math.Min(prev.Games.Count, curr.Games.Count); i++)
+            {
+                if (prev.Games[i].HomeScore != curr.Games[i].HomeScore || prev.Games[i].AwayScore != curr.Games[i].AwayScore)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

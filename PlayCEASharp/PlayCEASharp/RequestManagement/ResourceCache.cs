@@ -23,11 +23,6 @@ namespace PlayCEASharp.RequestManagement
         private static readonly GenericCache<BracketRound> bracketRoundCache = new GenericCache<BracketRound>((id) => new BracketRound(id));
 
         /// <summary>
-        /// Backing cache for players.
-        /// </summary>
-        private static readonly GenericCache<Player> playerCache = new GenericCache<Player>((id) => new Player(id));
-
-        /// <summary>
         /// Backing cache for tournaments.
         /// </summary>
         private static readonly GenericCache<Tournament> tournamentCache = new GenericCache<Tournament>((id) => new Tournament(id));
@@ -54,15 +49,6 @@ namespace PlayCEASharp.RequestManagement
         /// <returns>The bracket with the given id.</returns>
         internal static BracketRound GetBracketRound(string id) {
             return bracketRoundCache.Get(id);
-        }
-
-        /// <summary>
-        /// Gets the player with the given id.
-        /// </summary>
-        /// <param name="id">The playerId.</param>
-        /// <returns>The player with the given id.</returns>
-        internal static Player GetPlayer(string id) {
-            return playerCache.Get(id);
         }
 
         /// <summary>

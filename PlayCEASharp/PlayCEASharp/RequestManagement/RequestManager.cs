@@ -108,13 +108,96 @@ namespace PlayCEASharp.RequestManagement
         /// </summary>
         /// <param name="match">The match to report scores for.</param>
         /// <param name="discordBearerToken">Bearer token to use to update.</param>
-        public async Task ReportScores(MatchResult match, string discordBearerToken)
+        public async Task<HttpResponseMessage> ReportScores(MatchResult match, string discordBearerToken)
         {
             HttpRequestMessage httpRequest = new HttpRequestMessage(HttpMethod.Post, $"{endpoint}/matches/{match.MatchId}/scores");
             httpRequest.Headers.Add("authorization", $"bearer {discordBearerToken}");
             StringContent content = new StringContent(MatchResultToScoresUpdate(match));
             httpRequest.Content = content;
-            await this.client.SendAsync(httpRequest);
+            return await this.client.SendAsync(httpRequest);
+
+        }
+
+        /// <summary>
+        /// Reports scores for a match using a given discord bearer token.
+        /// </summary>
+        /// <param name="teamName">The name of the team to create.</param>
+        /// <param name="teamOrg">The org of the team to create.</param>
+        /// <param name="teamCharity">The charity for the team to create.</param>
+        /// <param name="discordBearerToken">Bearer token to use to update.</param>
+        /// <returns>The created team, or null if failed.</returns>
+        public async Task<Team> CreateTeam(string teamName, string teamOrg, string teamCharity, string discordBearerToken)
+        {
+            HttpRequestMessage httpRequest = new HttpRequestMessage(HttpMethod.Post, $"{endpoint}/teams");
+            httpRequest.Headers.Add("authorization", $"bearer {discordBearerToken}");
+            StringContent content = new StringContent(FormatNewTeamJson(teamName, teamOrg, teamCharity));
+            httpRequest.Content = content;
+            var response = await this.client.SendAsync(httpRequest);
+
+            string responseContent = await response.Content.ReadAsStringAsync();
+            JsonObject jObject = JsonNode.Parse(responseContent).AsObject();
+            Team team = Marshaller.Team(jObject["data"]);
+
+            return team;
+        }
+
+        /// <summary>
+        /// Reports scores for a match using a given discord bearer token.
+        /// </summary>
+        /// <param name="teamId">The teamId to add.</param>
+        /// <param name="tournamentId">The tournamentId to add.</param>
+        /// <param name="discordBearerToken">Bearer token to use to update.</param>
+        /// <returns>The created team, or null if failed.</returns>
+        public async Task<string> AddTeamToTournament(string teamId, string tournamentId, string discordBearerToken)
+        {
+            HttpRequestMessage httpRequest = new HttpRequestMessage(HttpMethod.Put, $"{endpoint}/tournament/{tournamentId}/teams");
+            httpRequest.Headers.Add("authorization", $"bearer {discordBearerToken}");
+            StringContent content = new StringContent(FormatAddTeamToTournamentJson(teamId));
+            httpRequest.Content = content;
+            var response = await this.client.SendAsync(httpRequest);
+
+            string responseContent = await response.Content.ReadAsStringAsync();
+            return responseContent;
+        }
+
+        /// <summary>
+        /// Generates a new Invite Code for a team.
+        /// </summary>
+        /// <param name="teamId">The teamId to add.</param>
+        /// <param name="discordBearerToken">Bearer token to use to update.</param>
+        /// <returns>The created team, or null if failed.</returns>
+        public async Task<string> GenerateNewInviteCode(string teamId, string discordBearerToken)
+        {
+            HttpRequestMessage httpRequest = new HttpRequestMessage(HttpMethod.Post, $"{endpoint}/teams/{teamId}/invite");
+            httpRequest.Headers.Add("authorization", $"bearer {discordBearerToken}");
+            var response = await this.client.SendAsync(httpRequest);
+            
+            string responseContent = await response.Content.ReadAsStringAsync();
+            JsonObject jObject = JsonNode.Parse(responseContent).AsObject();
+            string newCode = jObject["data"].GetValue<string>();
+            return newCode;
+        }
+
+        /// <summary>
+        /// Formats a new team request json.
+        /// </summary>
+        /// <param name="teamId">The id of the team to create.</param>
+        /// <returns>Json formatted new team request.</returns>
+        private string FormatAddTeamToTournamentJson(string teamId)
+        {
+            return $"{{\"teams\":[{{\"tid\":\"{teamId}\"}}]}}";
+        }
+
+        /// <summary>
+        /// Formats a new team request json.
+        /// </summary>
+        /// <param name="teamName">The name of the team to create.</param>
+        /// <param name="teamOrg">The org of the team to create.</param>
+        /// <param name="teamCharity">The charity for the team to create.</param>
+        /// <returns>Json formatted new team request.</returns>
+        private string FormatNewTeamJson(string teamName, string teamOrg, string teamCharity)
+        {
+            return $"{{\"name\":\"{teamName}\",\"org\":\"{teamOrg}\",\"charity\":\"{teamCharity}\"}}";
         }
 
         private string MatchResultToScoresUpdate(MatchResult match)
@@ -151,12 +234,12 @@ namespace PlayCEASharp.RequestManagement
         /// Gets all tournaments from PlayCEA.
         /// </summary>
         /// <returns>Collection of all Tournaments from PlayCEA.</returns>
-        internal async Task<List<Tournament>> GetTournaments(TournamentConfiguration tc) {
+        internal async Task<List<Tournament>> GetTournaments() {
             string content = await this.GetStringWithRetryAsync($"{endpoint}/tournaments");
             JsonObject jObject = JsonNode.Parse(content).AsObject();
             List<Tournament> tournaments = new List<Tournament>();
             foreach (JsonNode t in jObject["data"].AsArray()) {
-                Tournament tournament = Marshaller.Tournament(t, tc);
+                Tournament tournament = Marshaller.Tournament(t);
                 tournaments.Add(tournament);
             }
             return tournaments;
@@ -172,7 +255,7 @@ namespace PlayCEASharp.RequestManagement
         {
             string content = await this.GetStringWithRetryAsync($"{endpoint}/tournaments/{tournamentId}");
             JsonObject jObject = JsonNode.Parse(content).AsObject();
-            Tournament tournament = Marshaller.Tournament(jObject["data"], tc);
+            Tournament tournament = Marshaller.Tournament(jObject["data"]);
             return tournament;
         }
 

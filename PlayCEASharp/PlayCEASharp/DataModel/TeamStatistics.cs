@@ -18,12 +18,7 @@ namespace PlayCEASharp.DataModel
         /// </summary>
         public TeamStatistics()
         {
-            this.MatchWins = 0;
-            this.MatchLosses = 0;
-            this.GameWins = 0;
-            this.GameLosses = 0;
-            this.TotalGoals = 0;
-            this.TotalGoalsAgainst = 0;
+            this.Reset(NamingConfiguration.DefaultInstance);
         }
 
         /// <inheritdoc/>

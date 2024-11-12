@@ -116,7 +116,7 @@ namespace PlayCEASharp.RequestManagement
             lock (refreshLock)
             {
                 // Read all tournaments.
-                List<Tournament> tournaments = this.rm.GetTournaments(tc).Result;
+                List<Tournament> tournaments = this.rm.GetTournaments().Result;
                 // Filter to matching tournaments.
                 tournaments = ConfigurationGenerator.MatchingTournaments(tournaments, tc.matchingConfig);
                 // Populate brackets + teams for the scoped tournaments.
@@ -137,7 +137,7 @@ namespace PlayCEASharp.RequestManagement
                 AnalysisManager.Analyze(bracketSets, config, tc.namingConfig);
 
                 // Update league reference.
-                this.league = new League(bracketSets, config);
+                this.league = new League(bracketSets, config, tournaments);
                 this.prevTc = tc;
             }
         }

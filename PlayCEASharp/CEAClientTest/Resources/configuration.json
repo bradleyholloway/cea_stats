@@ -1,10 +1,34 @@
 ﻿{
   "configurations": [
     {
-      "id": "rocketleague",
+      "id": "lol",
+      "matchingConfig": {
+        "gameId": "lol",
+        "year": "2024",
+        "season": "FALL",
+        "stageNames": {
+          "-1": "Preseason",
+          "0": "Regular Season",
+          "2": "Playoffs"
+        },
+        "stageKeywords": {
+          "preseason": -1,
+          "playoff": 2,
+          "regular": 0
+        }
+      },
+      "namingConfig": {
+        "matchWord": "match",
+        "matchWordPlural": "matches",
+        "gameWord": "game",
+        "scoreWord": "point"
+      }
+    },
+    {
+      "id": "rl",
       "matchingConfig": {
         "gameId": "rl",
-        "year": "2023",
+        "year": "2024",
         "season": "FALL",
         "stageNames": {
           "-1": "Preseason",
@@ -23,7 +47,7 @@
           "contender": 1,
           "group a": -1,
           "group b": 0,
-          "group c":  1
+          "group c": 1
         }
       },
       "namingConfig": {

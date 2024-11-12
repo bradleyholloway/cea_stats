@@ -1,69 +1,93 @@
-﻿using PlayCEASharp.Analysis;using PlayCEASharp.Configuration;using PlayCEASharp.DataModel;using PlayCEASharp.RequestManagement;using PlayCEASharp.Utilities;
+﻿using CEAClientTest;
+using PlayCEASharp.Analysis;using PlayCEASharp.Configuration;using PlayCEASharp.DataModel;using PlayCEASharp.RequestManagement;using PlayCEASharp.Utilities;
 using System.Runtime.CompilerServices;
 using System.Text;
 
-namespace RlClientTest;public class Program {    public static void Main()    {
-        // LeagueManager.EndpointOverride = "https://z36ny63i72.execute-api.us-east-1.amazonaws.com/staging";
-        // TestUpdateMatch();
+namespace RlClientTest;public class Program {    const string StagingEndpoint = "https://z36ny63i72.execute-api.us-east-1.amazonaws.com/staging";
+    public static void Main()    {
 
-        // LeagueManager.NewBracketRounds += NewRounds;
-        // LeagueManager.UpdatedMatches += UpdatedMatches;
-        League league = LeagueManager.League;
-        // Console.WriteLine("Done Loading.");
+        // LeagueManager.EndpointOverride = StagingEndpoint;
+        // League league = LeagueManager.League;
 
-        // Console.WriteLine("Breakpoint before forcerefresh.");
-        // LeagueManager.ForceUpdate();
+        RequestManager rm = new RequestManager(null);
+        Team adobe = rm.GetTeam("NbHbj4gmbk", null).Result;
+
+        //AdminTools.FindScoreDifferential(league, 4);
+        //AdminTools.ReportScoresReminder(league);
+
+        //AdminTools.PrintLeagueTeamIds(league);
+        // AdminTools.PrintLeagueStats(league);
 
         /*
-        // Ad-hoc for getting info on orgs finals performances.
-        TournamentConfiguration tc = ConfigurationManager.TournamentConfigurations.configurations.First();
-        RequestManager rm = new RequestManager(null);        List<Tournament> tournaments = rm.GetTournaments(tc).Result;        tournaments = tournaments.Where(t => t.SeasonLeague.Equals("CORPORATE") && t.Playoffs != null && !t.Playoffs.BracketId.Equals("")).ToList();        Dictionary<Tournament, MatchResult> finalsMatches = tournaments.ToDictionary(t => t, t => GetFinalsMatch(t, rm, tc));
-        Dictionary<string, int> wins = new Dictionary<string, int>();
-        Dictionary<string, int> finals = new Dictionary<string, int>();
-        foreach (KeyValuePair<Tournament, MatchResult> result in finalsMatches)
+        string[][] teamsToCreate = new string[][]
         {
-            Team winner = (result.Value.HomeGamesWon > result.Value.AwayGamesWon) ? result.Value.HomeTeam : result.Value.AwayTeam;
-            Team loser = (result.Value.HomeGamesWon > result.Value.AwayGamesWon) ? result.Value.AwayTeam : result.Value.HomeTeam;
-            wins[winner.Org] = wins.GetValueOrDefault(winner.Org) + 1;
-            finals[winner.Org] = finals.GetValueOrDefault(winner.Org) + 1;
-            finals[loser.Org] = finals.GetValueOrDefault(loser.Org) + 1;
-            Console.WriteLine($"{result.Value.HomeGamesWon == result.Value.AwayGamesWon}--{winner.Org},{loser.Org},{winner.Name},{loser.Name},{result.Key.GameName},{result.Key.GameId},{result.Key.TournamentName},{result.Key.SeasonYear},{result.Key.SeasonSeason}");
-        }        foreach (string org in finals.Keys)
+            new string[]{ "IND Lords Of CS", "Aristocrat Labs", ""},
+
+        };
+
+        foreach (string[] teamToCreate in teamsToCreate)
         {
-            int win = wins.GetValueOrDefault(org);
-            //Console.WriteLine($"{org} {win} {finals[org]}");
-        }        */
+            Team createdTeam = rm
+                .CreateTeam(teamToCreate[0], teamToCreate[1], teamToCreate[2], bearerToken)
+                .Result;
+            Console.WriteLine($"{createdTeam.Name} {createdTeam.TeamId}");
+            Console.WriteLine(rm.AddTeamToTournament(createdTeam.TeamId, "tournamentid", bearerToken).Result);
+            Console.WriteLine($"{createdTeam} NewCode: {rm.GenerateNewInviteCode(createdTeam.TeamId, bearerToken).Result}");
+        }
+        */
 
-        FindScoreDifferential(4);
+        /*
+        string tournamentId = "";
+        string[] teamsToAdd = new string[] { "" };
 
-        PrintTeamIds();
+        foreach (string team in teamsToAdd)
+        {
+            Console.WriteLine(rm.AddTeamToTournament(team, tournamentId, bearerToken).Result);
+        }
+        */
 
-        // PrintLeagueStats();
+        //MatchResult m1 = rm.GetMatchResult("UmrNa2CdUO").Result;
+        //MatchResult m2 = rm.GetMatchResult("9Vn0WXAdeq").Result;
+
+        /*
+        TournamentConfiguration tc = new TournamentConfiguration()
+        {
+            namingConfig = new NamingConfiguration() { },
+        };
+        List<Tournament> allTournaments = rm.GetTournaments().Result;
+        allTournaments = allTournaments.Where(t => t.GameId == "rl" && t.Playoffs != null).ToList();
+        List<Bracket> playoffsBrackets = allTournaments.Select(t => rm.GetBracket(t.Playoffs.BracketId, tc).Result).ToList();
+        foreach (Tournament t in allTournaments)
+        {
+            PrintStatsForPlayoffs(t, tc.namingConfig);
+        }
+        */
+
+        // AdminTools.GenerateSeedString(league, 6, 11, 8);
+        // AdminTools.GenerateTeamsOrderString(league);
 
         // Prevent ending execution.
-        Thread.Sleep(TimeSpan.FromDays(1));    }    private static void PrintTeamIds()
+        Thread.Sleep(TimeSpan.FromDays(1));    }    private static void PrintStatsForPlayoffs(Tournament t, NamingConfiguration nc)
     {
-        League league = LeagueManager.League;
-        foreach (Team t in league.Bracket.Teams)
+        if (t.Playoffs == null)
         {
-            Console.WriteLine($"{t} {t.TeamId}");
+            return;
         }
-    }    private static void FindScoreDifferential(int maxDiff)
-    {
-        League league = LeagueManager.League;
-        foreach (BracketRound round in league.Bracket.Rounds.Last())
-        {
-            foreach (MatchResult match in round.Matches)
-            {
-                if (match.Games != null)
-                {
-                    foreach (Game game in match.Games.Where(g => Math.Abs(g.HomeScoreDifferential) > maxDiff))
-                    {
-                        Console.WriteLine(match);
-                    }
-                }
-            }
+
+        Console.WriteLine($"{t.TournamentName} {t.SeasonYear} {t.SeasonSeason}");
+        var bc = new BracketConfiguration();
+        AnalysisManager.ResetStats(t.Playoffs, bc, nc);
+        BasicStats.CalculateBasicStats(t.Playoffs, bc);
+        List<Team> rankedTeams = t.Playoffs.Teams.OrderByDescending(t => t.Stats).ToList();
+        Console.WriteLine($"Name,Rank,{rankedTeams.First().Stats.ToCSVKeys()}");
+        int i = 1;
+        foreach (Team team in rankedTeams) {
+            Console.WriteLine($"{team.Name.Replace(',', '.')},{i++},{team.Stats.ToCSV()}");
         }
+
+        Console.WriteLine();
+
+
     }    private static void TestUpdateMatch()
     {
         League league = LeagueManager.League;
@@ -91,45 +115,4 @@ namespace RlClientTest;public class Program {    public static void Main()  
         {
             Console.WriteLine($"{m.Value.GameId} {m.Key.ToString()}");
         }
-    }    private static void PrintLeagueStats()
-    {
-        League league = LeagueManager.League;        List<BracketRound> lastRounds = league.Bracket.Brackets.Select(b => b.Rounds.Last()).ToList();        Dictionary<Team, BracketRound> rLookup = new Dictionary<Team, BracketRound>();        foreach (BracketRound round in lastRounds)
-        {
-            foreach (Team t in round.Matches.SelectMany(m => m.Teams))
-            {
-                rLookup[t] = round;
-            }
-        }        Dictionary<Team, int> rank = league.Bracket.Teams.ToDictionary(t => t, t => t.RoundRanking[rLookup[t]]);        List<Team> teams = league.Bracket.Teams.OrderBy(t => rank[t]).ToList();        string keys = "Team," + teams.First().Stats.ToCSVKeys() + ",tid";        Console.WriteLine(keys);        for (int i = 0; i < teams.Count; i++)
-        {
-            TeamStatistics stats = teams[i].StageCumulativeRoundStats[rLookup[teams[i]]];
-            //Console.WriteLine($"[{i}][{stats.MatchWins}][{stats.TotalGoalDifferential}] {teams[i]}");
-            Console.WriteLine($"{teams[i]},{stats.ToCSV()},{teams[i].TeamId}");
-        }
-
-        Console.WriteLine();
-        Console.WriteLine();
-
-        //Console.WriteLine(GenerateSeedString(teams, 8, 24, 16));
-    }    private static string GenerateSeedString(List<Team> teams, int top, int mid, int bottom)
-    {
-        string topString = string.Join(',', teams.Take(top).Select(t => $"{{ \"S\": \"{t.TeamId}\"}}"));
-        string midString = string.Join(',', teams.Skip(top).Take(mid).Select(t => $"{{ \"S\": \"{t.TeamId}\"}}"));
-        string botString = string.Join(',', teams.Skip(top + mid).Take(bottom).Select(t => $"{{ \"S\": \"{t.TeamId}\"}}"));
-
-
-        StringBuilder sb = new StringBuilder();
-
-        sb.Append("\"seed\": { \"M\": { ");
-        sb.Append("\"bot\": { \"L\": [");
-        sb.Append(botString);
-        sb.Append("] },");
-        sb.Append("\"mid\": { \"L\": [");
-        sb.Append(midString);
-        sb.Append("] },");
-        sb.Append("\"top\": { \"L\": [");
-        sb.Append(topString);
-        sb.Append("] }");
-        sb.Append("} }");
-
-        return sb.ToString();
     }}

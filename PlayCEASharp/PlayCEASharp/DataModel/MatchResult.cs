@@ -69,6 +69,11 @@ namespace PlayCEASharp.DataModel
         public string MatchId { get; private set; }
 
         /// <summary>
+        /// Which Game this match is for.
+        /// </summary>
+        public string GameId { get; internal set; }
+
+        /// <summary>
         /// The round that this match occurred in the bracket.
         /// </summary>
         public int Round { get; internal set; }
@@ -118,8 +123,7 @@ namespace PlayCEASharp.DataModel
         /// <summary>
         /// If the match has been completed or is still pending.
         /// </summary>
-        public bool Completed =>
-            ((this.HomeGamesWon + this.AwayGamesWon) > 0) || this.Bye;
+        public bool Completed { get; internal set; }
 
         /// <summary>
         /// The collection of teams participating in this match.

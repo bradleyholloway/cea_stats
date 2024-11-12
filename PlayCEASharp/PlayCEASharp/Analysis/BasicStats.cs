@@ -18,99 +18,90 @@ namespace PlayCEASharp.Analysis
         /// </summary>
         /// <param name="bracket">The bracket to calculate for.</param>
         /// <param name="config">The BracketConfiguration to use for analysis.</param>
-        private static void CalculateBasicStats(Bracket bracket, BracketConfiguration config)
+        internal static void CalculateBasicStats(Bracket bracket, BracketConfiguration config)
         {
-            BracketRound round = null;
-            foreach (BracketRound round2 in bracket.Rounds)
+            BracketRound prevRound = null;
+            foreach (BracketRound currentRound in bracket.Rounds)
             {
-                string str = config.StageLookup(round2.RoundName);
-                foreach (MatchResult result in round2.NonByeMatches)
+                string str = config.StageLookup(currentRound.RoundName);
+                foreach (MatchResult result in currentRound.NonByeMatches)
                 {
-                    TeamStatistics local1 = result.HomeTeam.RoundStats[round2];
-                    local1.TotalGoals += result.HomeGoals;
-                    TeamStatistics local2 = result.AwayTeam.RoundStats[round2];
-                    local2.TotalGoals += result.AwayGoals;
-                    TeamStatistics local3 = result.HomeTeam.RoundStats[round2];
-                    local3.TotalGoalsAgainst += result.AwayGoals;
-                    TeamStatistics local4 = result.AwayTeam.RoundStats[round2];
-                    local4.TotalGoalsAgainst += result.HomeGoals;
-                    TeamStatistics local5 = result.HomeTeam.RoundStats[round2];
-                    local5.GameWins += result.HomeGamesWon;
-                    TeamStatistics local6 = result.HomeTeam.RoundStats[round2];
-                    local6.GameLosses += result.AwayGamesWon;
-                    TeamStatistics local7 = result.AwayTeam.RoundStats[round2];
-                    local7.GameWins += result.AwayGamesWon;
-                    TeamStatistics local8 = result.AwayTeam.RoundStats[round2];
-                    local8.GameLosses += result.HomeGamesWon;
-                    TeamStatistics local9 = result.HomeTeam.RoundStats[round2];
-                    local9.MatchWins += (result.HomeGamesWon > result.AwayGamesWon) ? 1 : 0;
-                    TeamStatistics local10 = result.HomeTeam.RoundStats[round2];
-                    local10.MatchLosses += (result.AwayGamesWon > result.HomeGamesWon) ? 1 : 0;
-                    TeamStatistics local11 = result.AwayTeam.RoundStats[round2];
-                    local11.MatchWins += (result.AwayGamesWon > result.HomeGamesWon) ? 1 : 0;
-                    TeamStatistics local12 = result.AwayTeam.RoundStats[round2];
-                    local12.MatchLosses += (result.HomeGamesWon > result.AwayGamesWon) ? 1 : 0;
+                    if (!result.HomeTeam.RoundStats.ContainsKey(currentRound))
+                    {
+                        result.HomeTeam.RoundStats[currentRound] = new TeamStatistics();
+                    }
+
+                    TeamStatistics homeStats = result.HomeTeam.RoundStats[currentRound];
+                    homeStats.TotalGoals += result.HomeGoals;
+                    TeamStatistics awayStats = result.AwayTeam.RoundStats[currentRound];
+                    awayStats.TotalGoals += result.AwayGoals;
+                    homeStats.TotalGoalsAgainst += result.AwayGoals;
+                    awayStats.TotalGoalsAgainst += result.HomeGoals;
+                    homeStats.GameWins += result.HomeGamesWon;
+                    homeStats.GameLosses += result.AwayGamesWon;
+                    awayStats.GameWins += result.AwayGamesWon;
+                    awayStats.GameLosses += result.HomeGamesWon;
+                    homeStats.MatchWins += (result.HomeGamesWon > result.AwayGamesWon) ? 1 : 0;
+                    homeStats.MatchLosses += (result.AwayGamesWon > result.HomeGamesWon) ? 1 : 0;
+                    awayStats.MatchWins += (result.AwayGamesWon > result.HomeGamesWon) ? 1 : 0;
+                    awayStats.MatchLosses += (result.HomeGamesWon > result.AwayGamesWon) ? 1 : 0;
                     Team homeTeam = result.HomeTeam;
-                    homeTeam.Stats += result.HomeTeam.RoundStats[round2];
+                    homeTeam.Stats += result.HomeTeam.RoundStats[currentRound];
                     Team awayTeam = result.AwayTeam;
-                    awayTeam.Stats += result.AwayTeam.RoundStats[round2];
+                    awayTeam.Stats += result.AwayTeam.RoundStats[currentRound];
                     Dictionary<string, TeamStatistics> stageStats = result.HomeTeam.StageStats;
                     string key = str;
-                    stageStats[key] = stageStats[key] + result.HomeTeam.RoundStats[round2];
+                    stageStats[key] = stageStats[key] + result.HomeTeam.RoundStats[currentRound];
                     stageStats = result.AwayTeam.StageStats;
                     key = str;
-                    stageStats[key] = stageStats[key] + result.AwayTeam.RoundStats[round2];
-                    result.HomeTeam.CumulativeRoundStats[round2] = result.HomeTeam.RoundStats[round2];
-                    result.AwayTeam.CumulativeRoundStats[round2] = result.AwayTeam.RoundStats[round2];
-                    result.HomeTeam.StageCumulativeRoundStats[round2] = result.HomeTeam.RoundStats[round2];
-                    result.AwayTeam.StageCumulativeRoundStats[round2] = result.AwayTeam.RoundStats[round2];
-                    if (round != null)
+                    stageStats[key] = stageStats[key] + result.AwayTeam.RoundStats[currentRound];
+                    result.HomeTeam.CumulativeRoundStats[currentRound] = result.HomeTeam.RoundStats[currentRound];
+                    result.AwayTeam.CumulativeRoundStats[currentRound] = result.AwayTeam.RoundStats[currentRound];
+                    result.HomeTeam.StageCumulativeRoundStats[currentRound] = result.HomeTeam.RoundStats[currentRound];
+                    result.AwayTeam.StageCumulativeRoundStats[currentRound] = result.AwayTeam.RoundStats[currentRound];
+                    if (prevRound != null)
                     {
                         Dictionary<BracketRound, TeamStatistics> cumulativeRoundStats = result.HomeTeam.CumulativeRoundStats;
-                        BracketRound round3 = round2;
-                        cumulativeRoundStats[round3] = cumulativeRoundStats[round3] + result.HomeTeam.CumulativeRoundStats[round];
+                        cumulativeRoundStats[currentRound] = cumulativeRoundStats[currentRound] + result.HomeTeam.CumulativeRoundStats[prevRound];
                         cumulativeRoundStats = result.AwayTeam.CumulativeRoundStats;
-                        round3 = round2;
-                        cumulativeRoundStats[round3] = cumulativeRoundStats[round3] + result.AwayTeam.CumulativeRoundStats[round];
-                        if (str.Equals(config.StageLookup(round2.RoundName)))
+                        cumulativeRoundStats[currentRound] = cumulativeRoundStats[currentRound] + result.AwayTeam.CumulativeRoundStats[prevRound];
+                        if (str.Equals(config.StageLookup(currentRound.RoundName)))
                         {
                             cumulativeRoundStats = result.HomeTeam.StageCumulativeRoundStats;
-                            round3 = round2;
-                            cumulativeRoundStats[round3] = cumulativeRoundStats[round3] + result.HomeTeam.StageCumulativeRoundStats[round];
+                            cumulativeRoundStats[currentRound] = cumulativeRoundStats[currentRound] + result.HomeTeam.StageCumulativeRoundStats[prevRound];
                             cumulativeRoundStats = result.AwayTeam.StageCumulativeRoundStats;
-                            round3 = round2;
-                            cumulativeRoundStats[round3] = cumulativeRoundStats[round3] + result.AwayTeam.StageCumulativeRoundStats[round];
+                            cumulativeRoundStats[currentRound] = cumulativeRoundStats[currentRound] + result.AwayTeam.StageCumulativeRoundStats[prevRound];
                         }
                     }
                 }
-                foreach (MatchResult result in round2.ByeMatches)
+                foreach (MatchResult result in currentRound.ByeMatches)
                 {
-                    TeamStatistics local1 = result.HomeTeam.RoundStats[round2];
+                    TeamStatistics local1 = result.HomeTeam.RoundStats[currentRound];
                     local1.TotalGoals += result.HomeGoals;
-                    TeamStatistics local9 = result.HomeTeam.RoundStats[round2];
+                    TeamStatistics local9 = result.HomeTeam.RoundStats[currentRound];
                     local9.MatchWins ++;
                     Team homeTeam = result.HomeTeam;
-                    homeTeam.Stats += result.HomeTeam.RoundStats[round2];
+                    homeTeam.Stats += result.HomeTeam.RoundStats[currentRound];
                     Dictionary<string, TeamStatistics> stageStats = result.HomeTeam.StageStats;
                     string key = str;
-                    stageStats[key] = stageStats[key] + result.HomeTeam.RoundStats[round2];
-                    result.HomeTeam.CumulativeRoundStats[round2] = result.HomeTeam.RoundStats[round2];
-                    result.HomeTeam.StageCumulativeRoundStats[round2] = result.HomeTeam.RoundStats[round2];
-                    if (round != null)
+                    stageStats[key] = stageStats[key] + result.HomeTeam.RoundStats[currentRound];
+                    result.HomeTeam.CumulativeRoundStats[currentRound] = result.HomeTeam.RoundStats[currentRound];
+                    result.HomeTeam.StageCumulativeRoundStats[currentRound] = result.HomeTeam.RoundStats[currentRound];
+                    if (prevRound != null)
                     {
                         Dictionary<BracketRound, TeamStatistics> cumulativeRoundStats = result.HomeTeam.CumulativeRoundStats;
-                        BracketRound round3 = round2;
-                        cumulativeRoundStats[round3] = cumulativeRoundStats[round3] + result.HomeTeam.CumulativeRoundStats[round];
-                        if (str.Equals(config.StageLookup(round2.RoundName)))
+                        BracketRound round3 = currentRound;
+                        cumulativeRoundStats[round3] = cumulativeRoundStats[round3] + result.HomeTeam.CumulativeRoundStats[prevRound];
+                        if (str.Equals(config.StageLookup(currentRound.RoundName)))
                         {
                             cumulativeRoundStats = result.HomeTeam.StageCumulativeRoundStats;
-                            round3 = round2;
-                            cumulativeRoundStats[round3] = cumulativeRoundStats[round3] + result.HomeTeam.StageCumulativeRoundStats[round];
+                            round3 = currentRound;
+                            cumulativeRoundStats[round3] = cumulativeRoundStats[round3] + result.HomeTeam.StageCumulativeRoundStats[prevRound];
                         }
                     }
                 }
 
-                round = round2;
+                prevRound = currentRound;
             }
         }
 

@@ -19,9 +19,8 @@ namespace PlayCEASharp.RequestManagement
         /// Transforms a json tournament into a Tournament.
         /// </summary>
         /// <param name="tournamentToken">the json for the tournament.</param>
-        /// <param name="tc">Tournament configuration to be used for this tournament.</param>
         /// <returns>A hydrated Tournament</returns>
-        internal static Tournament Tournament(JsonNode tournamentToken, TournamentConfiguration tc)
+        internal static Tournament Tournament(JsonNode tournamentToken)
         {
             Tournament tournament = ResourceCache.GetTournament((string)tournamentToken["tmid"]);
             tournament.TournamentName = (string)tournamentToken["name"];
@@ -110,10 +109,9 @@ namespace PlayCEASharp.RequestManagement
         /// <returns>A hydrated Bracket.</returns>
         internal static Bracket Bracket(JsonNode bracketToken, TournamentConfiguration tc)
         {
-            Bracket bracket1 = ResourceCache.GetBracket((string)bracketToken["bid"]);
-            bracket1.Name = (string)bracketToken["name"];
-            bracket1.Game = (string)bracketToken["game"];
-            Bracket bracket = bracket1;
+            Bracket bracket = ResourceCache.GetBracket((string)bracketToken["bid"]);
+            bracket.Name = (string)bracketToken["name"];
+            bracket.Game = (string)bracketToken["game"];
             foreach (JsonNode token in bracketToken["rounds"].AsArray())
             {
                 BracketRound round = BracketRound(token, bracket);
@@ -196,14 +194,14 @@ namespace PlayCEASharp.RequestManagement
         /// <returns>A hydrated Game.</returns>
         internal static Game Game(JsonNode gameToken)
         {
-            Game game1 = new Game((string)gameToken["gid"]);
+            Game game = new Game((string)gameToken["gid"]);
             JsonNode tid = gameToken["ts"][(int)0]["tid"];
-            game1.HomeTeam = ResourceCache.GetTeam(ExtractTid(tid));
-            game1.HomeScore = (int)gameToken["ts"][(int)0]["rs"];
+            game.HomeTeam = ResourceCache.GetTeam(ExtractTid(tid));
+            game.HomeScore = (int)gameToken["ts"][(int)0]["rs"];
             tid = gameToken["ts"][(int)1]["tid"];
-            game1.AwayTeam = ResourceCache.GetTeam(ExtractTid(tid));
-            game1.AwayScore = (int)gameToken["ts"][(int)1]["rs"];
-            return game1;
+            game.AwayTeam = ResourceCache.GetTeam(ExtractTid(tid));
+            game.AwayScore = (int)gameToken["ts"][(int)1]["rs"];
+            return game;
         }
 
         /// <summary>
@@ -214,24 +212,22 @@ namespace PlayCEASharp.RequestManagement
         /// <returns>A MatchResult for the given match.</returns>
         internal static MatchResult Match(JsonNode matchToken, BracketRound optionalBracketRound = null)
         {
-            MatchResult result2;
+            MatchResult result;
+            result = new MatchResult((string)matchToken["mid"]);
+            result.Round = (int)matchToken["rnd"];
+            result.GameId = (string)matchToken["game"];
+            result.BracketRound = optionalBracketRound ?? ResourceCache.GetBracketRound((string)matchToken["bid"]);
+            result.Completed = (matchToken["complete"] == null) ? result.BracketRound.Complete : (bool)matchToken["complete"];
             if (object.ReferenceEquals(matchToken["ts"].AsArray().First(), matchToken["ts"].AsArray().Last()))
             {
-                MatchResult result1 = new MatchResult((string)matchToken["mid"]);
-                result1.Round = (int)matchToken["rnd"];
-                result1.HomeTeam = ResourceCache.GetTeam((string)matchToken["ts"][(int)0]["tid"]);
-                result1.AwayTeam = null;
-                result1.Bye = true;
-                result1.BracketRound = optionalBracketRound;
-                result2 = result1;
+                result.HomeTeam = ResourceCache.GetTeam((string)matchToken["ts"][(int)0]["tid"]);
+                result.AwayTeam = null;
+                result.Bye = true;
             }
             else
             {
-                MatchResult result3 = new MatchResult((string)matchToken["mid"]);
-                result3.Round = (int)matchToken["rnd"];
-                result3.HomeTeam = ResourceCache.GetTeam((string)matchToken["ts"][(int)0]["tid"]);
-                result3.AwayTeam = ResourceCache.GetTeam((string)matchToken["ts"][(int)1]["tid"]);
-                MatchResult result = result3;
+                result.HomeTeam = ResourceCache.GetTeam((string)matchToken["ts"][(int)0]["tid"]);
+                result.AwayTeam = ResourceCache.GetTeam((string)matchToken["ts"][(int)1]["tid"]);
                 if ((optionalBracketRound != null) && (matchToken["ts"][(int)0]["rank"] != null))
                 {
                     result.HomeTeam.FixedRoundRanking[optionalBracketRound] = (int)matchToken["ts"][(int)0]["rank"];
@@ -254,11 +250,9 @@ namespace PlayCEASharp.RequestManagement
                     result.AwayGoals += item.AwayScore;
                     result.Games.Add(item);
                 }
-                result.BracketRound = optionalBracketRound;
-                result2 = result;
             }
 
-            return result2;
+            return result;
         }
 
         /// <summary>
@@ -268,13 +262,19 @@ namespace PlayCEASharp.RequestManagement
         /// <returns>A hydrated Player.</returns>
         internal static Player Player(JsonNode playerToken)
         {
-            Player player1 = ResourceCache.GetPlayer((string)playerToken["uid"]);
-            player1.DisplayName = (string)playerToken["dn"];
-            player1.DiscordId = (string)playerToken["ddn"];
-            player1.DiscordUID = ulong.Parse((string)playerToken["uid"]);
-            player1.PictureURL = (string)playerToken["ico"];
-            player1.Captain = (bool)playerToken["captain"];
-            return player1;
+            Player player = new Player((string)playerToken["uid"]);
+            player.DisplayName = (string)playerToken["dn"];
+            player.DiscordId = (string)playerToken["ddn"];
+            bool validDiscordId = ulong.TryParse((string)playerToken["uid"], out ulong discordUID);
+            if (!validDiscordId)
+            {
+                return null;
+            }
+
+            player.DiscordUID = discordUID;
+            player.PictureURL = (string)playerToken["ico"];
+            player.Captain = (bool)playerToken["captain"];
+            return player;
         }
 
         /// <summary>
@@ -283,10 +283,10 @@ namespace PlayCEASharp.RequestManagement
         /// <param name="teamToken">the json representation of the team.</param>
         /// <param name="tc">The TournamentConfiguration used for the context of this team.</param>
         /// <returns>A hydrated Team.</returns>
-        internal static Team Team(JsonNode teamToken, TournamentConfiguration tc)
+        internal static Team Team(JsonNode teamToken, TournamentConfiguration tc = null)
         {
             Team team = ResourceCache.GetTeam((string)teamToken["tid"]);
-            team.NameConfiguration = tc.namingConfig;
+            team.NameConfiguration = tc?.namingConfig ?? NamingConfiguration.DefaultInstance;
             team.Name = (string)teamToken["dn"];
             team.Org = (string)teamToken["org"];
             team.ImageURL = (string)teamToken["ico"];
@@ -299,7 +299,7 @@ namespace PlayCEASharp.RequestManagement
                 foreach (JsonNode token in teamToken["mbr"].AsArray())
                 {
                     Player player = Player(token);
-                    if (!team.Players.Contains(player))
+                    if (player != null && !team.Players.Contains(player))
                     {
                         team.Players.Add(player);
                     }
