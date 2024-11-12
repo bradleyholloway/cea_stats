@@ -193,6 +193,19 @@ references:
   isSpec: "True"
   fullName: PlayCEASharp.Configuration.MatchingConfiguration.stageNames
   nameWithType: MatchingConfiguration.stageNames
+- uid: PlayCEASharp.Configuration.MatchingConfiguration.tournamentBlacklist
+  name: tournamentBlacklist
+  href: api/PlayCEASharp.Configuration.MatchingConfiguration.html#PlayCEASharp_Configuration_MatchingConfiguration_tournamentBlacklist
+  commentId: P:PlayCEASharp.Configuration.MatchingConfiguration.tournamentBlacklist
+  fullName: PlayCEASharp.Configuration.MatchingConfiguration.tournamentBlacklist
+  nameWithType: MatchingConfiguration.tournamentBlacklist
+- uid: PlayCEASharp.Configuration.MatchingConfiguration.tournamentBlacklist*
+  name: tournamentBlacklist
+  href: api/PlayCEASharp.Configuration.MatchingConfiguration.html#PlayCEASharp_Configuration_MatchingConfiguration_tournamentBlacklist_
+  commentId: Overload:PlayCEASharp.Configuration.MatchingConfiguration.tournamentBlacklist
+  isSpec: "True"
+  fullName: PlayCEASharp.Configuration.MatchingConfiguration.tournamentBlacklist
+  nameWithType: MatchingConfiguration.tournamentBlacklist
 - uid: PlayCEASharp.Configuration.MatchingConfiguration.year
   name: year
   href: api/PlayCEASharp.Configuration.MatchingConfiguration.html#PlayCEASharp_Configuration_MatchingConfiguration_year
@@ -212,6 +225,12 @@ references:
   commentId: T:PlayCEASharp.Configuration.NamingConfiguration
   fullName: PlayCEASharp.Configuration.NamingConfiguration
   nameWithType: NamingConfiguration
+- uid: PlayCEASharp.Configuration.NamingConfiguration.DefaultInstance
+  name: DefaultInstance
+  href: api/PlayCEASharp.Configuration.NamingConfiguration.html#PlayCEASharp_Configuration_NamingConfiguration_DefaultInstance
+  commentId: F:PlayCEASharp.Configuration.NamingConfiguration.DefaultInstance
+  fullName: PlayCEASharp.Configuration.NamingConfiguration.DefaultInstance
+  nameWithType: NamingConfiguration.DefaultInstance
 - uid: PlayCEASharp.Configuration.NamingConfiguration.gameWord
   name: gameWord
   href: api/PlayCEASharp.Configuration.NamingConfiguration.html#PlayCEASharp_Configuration_NamingConfiguration_gameWord
@@ -955,6 +974,19 @@ references:
   isSpec: "True"
   fullName: PlayCEASharp.DataModel.League.GameId
   nameWithType: League.GameId
+- uid: PlayCEASharp.DataModel.League.MatchLookup
+  name: MatchLookup
+  href: api/PlayCEASharp.DataModel.League.html#PlayCEASharp_DataModel_League_MatchLookup
+  commentId: P:PlayCEASharp.DataModel.League.MatchLookup
+  fullName: PlayCEASharp.DataModel.League.MatchLookup
+  nameWithType: League.MatchLookup
+- uid: PlayCEASharp.DataModel.League.MatchLookup*
+  name: MatchLookup
+  href: api/PlayCEASharp.DataModel.League.html#PlayCEASharp_DataModel_League_MatchLookup_
+  commentId: Overload:PlayCEASharp.DataModel.League.MatchLookup
+  isSpec: "True"
+  fullName: PlayCEASharp.DataModel.League.MatchLookup
+  nameWithType: League.MatchLookup
 - uid: PlayCEASharp.DataModel.League.NextMatchLookup
   name: NextMatchLookup
   href: api/PlayCEASharp.DataModel.League.html#PlayCEASharp_DataModel_League_NextMatchLookup
@@ -1007,6 +1039,19 @@ references:
   isSpec: "True"
   fullName: PlayCEASharp.DataModel.League.StageLookup
   nameWithType: League.StageLookup
+- uid: PlayCEASharp.DataModel.League.Teams
+  name: Teams
+  href: api/PlayCEASharp.DataModel.League.html#PlayCEASharp_DataModel_League_Teams
+  commentId: P:PlayCEASharp.DataModel.League.Teams
+  fullName: PlayCEASharp.DataModel.League.Teams
+  nameWithType: League.Teams
+- uid: PlayCEASharp.DataModel.League.Teams*
+  name: Teams
+  href: api/PlayCEASharp.DataModel.League.html#PlayCEASharp_DataModel_League_Teams_
+  commentId: Overload:PlayCEASharp.DataModel.League.Teams
+  isSpec: "True"
+  fullName: PlayCEASharp.DataModel.League.Teams
+  nameWithType: League.Teams
 - uid: PlayCEASharp.DataModel.MatchResult
   name: MatchResult
   href: api/PlayCEASharp.DataModel.MatchResult.html
@@ -1104,6 +1149,19 @@ references:
   isSpec: "True"
   fullName: PlayCEASharp.DataModel.MatchResult.Completed
   nameWithType: MatchResult.Completed
+- uid: PlayCEASharp.DataModel.MatchResult.GameId
+  name: GameId
+  href: api/PlayCEASharp.DataModel.MatchResult.html#PlayCEASharp_DataModel_MatchResult_GameId
+  commentId: P:PlayCEASharp.DataModel.MatchResult.GameId
+  fullName: PlayCEASharp.DataModel.MatchResult.GameId
+  nameWithType: MatchResult.GameId
+- uid: PlayCEASharp.DataModel.MatchResult.GameId*
+  name: GameId
+  href: api/PlayCEASharp.DataModel.MatchResult.html#PlayCEASharp_DataModel_MatchResult_GameId_
+  commentId: Overload:PlayCEASharp.DataModel.MatchResult.GameId
+  isSpec: "True"
+  fullName: PlayCEASharp.DataModel.MatchResult.GameId
+  nameWithType: MatchResult.GameId
 - uid: PlayCEASharp.DataModel.MatchResult.Games
   name: Games
   href: api/PlayCEASharp.DataModel.MatchResult.html#PlayCEASharp_DataModel_MatchResult_Games
@@ -2081,6 +2139,35 @@ references:
   isSpec: "True"
   fullName: PlayCEASharp.RequestManagement.LeagueManager.GetLeague
   nameWithType: LeagueManager.GetLeague
+- uid: PlayCEASharp.RequestManagement.LeagueManager.GetLeagues(HashSet{System.String},HashSet{System.String})
+  name: GetLeagues(HashSet<String>, HashSet<String>)
+  href: api/PlayCEASharp.RequestManagement.LeagueManager.html#PlayCEASharp_RequestManagement_LeagueManager_GetLeagues_HashSet_System_String__HashSet_System_String__
+  commentId: M:PlayCEASharp.RequestManagement.LeagueManager.GetLeagues(HashSet{System.String},HashSet{System.String})
+  name.vb: GetLeagues(HashSet(Of String), HashSet(Of String))
+  fullName: PlayCEASharp.RequestManagement.LeagueManager.GetLeagues(HashSet<System.String>, HashSet<System.String>)
+  fullName.vb: PlayCEASharp.RequestManagement.LeagueManager.GetLeagues(HashSet(Of System.String), HashSet(Of System.String))
+  nameWithType: LeagueManager.GetLeagues(HashSet<String>, HashSet<String>)
+  nameWithType.vb: LeagueManager.GetLeagues(HashSet(Of String), HashSet(Of String))
+- uid: PlayCEASharp.RequestManagement.LeagueManager.GetLeagues*
+  name: GetLeagues
+  href: api/PlayCEASharp.RequestManagement.LeagueManager.html#PlayCEASharp_RequestManagement_LeagueManager_GetLeagues_
+  commentId: Overload:PlayCEASharp.RequestManagement.LeagueManager.GetLeagues
+  isSpec: "True"
+  fullName: PlayCEASharp.RequestManagement.LeagueManager.GetLeagues
+  nameWithType: LeagueManager.GetLeagues
+- uid: PlayCEASharp.RequestManagement.LeagueManager.GetMatch(System.String)
+  name: GetMatch(String)
+  href: api/PlayCEASharp.RequestManagement.LeagueManager.html#PlayCEASharp_RequestManagement_LeagueManager_GetMatch_System_String_
+  commentId: M:PlayCEASharp.RequestManagement.LeagueManager.GetMatch(System.String)
+  fullName: PlayCEASharp.RequestManagement.LeagueManager.GetMatch(System.String)
+  nameWithType: LeagueManager.GetMatch(String)
+- uid: PlayCEASharp.RequestManagement.LeagueManager.GetMatch*
+  name: GetMatch
+  href: api/PlayCEASharp.RequestManagement.LeagueManager.html#PlayCEASharp_RequestManagement_LeagueManager_GetMatch_
+  commentId: Overload:PlayCEASharp.RequestManagement.LeagueManager.GetMatch
+  isSpec: "True"
+  fullName: PlayCEASharp.RequestManagement.LeagueManager.GetMatch
+  nameWithType: LeagueManager.GetMatch
 - uid: PlayCEASharp.RequestManagement.LeagueManager.League
   name: League
   href: api/PlayCEASharp.RequestManagement.LeagueManager.html#PlayCEASharp_RequestManagement_LeagueManager_League
@@ -2174,6 +2261,45 @@ references:
   isSpec: "True"
   fullName: PlayCEASharp.RequestManagement.RequestManager.RequestManager
   nameWithType: RequestManager.RequestManager
+- uid: PlayCEASharp.RequestManagement.RequestManager.AddTeamToTournament(System.String,System.String,System.String)
+  name: AddTeamToTournament(String, String, String)
+  href: api/PlayCEASharp.RequestManagement.RequestManager.html#PlayCEASharp_RequestManagement_RequestManager_AddTeamToTournament_System_String_System_String_System_String_
+  commentId: M:PlayCEASharp.RequestManagement.RequestManager.AddTeamToTournament(System.String,System.String,System.String)
+  fullName: PlayCEASharp.RequestManagement.RequestManager.AddTeamToTournament(System.String, System.String, System.String)
+  nameWithType: RequestManager.AddTeamToTournament(String, String, String)
+- uid: PlayCEASharp.RequestManagement.RequestManager.AddTeamToTournament*
+  name: AddTeamToTournament
+  href: api/PlayCEASharp.RequestManagement.RequestManager.html#PlayCEASharp_RequestManagement_RequestManager_AddTeamToTournament_
+  commentId: Overload:PlayCEASharp.RequestManagement.RequestManager.AddTeamToTournament
+  isSpec: "True"
+  fullName: PlayCEASharp.RequestManagement.RequestManager.AddTeamToTournament
+  nameWithType: RequestManager.AddTeamToTournament
+- uid: PlayCEASharp.RequestManagement.RequestManager.CreateTeam(System.String,System.String,System.String,System.String)
+  name: CreateTeam(String, String, String, String)
+  href: api/PlayCEASharp.RequestManagement.RequestManager.html#PlayCEASharp_RequestManagement_RequestManager_CreateTeam_System_String_System_String_System_String_System_String_
+  commentId: M:PlayCEASharp.RequestManagement.RequestManager.CreateTeam(System.String,System.String,System.String,System.String)
+  fullName: PlayCEASharp.RequestManagement.RequestManager.CreateTeam(System.String, System.String, System.String, System.String)
+  nameWithType: RequestManager.CreateTeam(String, String, String, String)
+- uid: PlayCEASharp.RequestManagement.RequestManager.CreateTeam*
+  name: CreateTeam
+  href: api/PlayCEASharp.RequestManagement.RequestManager.html#PlayCEASharp_RequestManagement_RequestManager_CreateTeam_
+  commentId: Overload:PlayCEASharp.RequestManagement.RequestManager.CreateTeam
+  isSpec: "True"
+  fullName: PlayCEASharp.RequestManagement.RequestManager.CreateTeam
+  nameWithType: RequestManager.CreateTeam
+- uid: PlayCEASharp.RequestManagement.RequestManager.GenerateNewInviteCode(System.String,System.String)
+  name: GenerateNewInviteCode(String, String)
+  href: api/PlayCEASharp.RequestManagement.RequestManager.html#PlayCEASharp_RequestManagement_RequestManager_GenerateNewInviteCode_System_String_System_String_
+  commentId: M:PlayCEASharp.RequestManagement.RequestManager.GenerateNewInviteCode(System.String,System.String)
+  fullName: PlayCEASharp.RequestManagement.RequestManager.GenerateNewInviteCode(System.String, System.String)
+  nameWithType: RequestManager.GenerateNewInviteCode(String, String)
+- uid: PlayCEASharp.RequestManagement.RequestManager.GenerateNewInviteCode*
+  name: GenerateNewInviteCode
+  href: api/PlayCEASharp.RequestManagement.RequestManager.html#PlayCEASharp_RequestManagement_RequestManager_GenerateNewInviteCode_
+  commentId: Overload:PlayCEASharp.RequestManagement.RequestManager.GenerateNewInviteCode
+  isSpec: "True"
+  fullName: PlayCEASharp.RequestManagement.RequestManager.GenerateNewInviteCode
+  nameWithType: RequestManager.GenerateNewInviteCode
 - uid: PlayCEASharp.RequestManagement.RequestManager.GetMatchResult(System.String)
   name: GetMatchResult(String)
   href: api/PlayCEASharp.RequestManagement.RequestManager.html#PlayCEASharp_RequestManagement_RequestManager_GetMatchResult_System_String_
