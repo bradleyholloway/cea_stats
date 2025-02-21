@@ -96,7 +96,7 @@ namespace PlayCEASharp.DataModel
         /// <summary>
         /// The players on the team.
         /// </summary>
-        public List<Player> Players { get; }
+        public List<Player> Players { get; internal set; }
 
         /// <summary>
         /// The total cumulative statistics for this team.

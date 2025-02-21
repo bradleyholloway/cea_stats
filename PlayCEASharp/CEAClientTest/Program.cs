@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace RlClientTest;public class Program {    const string StagingEndpoint = "https://z36ny63i72.execute-api.us-east-1.amazonaws.com/staging";
+    
     public static void Main()    {
 
         // LeagueManager.EndpointOverride = StagingEndpoint;

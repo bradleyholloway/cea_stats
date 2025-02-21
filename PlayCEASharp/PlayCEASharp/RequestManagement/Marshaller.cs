@@ -296,14 +296,17 @@ namespace PlayCEASharp.RequestManagement
             }
             if (teamToken["mbr"] != null)
             {
+                List<Player> players = new List<Player>();
                 foreach (JsonNode token in teamToken["mbr"].AsArray())
                 {
                     Player player = Player(token);
-                    if (player != null && !team.Players.Contains(player))
+                    if (player != null && !players.Contains(player))
                     {
-                        team.Players.Add(player);
+                        players.Add(player);
                     }
                 }
+
+                team.Players = players;
             }
 
             if (teamToken["meta"] != null && teamToken["meta"]["charity"] != null)

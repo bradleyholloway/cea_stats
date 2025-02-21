@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <AssemblyName>PlayCEASharp</AssemblyName>
     <PackageId>PlayCEASharp</PackageId>
-    <Version>2.2.19</Version>
+    <Version>2.2.20</Version>
     <Authors>Bradley Holloway</Authors>
     <Company>None</Company>
     <Description>
