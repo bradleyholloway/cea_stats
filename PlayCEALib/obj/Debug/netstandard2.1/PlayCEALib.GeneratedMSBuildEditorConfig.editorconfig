@@ -1,8 +1,0 @@
-is_global = true
-build_property.RootNamespace = PlayCEALib
-build_property.ProjectDir = C:\Users\Drumm\git\copilot-worktrees\cea_stats\bradleyholloway-ubiquitous-funicular\PlayCEALib\
-build_property.EnableComHosting = 
-build_property.EnableGeneratedComInterfaceComImportInterop = 
-build_property.CsWinRTUseWindowsUIXamlProjections = false
-build_property.EffectiveAnalysisLevelStyle = 
-build_property.EnableCodeStyleSeverity = 

@@ -7,3 +7,6 @@ PlayCEASharp/CEAClientTest/obj/*
 PlayCEASharp/CEAClientTest/objd/*
 .vscode/*
 .DS_Store
+**/bin/*
+**/obj/*
+.vs/*
