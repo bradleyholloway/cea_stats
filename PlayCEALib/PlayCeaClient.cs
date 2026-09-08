@@ -10,7 +10,7 @@ namespace PlayCEALib;
 /// <summary>
 /// Read-only client for the current PlayCEA/Rally Cry tRPC API.
 /// </summary>
-public sealed class PlayCeaClient
+public sealed partial class PlayCeaClient
 {
     public const string ProductionApiHost = "https://urc-api-590668323850.us-central1.run.app";
 
@@ -33,6 +33,14 @@ public sealed class PlayCeaClient
 
     public Task<Competition> GetCompetitionAsync(long competitionId, CancellationToken cancellationToken = default) =>
         QueryAsync<Competition>("competition.getById", new { id = competitionId }, cancellationToken);
+
+    public Task<PlayCeaOrganization> GetOrganizationAsync(
+        long organizationId,
+        CancellationToken cancellationToken = default) =>
+        QueryAsync<PlayCeaOrganization>(
+            "organization.getById",
+            new { id = organizationId },
+            cancellationToken);
 
     public async Task<IReadOnlyList<CompetitionBracket>> ListBracketsAsync(
         long competitionId, CancellationToken cancellationToken = default)

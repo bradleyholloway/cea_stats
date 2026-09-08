@@ -23,6 +23,8 @@ PlayCEA/Rally Cry backend. The original implementation is in
 | Done | Read public competition profile | `competition.profile.getByCompetitionId` | No direct old equivalent |
 | Done | Read user identity, linked communities, games, and contact accounts | `user.getByIdOrKey`, `user.lifecycle.communities`, `profile.games.list`, `profile.contactAccounts.sync.list` | `DataModel.Player` identity and team membership; new API keeps platform user IDs separate from Discord account IDs |
 | Done | Discover a competition aggregate with rosters and linked player data | `DiscoverCompetitionAsync` orchestration over competition/bracket/entry/roster/user procedures | Replaces manual `LeagueInstanceManager` hydration; returns explicit new-model indexes |
+| Done | Select, filter, paginate, and discover multiple explicit competition IDs | Client-side orchestration over `competition.getById`; optional `IOrganizationDataSource` with a PlayCEA-backed implementation | Preserves `DiscoverCompetitionAsync`; deterministic ordering and query-bound cursors |
+| Done | Attach optional provider-neutral game/match enrichment | `IGameSpecificEnrichmentProvider`; no stable game-specific backend verified | Opt-in enrichment DTOs and memory cache; existing discovery remains unchanged |
 | Done | Async tRPC transport and typed error handling | Production `/trpc` host | `RequestManager.GetStringWithRetryAsync` |
 
 ## Remaining
@@ -47,6 +49,11 @@ PlayCEA/Rally Cry backend. The original implementation is in
 - Add fixture tests for tRPC envelopes, API errors, pagination, and response
   compatibility before treating frontend procedures as stable API contracts.
 - Investigate private-competition authentication, rate limits, and visibility.
+- Monitor the observed `organization.getById` procedure for schema or
+  authorization changes; it is not a published compatibility contract.
+- Implement Rocket League (and other game) enrichment providers after stable
+  external match/game identifiers, schemas, credentials, and completed
+  PlayCEA mapping fixtures are available.
 - Do not implement writes yet. Score reporting, entry/team changes, roster
   mutations, invitations, and authentication require separate investigation.
 

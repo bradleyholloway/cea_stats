@@ -25,6 +25,16 @@ public sealed class CompetitionGame
     public string? Name { get; init; }
 }
 
+public class PlayCeaOrganization
+{
+    public long Id { get; init; }
+    public string? Name { get; init; }
+    public string? Key { get; init; }
+    public string? Image { get; init; }
+    public string? RootForDomain { get; init; }
+    public string? Tier { get; init; }
+}
+
 public sealed class CompetitionBracket
 {
     public long Id { get; init; }
