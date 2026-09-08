@@ -1,0 +1,13 @@
+C:\Users\Drumm\git\copilot-worktrees\cea_stats\bradleyholloway-ubiquitous-funicular\PlayCEALib\bin\Debug\net8.0\PlayCEALib.deps.json
+C:\Users\Drumm\git\copilot-worktrees\cea_stats\bradleyholloway-ubiquitous-funicular\PlayCEALib\bin\Debug\net8.0\PlayCEALib.dll
+C:\Users\Drumm\git\copilot-worktrees\cea_stats\bradleyholloway-ubiquitous-funicular\PlayCEALib\bin\Debug\net8.0\PlayCEALib.pdb
+C:\Users\Drumm\git\copilot-worktrees\cea_stats\bradleyholloway-ubiquitous-funicular\PlayCEALib\obj\Debug\net8.0\PlayCEALib.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Drumm\git\copilot-worktrees\cea_stats\bradleyholloway-ubiquitous-funicular\PlayCEALib\obj\Debug\net8.0\PlayCEALib.AssemblyInfoInputs.cache
+C:\Users\Drumm\git\copilot-worktrees\cea_stats\bradleyholloway-ubiquitous-funicular\PlayCEALib\obj\Debug\net8.0\PlayCEALib.AssemblyInfo.cs
+C:\Users\Drumm\git\copilot-worktrees\cea_stats\bradleyholloway-ubiquitous-funicular\PlayCEALib\obj\Debug\net8.0\PlayCEALib.csproj.CoreCompileInputs.cache
+C:\Users\Drumm\git\copilot-worktrees\cea_stats\bradleyholloway-ubiquitous-funicular\PlayCEALib\obj\Debug\net8.0\PlayCEALib.sourcelink.json
+C:\Users\Drumm\git\copilot-worktrees\cea_stats\bradleyholloway-ubiquitous-funicular\PlayCEALib\obj\Debug\net8.0\PlayCEALib.dll
+C:\Users\Drumm\git\copilot-worktrees\cea_stats\bradleyholloway-ubiquitous-funicular\PlayCEALib\obj\Debug\net8.0\refint\PlayCEALib.dll
+C:\Users\Drumm\git\copilot-worktrees\cea_stats\bradleyholloway-ubiquitous-funicular\PlayCEALib\obj\Debug\net8.0\PlayCEALib.pdb
+C:\Users\Drumm\git\copilot-worktrees\cea_stats\bradleyholloway-ubiquitous-funicular\PlayCEALib\obj\Debug\net8.0\ref\PlayCEALib.dll
+C:\Users\Drumm\git\copilot-worktrees\cea_stats\bradleyholloway-ubiquitous-funicular\PlayCEALib\obj\Debug\net8.0\PlayCEALib.csproj.AssemblyReference.cache
